@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { Locale } from 'date-fns';
-import { Pre } from 'nextra/components';
 import {
   DayPicker,
   DayPickerBaseProps,
@@ -13,7 +12,7 @@ import {
   DayPickerRangeProps,
   DayPickerSingleProps
 } from '../../../dist';
-import { Shadow } from '../utils/Shadow';
+import { Shadow } from '../Shadow';
 import { PropsForm } from './PropsForm';
 
 export function Playground() {
@@ -84,14 +83,6 @@ export function Playground() {
           </div>
         </div>
       </div>
-      <Pre>
-        {`
-        <DayPicker 
-          mode={${JSON.stringify(mode)}}
-          required={${JSON.stringify(baseProps.required)}}
-        />
-      `}
-      </Pre>
     </div>
   );
 }

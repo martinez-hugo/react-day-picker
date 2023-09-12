@@ -1,7 +1,6 @@
 {
   "*": {
     "theme": {
-      "breadcrumb": false,
       "footer": true,
       "sidebar": true,
       "toc": true,
@@ -20,10 +19,10 @@
     "title": "Reference",
     "type": "page"
   },
-  "index": "Introduction",
-  "basics": "DayPicker Basics",
+  "index": "Welcome",
+  "basics": "Using DayPicker",
   "guides": "Advanced Guides",
-  "development": "Development",
+  "development": "Developing",
   "-- More": {
     "type": "separator",
     "title": "More"

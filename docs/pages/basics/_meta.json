@@ -1,0 +1,15 @@
+{
+  "*": {
+    "breadcrumbs": true
+  },
+  "customization": {
+    "breadcrumb": true,
+    "title": ""
+  },
+  "navigation": "",
+  "styling": "",
+  "selecting-days": "",
+  "modifiers": "",
+  "keyboard": "",
+  "localization": ""
+}
