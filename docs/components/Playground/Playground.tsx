@@ -68,7 +68,15 @@ export function Playground() {
           />
         </div>
         <div className="pb-36">
-          <div className="nxe-shadow-lg w-fit p-8 mx-auto">
+          <div
+            className={`nxe-shadow-lg w-fit p-8 mx-auto${
+              baseProps.colorScheme === 'light'
+                ? 'bg-black text-white'
+                : baseProps.colorScheme === 'dark'
+                ? 'bg-white text-black'
+                : 'bg-transparent'
+            }`}
+          >
             <Shadow mode="open">
               <DayPicker
                 locale={locale}

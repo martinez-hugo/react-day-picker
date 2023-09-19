@@ -5,6 +5,7 @@ import { enUS } from 'date-fns/locale';
 import {
   CustomComponents,
   DayPickerBaseProps,
+  DayPickerColorScheme,
   DayPickerMultiProps,
   DayPickerProps,
   DayPickerRangeProps,
@@ -52,6 +53,7 @@ export interface DayPickerContext<TMode extends DaysSelectionMode | unknown> {
   captionLayout: CaptionLayout;
   className: string | undefined;
   classNames: Required<ClassNames>;
+  colorScheme: DayPickerColorScheme;
   components: Partial<CustomComponents> | undefined;
   dataAttributes: DataAttributes;
   defaultMonth: Date | undefined;
@@ -144,6 +146,7 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
   const props = providerProps.dayPickerProps;
   const { fromDate, toDate } = parseFromToProps(props);
   const context: DayPickerContext<TMode> = {
+    colorScheme: props.colorScheme ?? 'auto',
     mode: providerProps.mode,
     onSelectSingle:
       providerProps.mode === 'single'
