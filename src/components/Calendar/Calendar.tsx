@@ -73,7 +73,7 @@ export function Calendar(): JSX.Element {
       <div className={classNames.months_wrapper} style={styles?.months_wrapper}>
         {calendar.months.map((month, i) => (
           <MonthGrid
-            aria-aria-labelledby={id}
+            aria-labelledby={id}
             key={i}
             displayIndex={i}
             month={month}

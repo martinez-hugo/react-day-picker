@@ -1,14 +1,43 @@
 .root {
-  display: inline-block;
-  position: relative;
-  --rdp-cell-size: 40px;
-  --rdp-caption-font-size: 18px;
-  --rdp-accent-color: #0000ff;
-  --rdp-background-color: #e7edff;
-  --rdp-accent-color-dark: #3003e1;
-  --rdp-background-color-dark: #180270;
+  --rdp-cell-size: 2.75rem;
+  --rdp-font-small: 0.8125rem;
+  --rdp-font-medium: 1rem;
+  --rdp-font-large: 1.25rem;
+  --rdp-text-opacity: 0.5;
+  --rdp-accent-color: #007aff;
+  --rdp-background-color: #e0efff;
   --rdp-outline: 2px solid var(--rdp-accent-color); /* Outline border for focused elements */
   --rdp-outline-selected: 3px solid var(--rdp-accent-color); /* Outline border for focused _and_ selected elements */
+}
+
+@media (prefers-contrast: more) {
+  .root {
+    --rdp-text-opacity: 0.8;
+  }
+}
+.root.more_contrast {
+  --rdp-text-opacity: 0.8;
+}
+
+@media (prefers-color-scheme: dark) {
+  .root {
+    --rdp-accent-color: #0a84ff;
+    --rdp-background-color: #02203d;
+  }
+}
+.root.dark {
+  --rdp-accent-color: #0a84ff;
+  --rdp-background-color: #02203d;
+}
+
+.root {
+  display: inline-block;
+  position: relative;
+}
+
+.root,
+.root * {
+  box-sizing: border-box;
 }
 
 /* Hide elements for devices that are not screen readers */
@@ -38,14 +67,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 2em;
-  overflow: auto;
 }
 
 .caption {
   display: flex;
   align-items: center;
-  font-weight: bold;
-  font-size: larger;
 }
 
 .multiple_months .caption {
@@ -70,9 +96,6 @@
   color: currentColor;
   border: 0;
   border: 2px solid transparent;
-  font-family: inherit;
-  font-size: var(--rdp-caption-font-size);
-  font-weight: bold;
 }
 
 .nav {
@@ -102,18 +125,22 @@
   align-items: center;
   appearance: none;
   background: none;
+  border: 0;
   border-radius: 100%;
   color: inherit;
-  cursor: default;
+  cursor: pointer;
   display: inline-flex;
   font: inherit;
-  height: var(--rdp-cell-size);
   justify-content: center;
   margin: 0;
   padding: 0;
   padding: 0.25em;
   position: relative;
-  width: var(--rdp-cell-size);
+}
+
+.button_next > svg,
+.button_previous > svg {
+  fill: var(--rdp-accent-color);
 }
 
 /* ---------- */
@@ -171,8 +198,6 @@
 }
 
 .head_cell {
-  font-size: 0.75em;
-  font-weight: light;
   text-transform: uppercase;
   width: var(--rdp-cell-size);
   height: var(--rdp-cell-size);
@@ -197,11 +222,6 @@
   justify-content: center;
 }
 
-.weeknumber_rowheader {
-  font-size: 0.5em;
-}
-
-.weeknumber_rowheader,
 .day {
   justify-content: center;
   align-items: center;
@@ -212,28 +232,34 @@
   border-radius: 100%;
 }
 
+.day {
+  font-size: var(--rdp-font-normal);
+}
+
 .day[tabindex='0'] {
   cursor: pointer;
 }
 
 .day_today:not(.day_outside) {
-  font-weight: bold;
+  color: var(--rdp-accent-color);
 }
 
 .day_selected,
 .day_selected:focus-visible,
 .day_selected:hover {
-  color: white;
   opacity: 1;
-  background-color: var(--rdp-accent-color);
+  color: var(--rdp-accent-color);
+  background-color: var(--rdp-background-color);
+  font-size: var(--rdp-font-large);
+  font-weight: 600;
 }
 
 .day_outside {
-  opacity: 0.6;
+  opacity: var(--rdp-text-opacity);
 }
 
 .day_disabled {
-  opacity: 0.6;
+  opacity: var(--rdp-text-opacity);
 }
 
 .day_hidden {
@@ -241,9 +267,6 @@
 }
 
 .day_selected:focus-visible {
-  /* Since the background is the same use again the outline */
-  outline: var(--rdp-outline);
-  outline-offset: 2px;
   z-index: 1;
 }
 
@@ -276,9 +299,15 @@
 }
 
 .weeknumber_rowheader {
-  font-weight: 600;
-  opacity: 0.6;
-  font-size: small;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: var(--rdp-cell-size);
+  border: 2px solid transparent;
+  border-radius: 100%;
+  font-size: var(--rdp-font-small);
+  font-weight: 500;
+  opacity: var(--rdp-text-opacity);
 }
 
 .weekdays_row {
@@ -286,10 +315,11 @@
 
 .weekday_columnheader {
   text-align: center;
-  font-weight: 600;
-  opacity: 0.6;
-  font-size: small;
+  opacity: var(--rdp-text-opacity);
   text-transform: uppercase;
+  font-size: var(--rdp-font-small);
+  font-weight: 500;
+  padding: 0.25rem 0 0.5rem;
 }
 
 .weekdays_row,
@@ -312,8 +342,8 @@
 }
 .month_caption {
   margin-bottom: 0.5em;
-  font-weight: 700;
-  font-size: 1.325em;
+  font-size: var(--rdp-font-large);
+  font-weight: 600;
 }
 
 .caption_between {

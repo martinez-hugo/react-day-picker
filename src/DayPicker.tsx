@@ -31,6 +31,12 @@ export type CustomComponents = {
 /** The name of a color in our color palette. */
 export type DaysSelectionMode = 'none' | 'range' | 'single' | 'multi';
 
+/** The name of the color schemes. */
+export type DayPickerColorScheme = 'auto' | 'dark' | 'light';
+
+/** The name of the contrast preferences. */
+export type DayPickerContrastPreference = 'no-preference' | 'less' | 'more';
+
 export type DayPickerSelectedValue<TMode extends DaysSelectionMode | unknown> =
   [TMode] extends ['single']
     ? Date | undefined
@@ -73,6 +79,9 @@ export interface DayPickerBaseProps {
    * Change the inline style for the day matching the {@link modifiers}.
    */
   modifiersStyles?: ModifiersStyles;
+
+  colorScheme?: DayPickerColorScheme;
+  contrastPreference?: DayPickerContrastPreference;
 
   /**
    * A unique id to replace the random generated id – used by DayPicker for
@@ -164,7 +173,6 @@ export interface DayPickerBaseProps {
   captionLayout?: CaptionLayout;
   /**
    * Display six weeks per months, regardless the month’s number of weeks.
-   * To use this prop, {@link showOutsideDays} must be set.
    *
    * @defaultValue false
    */
@@ -176,13 +184,11 @@ export interface DayPickerBaseProps {
    */
   hideWeekdayRow?: boolean;
   /**
-   * Show the outside days.  An outside day is a day falling in the next or the
-   * previous month.
+   * Show the outside days (days falling in the next or the previous month).
    *
    * @defaultValue false
    */
   showOutsideDays?: boolean;
-
   /**
    * Show the week numbers column. Weeks are numbered according to the local
    * week index.

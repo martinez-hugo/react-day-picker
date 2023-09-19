@@ -4,6 +4,7 @@ import { useCalendar } from 'contexts/CalendarContext';
 import { useDayPicker } from 'contexts/DayPickerContext';
 
 export type CaptionLayout = 'dropdown' | 'buttons' | 'dropdown-buttons';
+
 export function Nav() {
   const { classNames, styles } = useDayPicker();
   const { goToNextMonth, goToPreviousMonth } = useCalendar();
@@ -14,14 +15,18 @@ export function Nav() {
         className={classNames.button_previous}
         onClick={goToPreviousMonth}
       >
-        Previous
+        <svg width="24px" height="24px" viewBox="0 0 24 24">
+          <polygon points="15 17.23 9.43 11.5 15 5.76 13.28 4 6 11.5 13.28 19" />
+        </svg>
       </button>
       <button
         name="next-month"
         className={classNames.button_next}
         onClick={goToNextMonth}
       >
-        Next
+        <svg width="24px" height="24px" viewBox="0 0 24 24">
+          <polygon points="9 17.23 14.56 11.5 9 5.76 10.71 4 18 11.5 10.71 19" />
+        </svg>
       </button>
     </nav>
   );

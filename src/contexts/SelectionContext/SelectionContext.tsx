@@ -68,7 +68,6 @@ export function SelectionProvider<
     dayModifiers: MatchingModifiers,
     e: React.MouseEvent<Element, MouseEvent>
   ) => {
-    debugger;
     let newSingleValue: DayPickerSelectedValue<'single'>;
     if (singleValue && isSameDay(singleValue, date) && !required) {
       newSingleValue = undefined;

@@ -1,5 +1,7 @@
 declare const styles: {
   'root': string
+  'more_contrast': string
+  'dark': string
   'vhidden': string
   'with_weeknumber': string
   'months_wrapper': string
@@ -23,7 +25,6 @@ declare const styles: {
   'tbody': string
   'footer': string
   'cell': string
-  'weeknumber_rowheader': string
   'day': string
   'day_today': string
   'day_outside': string
@@ -33,6 +34,7 @@ declare const styles: {
   'day_range_start': string
   'day_range_end': string
   'day_range_middle': string
+  'weeknumber_rowheader': string
   'weekdays_row': string
   'weekday_columnheader': string
   'week_row': string

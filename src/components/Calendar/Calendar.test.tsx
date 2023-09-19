@@ -3,7 +3,6 @@ import React from 'react';
 import { RenderResult } from '@testing-library/react';
 import { addDays } from 'date-fns';
 import { DayPickerProps } from 'DayPicker';
-
 import { customRender } from 'test/render';
 import { getDayButton, queryMonthGrids } from 'test/selectors';
 import { freezeBeforeAll } from 'test/utils';
@@ -88,7 +87,9 @@ describe('when using the "classNames" prop', () => {
     button_previous: '',
     button_next: '',
     button_icon: '',
-    footer: ''
+    footer: '',
+    more_contrast: '',
+    dark: ''
   };
   beforeEach(() => {
     setup({ classNames });

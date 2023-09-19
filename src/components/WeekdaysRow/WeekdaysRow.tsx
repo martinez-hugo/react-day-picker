@@ -7,27 +7,33 @@ import { getWeekdays } from './utils/getWeekdays';
 
 export function WeekdaysRow() {
   const {
-    styles,
     classNames,
-    locale,
-    weekStartsOn,
+    components,
+    hideWeekdayRow,
     ISOWeek,
+    locale,
     showWeekNumber,
-    components
+    styles,
+    weekStartsOn
   } = useDayPicker();
 
   const weekdays = getWeekdays(locale, weekStartsOn, ISOWeek);
   const WeekdayColumnHeader =
     components?.WeekdayColumnHeader ?? DefaultWeekdayColumnHeader;
 
+  const classNamesList = [classNames.weekdays_row];
+  if (hideWeekdayRow) {
+    classNamesList.push(classNames.vhidden);
+  }
   return (
     <div
       role="row"
       aria-rowindex={1}
       style={styles?.weekdays_row}
-      className={classNames.weekdays_row}
+      className={classNamesList.join(' ')}
+      onClick={(e) => e.stopPropagation()}
     >
-      {showWeekNumber && <WeekdayColumnHeader aria-aria-colindex={1} />}
+      {showWeekNumber && <WeekdayColumnHeader aria-colindex={1} />}
       {weekdays.map((weekday, i) => (
         <WeekdayColumnHeader
           key={i}

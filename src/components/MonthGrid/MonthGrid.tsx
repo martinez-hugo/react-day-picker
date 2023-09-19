@@ -21,7 +21,7 @@ export function MonthGrid(props: MonthGridProps) {
   const {
     id,
     mode,
-    hideWeekdayRow: hideWeekdayRow,
+    hideWeekdayRow,
     components,
     classNames,
     styles,
@@ -48,7 +48,7 @@ export function MonthGrid(props: MonthGridProps) {
         className={classNames.month_grid}
         style={styles?.month_grid}
       >
-        {!hideWeekdayRow && <WeekdaysRow />}
+        <WeekdaysRow />
         <div
           role="rowgroup"
           className={classNames.month_rowgroup}

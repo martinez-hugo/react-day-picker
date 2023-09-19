@@ -1,6 +1,5 @@
 import {
   addDays,
-  addWeeks,
   endOfISOWeek,
   endOfMonth,
   endOfWeek,
@@ -8,6 +7,7 @@ import {
   startOfISOWeek,
   startOfWeek
 } from 'date-fns';
+import { DayPickerProps } from 'DayPicker';
 
 import {
   DayPickerDay,
@@ -19,14 +19,15 @@ import {
 export function getDayPickerMonths(
   months: Date[],
   dates: Date[],
-  options?: {
-    fixedWeeks?: boolean | undefined;
-    reverseMonths?: boolean | undefined;
-    ISOWeek?: boolean | undefined;
-    locale?: Locale | undefined;
-    weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | undefined;
-    firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | undefined;
-  }
+  options?: Pick<
+    DayPickerProps,
+    | 'firstWeekContainsDate'
+    | 'fixedWeeks'
+    | 'ISOWeek'
+    | 'locale'
+    | 'reverseMonths'
+    | 'weekStartsOn'
+  >
 ) {
   const dayPickerMonths = months.reduce<DayPickerMonth[]>((months, month) => {
     const firstDateOfFirstWeek = options?.ISOWeek

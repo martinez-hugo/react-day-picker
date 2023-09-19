@@ -180,9 +180,9 @@ export function DayGridCellWrapper(
   const htmlAttributes: React.HTMLAttributes<HTMLDivElement> = {
     role: 'gridcell',
     ['aria-colindex']: props['aria-colindex'],
-    ['aria-disabled']: dayModifiers.disabled,
-    ['aria-hidden']: dayModifiers.hidden,
-    ['aria-selected']: dayModifiers.selected,
+    ['aria-disabled']: dayModifiers.disabled || undefined,
+    ['aria-hidden']: dayModifiers.hidden || undefined,
+    ['aria-selected']: dayModifiers.selected || undefined,
     className: className,
     style: style,
     tabIndex: dayModifiers.disabled || mode === 'none' ? -1 : 0,

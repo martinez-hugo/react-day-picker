@@ -4,6 +4,8 @@ import { format, isValid, Locale, parse, startOfMonth } from 'date-fns';
 import * as locales from 'date-fns/locale';
 import {
   DayPickerBaseProps,
+  DayPickerColorScheme,
+  DayPickerContrastPreference,
   DayPickerMultiProps,
   DayPickerRangeProps,
   DayPickerSingleProps,
@@ -17,7 +19,7 @@ import { Select } from '../Select';
 
 export interface PropsFormProps {
   mode: DaysSelectionMode | undefined;
-  onModeChange: (mode: DaysSelectionMode) => void;
+  onModeChange: (mode: DaysSelectionMode | 'none') => void;
   locale: Locale | undefined;
   onLocaleChange: (locale: Locale) => void;
   baseProps: DayPickerBaseProps;
@@ -31,8 +33,8 @@ export interface PropsFormProps {
   onReset: () => void;
 }
 
-const selectionModes: (DaysSelectionMode | undefined)[] = [
-  undefined,
+const selectionModes: (DaysSelectionMode | 'none')[] = [
+  'none',
   'single',
   'multi',
   'range'
@@ -40,7 +42,7 @@ const selectionModes: (DaysSelectionMode | undefined)[] = [
 
 export function PropsForm(props: PropsFormProps) {
   const {
-    mode,
+    mode = 'none',
     onModeChange,
     locale,
     onLocaleChange,
@@ -54,52 +56,23 @@ export function PropsForm(props: PropsFormProps) {
     onRangePropsChange
   } = props;
 
-  const handleModeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onModeChange(e.target.value as DaysSelectionMode);
-  };
-
-  const handleRequiredChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onSinglePropsChange({
-      ...singleProps,
-      required: e.target.checked
-    });
-  };
-
-  const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    mode === 'multi'
-      ? onMultiPropsChange({
-          ...multiProps,
-          min: Number(e.target.value) === 0 ? undefined : Number(e.target.value)
-        })
-      : onRangePropsChange({
-          ...rangeProps,
-
-          min: Number(e.target.value) === 0 ? undefined : Number(e.target.value)
-        });
-  };
-
-  const handleMultiChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    mode === 'multi'
-      ? onMultiPropsChange({
-          ...multiProps,
-          max: Number(e.target.value) === 0 ? undefined : Number(e.target.value)
-        })
-      : onRangePropsChange({
-          ...rangeProps,
-          max: Number(e.target.value) === 0 ? undefined : Number(e.target.value)
-        });
-  };
+  // console.log('mode', mode);
+  // console.log('baseProps', baseProps);
+  // console.log('singleProps', singleProps);
   return (
     <Form>
       <Fieldset legend="Selection mode">
-        {selectionModes.map((mode) => (
+        {selectionModes.map((selectionMode) => (
           <Input
-            label={mode || 'none'}
+            key={selectionMode}
+            label={selectionMode || 'none'}
             type="radio"
             name="mode"
-            value={mode ?? ''}
-            checked={mode === undefined ? !mode : mode === mode}
-            onChange={handleModeChange}
+            value={selectionMode}
+            checked={mode === selectionMode}
+            onChange={(e) => {
+              onModeChange(e.target.value as DaysSelectionMode);
+            }}
           />
         ))}
         {mode === 'single' && (
@@ -107,7 +80,12 @@ export function PropsForm(props: PropsFormProps) {
             label="required"
             type="checkbox"
             checked={singleProps.required}
-            onChange={handleRequiredChange}
+            onChange={(e) => {
+              onSinglePropsChange({
+                ...singleProps,
+                required: e.target.checked
+              });
+            }}
           />
         )}
         {(mode === 'multi' || mode === 'range') && (
@@ -118,7 +96,24 @@ export function PropsForm(props: PropsFormProps) {
               min="0"
               max="99"
               value={mode === 'multi' ? multiProps?.min : rangeProps?.min}
-              onChange={handleMinChange}
+              onChange={(e) => {
+                mode === 'multi'
+                  ? onMultiPropsChange({
+                      ...multiProps,
+                      min:
+                        Number(e.target.value) === 0
+                          ? undefined
+                          : Number(e.target.value)
+                    })
+                  : onRangePropsChange({
+                      ...rangeProps,
+
+                      min:
+                        Number(e.target.value) === 0
+                          ? undefined
+                          : Number(e.target.value)
+                    });
+              }}
             />
             <Input
               label="max"
@@ -126,18 +121,34 @@ export function PropsForm(props: PropsFormProps) {
               min="0"
               max="99"
               value={mode === 'multi' ? multiProps?.max : rangeProps?.max}
-              onChange={handleMultiChange}
+              onChange={(e) => {
+                mode === 'multi'
+                  ? onMultiPropsChange({
+                      ...multiProps,
+                      max:
+                        Number(e.target.value) === 0
+                          ? undefined
+                          : Number(e.target.value)
+                    })
+                  : onRangePropsChange({
+                      ...rangeProps,
+                      max:
+                        Number(e.target.value) === 0
+                          ? undefined
+                          : Number(e.target.value)
+                    });
+              }}
             />
           </>
         )}
       </Fieldset>
       <Fieldset legend="Calendar">
         <Input
-          label="defaultMonth"
+          label="month"
           type="date"
           value={
-            baseProps.defaultMonth
-              ? format(startOfMonth(baseProps.defaultMonth), 'yyyy-MM-dd')
+            baseProps.month
+              ? format(startOfMonth(baseProps.month), 'yyyy-MM-dd')
               : ''
           }
           onChange={(e) => {
@@ -145,7 +156,7 @@ export function PropsForm(props: PropsFormProps) {
             if (isValid(parsed)) {
               onBasePropsChange({
                 ...baseProps,
-                defaultMonth: parsed
+                month: parsed
               });
             }
           }}
@@ -183,7 +194,6 @@ export function PropsForm(props: PropsFormProps) {
         <Input
           label="fixedWeeks"
           type="checkbox"
-          disabled={!baseProps.showOutsideDays}
           onChange={(e) =>
             onBasePropsChange({
               ...baseProps,
@@ -365,6 +375,7 @@ export function PropsForm(props: PropsFormProps) {
           <option value={'rtl'}>rtl</option>
         </Select>
         <Input
+          checked={baseProps.ISOWeek}
           label="ISOWeek"
           type="checkbox"
           onChange={(e) =>
@@ -430,6 +441,36 @@ export function PropsForm(props: PropsFormProps) {
             }
           }}
         />
+      </Fieldset>
+      <Fieldset legend="Style">
+        <Select
+          label="colorScheme"
+          onChange={(e) =>
+            onBasePropsChange({
+              ...baseProps,
+              colorScheme: e.target.value as DayPickerColorScheme
+            })
+          }
+        >
+          <option></option>
+          <option value={'auto'}>auto</option>
+          <option value={'light'}>light</option>
+          <option value={'dark'}>dark</option>
+        </Select>
+        <Select
+          label="contrastPreference"
+          onChange={(e) =>
+            onBasePropsChange({
+              ...baseProps,
+              contrastPreference: e.target.value as DayPickerContrastPreference
+            })
+          }
+        >
+          <option></option>
+          <option value={'no-preference'}>no-preference</option>
+          <option value={'less'}>less</option>
+          <option value={'more'}>more</option>
+        </Select>
       </Fieldset>
     </Form>
   );

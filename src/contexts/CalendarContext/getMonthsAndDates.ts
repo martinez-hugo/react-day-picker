@@ -1,4 +1,5 @@
 import { startOfDay, startOfMonth } from 'date-fns';
+import { DayPickerProps } from 'DayPicker';
 
 import { getDates } from './utils/getDates';
 import { getDayPickerMonths } from './utils/getDayPickerMonths';
@@ -7,13 +8,10 @@ import { getDisplayMonths } from './utils/getDisplayMonths';
 export function getMonthsAndDates(
   firstMonth: Date,
   toDate?: Date | undefined,
-  options?: {
-    fixedWeeks?: boolean | undefined;
-    ISOWeek?: boolean;
-    locale?: Locale;
-    numberOfMonths?: number;
-    weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
-  }
+  options?: Pick<
+    DayPickerProps,
+    'fixedWeeks' | 'ISOWeek' | 'locale' | 'numberOfMonths' | 'weekStartsOn'
+  >
 ) {
   const { numberOfMonths = 1 } = options || {};
   const firstDayOfFirstMonth = startOfMonth(startOfDay(firstMonth));

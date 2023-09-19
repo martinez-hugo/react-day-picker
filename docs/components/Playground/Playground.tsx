@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { Locale } from 'date-fns';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
   DayPicker,
   DayPickerBaseProps,
@@ -16,9 +17,17 @@ import { Shadow } from '../Shadow';
 import { PropsForm } from './PropsForm';
 
 export function Playground() {
-  const [mode, setMode] = useState<DaysSelectionMode | undefined>();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const mode = (searchParams?.get('mode') as DaysSelectionMode) || 'none';
+
   const [locale, setLocale] = useState<Locale>();
-  const [baseProps, setBaseProps] = useState<DayPickerBaseProps>({});
+
+  const baseProps = JSON.parse(
+    searchParams?.get('baseProps') ?? '{}'
+  ) as DayPickerBaseProps;
+
   const [singleProps, setSingleProps] = useState<DayPickerSingleProps>({
     mode: 'single'
   });
@@ -30,18 +39,29 @@ export function Playground() {
   });
 
   const handleReset = () => {
-    setBaseProps({});
-    setSingleProps({ mode: 'single' });
-    setMultiProps({ mode: 'multi' });
-    setRangeProps({ mode: 'range' });
-    setMode(undefined);
+    router.push(``);
+  };
+
+  const handleModeChange = (mode: DaysSelectionMode) => {
+    const qs = new URLSearchParams({
+      mode
+    });
+
+    router.push(`?${qs.toString()}&`);
+  };
+  const handleBasePropsChange = (baseProps: DayPickerBaseProps) => {
+    const qs = new URLSearchParams({
+      mode,
+      baseProps: JSON.stringify(baseProps)
+    });
+    router.push(`?${qs.toString()}`);
   };
 
   return (
     <div>
       <h1 className="text-3xl my-4 font-bold">Playground</h1>
       <hr className="border-neutral-500 my-4" />
-      <div className="flex justify-center flex-col">
+      <div className="flex flex-col">
         <div>
           <button
             type="button"
@@ -57,9 +77,9 @@ export function Playground() {
             multiProps={multiProps}
             rangeProps={rangeProps}
             singleProps={singleProps}
-            onModeChange={setMode}
             onLocaleChange={setLocale}
-            onBasePropsChange={setBaseProps}
+            onModeChange={handleModeChange}
+            onBasePropsChange={handleBasePropsChange}
             onSinglePropsChange={setSingleProps}
             onMultiPropsChange={setMultiProps}
             onRangePropsChange={setRangeProps}
@@ -67,16 +87,16 @@ export function Playground() {
           />
         </div>
         <div className="pb-36">
-          <div className="nx-shadow-lg w-fit p-8 mx-auto">
+          <div className="nxe-shadow-lg w-fit p-8 mx-auto">
             <Shadow mode="open">
               <DayPicker
                 locale={locale}
                 {...(mode === 'single'
-                  ? singleProps
+                  ? { ...baseProps, ...singleProps }
                   : mode === 'multi'
-                  ? multiProps
+                  ? { ...baseProps, ...multiProps }
                   : mode === 'range'
-                  ? rangeProps
+                  ? { ...baseProps, ...rangeProps }
                   : baseProps)}
               />
             </Shadow>
