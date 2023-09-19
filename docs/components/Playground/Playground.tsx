@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { Locale } from 'date-fns';
-import { useRouter, useSearchParams } from 'next/navigation';
 import {
   DayPicker,
   DayPickerBaseProps,
@@ -17,17 +16,10 @@ import { Shadow } from '../Shadow';
 import { PropsForm } from './PropsForm';
 
 export function Playground() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
-  const mode = (searchParams?.get('mode') as DaysSelectionMode) || 'none';
-
+  const [mode, setMode] = useState<DaysSelectionMode>();
   const [locale, setLocale] = useState<Locale>();
 
-  const baseProps = JSON.parse(
-    searchParams?.get('baseProps') ?? '{}'
-  ) as DayPickerBaseProps;
-
+  const [baseProps, setBaseProps] = useState<DayPickerBaseProps>({});
   const [singleProps, setSingleProps] = useState<DayPickerSingleProps>({
     mode: 'single'
   });
@@ -39,22 +31,11 @@ export function Playground() {
   });
 
   const handleReset = () => {
-    router.push(``);
-  };
-
-  const handleModeChange = (mode: DaysSelectionMode) => {
-    const qs = new URLSearchParams({
-      mode
-    });
-
-    router.push(`?${qs.toString()}&`);
-  };
-  const handleBasePropsChange = (baseProps: DayPickerBaseProps) => {
-    const qs = new URLSearchParams({
-      mode,
-      baseProps: JSON.stringify(baseProps)
-    });
-    router.push(`?${qs.toString()}`);
+    setMode(undefined);
+    setMultiProps({ mode: 'multi' });
+    setSingleProps({ mode: 'single' });
+    setRangeProps({ mode: 'range' });
+    setBaseProps({});
   };
 
   return (
@@ -78,8 +59,8 @@ export function Playground() {
             rangeProps={rangeProps}
             singleProps={singleProps}
             onLocaleChange={setLocale}
-            onModeChange={handleModeChange}
-            onBasePropsChange={handleBasePropsChange}
+            onModeChange={setMode}
+            onBasePropsChange={setBaseProps}
             onSinglePropsChange={setSingleProps}
             onMultiPropsChange={setMultiProps}
             onRangePropsChange={setRangeProps}

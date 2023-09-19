@@ -51,7 +51,7 @@
   -webkit-appearance: none;
   appearance: none;
   position: absolute !important;
-  top: 0;
+  inset-block-start: 0;
   width: 1px !important;
   height: 1px !important;
   padding: 0 !important;
@@ -100,21 +100,21 @@
 
 .nav {
   position: absolute;
-  right: 0;
+  inset-inline-end: 0;
   white-space: nowrap;
 }
 
 .multiple_months .caption_start .nav {
   position: absolute;
-  top: 50%;
-  left: 0;
+  inset-block-start: 50%;
+  inset-inline-start: 0;
   transform: translateY(-50%);
 }
 
 .multiple_months .caption_end .nav {
   position: absolute;
-  top: 50%;
-  right: 0;
+  inset-block-start: 50%;
+  inset-inline-end: 0;
   transform: translateY(-50%);
 }
 
@@ -158,9 +158,9 @@
   appearance: none;
   position: absolute;
   z-index: 2;
-  top: 0;
+  inset-block-start: 0;
   bottom: 0;
-  left: 0;
+  inset-inline-start: 0;
   width: 100%;
   margin: 0;
   padding: 0;
