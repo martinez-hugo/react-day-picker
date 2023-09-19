@@ -143,6 +143,15 @@
   fill: var(--rdp-accent-color);
 }
 
+.root[dir='rtl'] .button_next {
+  transform: rotate(180deg);
+}
+
+.root[dir='rtl'] .button_previous {
+  transform: rotate(180deg);
+  transform-origin: 50%;
+}
+
 /* ---------- */
 /* Dropdowns  */
 /* ---------- */
