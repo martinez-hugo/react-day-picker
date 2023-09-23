@@ -11,7 +11,7 @@ export const inputClassNames: Partial<Record<HTMLInputTypeAttribute, string>> =
     checkbox: ''
   };
 export const defaultClassName =
-  'appearance-none border border-neutral-500 rounded py-1 px-2';
+  'appearance-none border border-neutral-400 rounded py-1 px-2';
 
 export function Input(props: InputProps) {
   const { label, type = 'text', ...inputProps } = props;

@@ -14,7 +14,7 @@ export function Select(props: SelectProps) {
       <span className="font-mono">{label}</span>
       <select
         {...selectProps}
-        className="form-select appearance-none border border-neutral-300 rounded py-1 px-2 text-current"
+        className="form-select appearance-none border border-neutral-400 rounded py-1 px-2 text-current"
       >
         {props.children}
       </select>
