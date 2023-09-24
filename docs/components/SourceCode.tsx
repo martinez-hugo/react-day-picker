@@ -19,14 +19,16 @@ type SourceCodeProps = {
  *
  * @example
  *
- *```mdx
- *Some markdown rendering the source code of `example1.tsx` and `example2.tsx`.
+ * ```mdx
+ * Some markdown rendering the source code of `example1.tsx` and `example2.tsx`.
  *
- *<SourceCode fileName="example1.tsx" />
- *<SourceCode fileName="example2.tsx" />
+ * <SourceCode fileName="example1.tsx" />
+ * <SourceCode fileName="example2.tsx" />
  *
- *export const getStaticProps = () => getExampleStaticProps(['example1.tsx', 'example2.tsx']);
- *```
+ * export const getStaticProps = () => getExampleStaticProps(['example1.tsx', 'example2.tsx']);
+ * ```
+ *
+ * @see https://github.com/shuding/nextra/discussions/2167
  */
 export function SourceCode(props: SourceCodeProps) {
   const { fileName, theme } = props;

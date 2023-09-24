@@ -1,7 +1,4 @@
 {
-  "*": {
-    "breadcrumbs": true
-  },
   "customization": {
     "breadcrumb": true,
     "title": ""

@@ -6,10 +6,10 @@ function CustomDayGridCell(props: DayGridCellProps) {
   const isFirstDay =
     props.day.date.getDate() === 1 && props.state.outside === false;
   return (
-    <div {...props.htmlAttributes}>
+    <time {...props.htmlAttributes}>
       {props.children}
       {isFirstDay && <div>(first day)</div>}
-    </div>
+    </time>
   );
 }
 

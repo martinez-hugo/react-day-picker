@@ -1,20 +1,13 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
-import { getDaysInMonth } from 'date-fns';
-
+import { renderExampleApp } from '../../test/renderExampleApp';
 import { freezeBeforeAll } from '../../test/utils';
 import Example from './custom-day';
 
-const today = new Date(2021, 10, 25);
-freezeBeforeAll(today);
-
-let container: HTMLElement;
-beforeEach(() => {
-  container = render(<Example />).container;
-});
+freezeBeforeAll(new Date(2021, 10, 25));
 
 test('should render time elements', () => {
-  const timeElements = container.getElementsByTagName('time');
-  expect(timeElements).toHaveLength(getDaysInMonth(today));
+  const { app } = renderExampleApp(<Example />);
+  const timeElements = app.getElementsByTagName('time');
+  expect(timeElements).toHaveLength(35);
 });

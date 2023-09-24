@@ -138,11 +138,12 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
 ) {
   const dataAttributes: DataAttributes = {};
 
-  Object.entries(providerProps).forEach(([key, val]) => {
+  Object.entries(providerProps.dayPickerProps).forEach(([key, val]) => {
     if (key.startsWith('data-')) {
       dataAttributes[key] = val;
     }
   });
+
   const props = providerProps.dayPickerProps;
   const { fromDate, toDate } = parseFromToProps(props);
   const context: DayPickerContext<TMode> = {

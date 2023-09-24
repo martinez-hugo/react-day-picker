@@ -1,28 +1,20 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
-
 import { axe } from '../../test/axe';
-import { freezeBeforeAll } from '../../test/utils';
-import Example from './container-attributes';
-
-const today = new Date(2021, 10, 25);
-freezeBeforeAll(today);
-
-let firstChild: HTMLDivElement;
-beforeEach(
-  () =>
-    (firstChild = render(<Example />).container.firstChild as HTMLDivElement)
-);
+import { renderExampleApp } from '../../test/renderExampleApp';
+import ContainerAttributes from './container-attributes';
 
 test('should not have AXE violations', async () => {
-  expect(await axe(firstChild)).toHaveNoViolations();
+  const { app } = renderExampleApp(<ContainerAttributes />);
+  expect(await axe(app)).toHaveNoViolations();
 });
 
 test('should have the specified id', () => {
-  expect(firstChild.id).toBe('testId');
+  const { dayPicker } = renderExampleApp(<ContainerAttributes />);
+  expect(dayPicker).toHaveAttribute('id', 'testId');
 });
 
-test('should have the DataSet attribute', () => {
-  expect(firstChild).toHaveAttribute('data-test', 'testData');
+test('should have the data set attribute', () => {
+  const { dayPicker } = renderExampleApp(<ContainerAttributes />);
+  expect(dayPicker).toHaveAttribute('data-test', 'testData');
 });
