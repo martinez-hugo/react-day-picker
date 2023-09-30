@@ -88,8 +88,12 @@ describe('when using the "classNames" prop', () => {
     button_next: '',
     button_icon: '',
     footer: '',
-    more_contrast: '',
-    dark: ''
+    contrast_more: '',
+    contrast_less: '',
+    color_dark: '',
+    color_light: '',
+    color_auto: '',
+    'contrast_no-preference': ''
   };
   beforeEach(() => {
     setup({ classNames });

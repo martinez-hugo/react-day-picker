@@ -7,7 +7,7 @@ export type StyledElement<T = string | React.CSSProperties> = {
   /** The calendar element (root). */
   readonly root: T;
 
-  readonly more_contrast: T;
+  readonly contrast_more: T;
   readonly dark: T;
 
   /** The root element when `numberOfMonths > 1`. */

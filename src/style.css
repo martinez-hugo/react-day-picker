@@ -10,13 +10,24 @@
   --rdp-outline-selected: 3px solid var(--rdp-accent-color); /* Outline border for focused _and_ selected elements */
 }
 
+.root.contrast_no-preference {
+}
 @media (prefers-contrast: more) {
   .root {
     --rdp-text-opacity: 0.8;
   }
 }
-.root.more_contrast {
+.root.contrast_more {
   --rdp-text-opacity: 0.8;
+}
+
+@media (prefers-contrast: less) {
+  .root {
+    --rdp-text-opacity: 0.4;
+  }
+}
+.root.contrast_less {
+  --rdp-text-opacity: 0.4;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,9 +36,15 @@
     --rdp-background-color: #02203d;
   }
 }
-.root.dark {
+.root.color_light {
   --rdp-accent-color: #0a84ff;
   --rdp-background-color: #02203d;
+}
+.root.color_dark {
+  --rdp-accent-color: #0a84ff;
+  --rdp-background-color: #02203d;
+}
+.root.color_auto {
 }
 
 .root {

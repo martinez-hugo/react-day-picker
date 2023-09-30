@@ -13,6 +13,7 @@ export function Calendar(): JSX.Element {
     className,
     classNames,
     colorScheme,
+    contrastPreference,
     components,
     dataAttributes,
     dir,
@@ -55,10 +56,12 @@ export function Calendar(): JSX.Element {
   if (numberOfMonths > 1) {
     cssClassNames.push(classNames.multiple_months);
   }
-  if (colorScheme === 'dark') {
-    cssClassNames.push(classNames.dark);
+  if (contrastPreference) {
+    cssClassNames.push(classNames[`contrast_${contrastPreference}`]);
   }
-
+  if (colorScheme) {
+    cssClassNames.push(classNames[`color_${colorScheme}`]);
+  }
   if (showWeekNumber) {
     cssClassNames.push(classNames.with_weeknumber);
   }

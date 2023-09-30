@@ -6,6 +6,7 @@ import {
   CustomComponents,
   DayPickerBaseProps,
   DayPickerColorScheme,
+  DayPickerContrastPreference,
   DayPickerMultiProps,
   DayPickerProps,
   DayPickerRangeProps,
@@ -54,6 +55,7 @@ export interface DayPickerContext<TMode extends DaysSelectionMode | unknown> {
   className: string | undefined;
   classNames: Required<ClassNames>;
   colorScheme: DayPickerColorScheme;
+  contrastPreference: DayPickerContrastPreference;
   components: Partial<CustomComponents> | undefined;
   dataAttributes: DataAttributes;
   defaultMonth: Date | undefined;
@@ -148,6 +150,7 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
   const { fromDate, toDate } = parseFromToProps(props);
   const context: DayPickerContext<TMode> = {
     colorScheme: props.colorScheme ?? 'auto',
+    contrastPreference: props.contrastPreference ?? 'no-preference',
     mode: providerProps.mode,
     onSelectSingle:
       providerProps.mode === 'single'

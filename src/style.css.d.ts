@@ -1,7 +1,11 @@
 declare const styles: {
   'root': string
-  'more_contrast': string
-  'dark': string
+  'contrast_no-preference': string
+  'contrast_more': string
+  'contrast_less': string
+  'color_light': string
+  'color_dark': string
+  'color_auto': string
   'vhidden': string
   'with_weeknumber': string
   'months_wrapper': string
