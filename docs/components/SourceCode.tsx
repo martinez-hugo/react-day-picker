@@ -54,7 +54,7 @@ export function SourceCode(props: SourceCodeProps) {
       data-theme="default"
       data-language="tsx"
       hasCopyCode
-      filename={fileName}
+      // filename={fileName}
     >
       <Code
         data-theme={theme}
@@ -86,7 +86,12 @@ export async function getSourceCodeStaticProps(fileNames: string[]) {
 
   for (const fileName of fileNames) {
     const raw = await import(`!!raw-loader!../examples/${fileName}`);
-    const html = await highlightCode(raw.default, 'tsx');
+    // Replace imports from the code
+    const code = raw.default
+      .replace(/import .+ from .+;/g, '')
+      .replace('export default ', '')
+      .trim();
+    const html = await highlightCode(code, 'tsx');
     highlightedExamples[fileName] = html;
   }
   return {

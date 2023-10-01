@@ -1,63 +1,97 @@
-# Customization
+import {
+  SourceCode,
+  getSourceCodeStaticProps
+} from '../../components/SourceCode';
+import { RenderingBox } from '../../components/RenderingBox';
+import 'react-day-picker/dist/style.css';
 
-## Multiple months
+export const getStaticProps = () =>
+  getSourceCodeStaticProps([
+    'multiple-months.tsx',
+    'fixedweeks.tsx',
+    'weeknumber.tsx',
+    'weeknumber-iso.tsx',
+    'weeknumber-custom.tsx',
+    'outside-days.tsx',
+    'multiple-months-paged.tsx'
+  ]);
 
-Use `numberOfMonths` to render more than one calendar.
+# Customize DayPicker
 
-```include-example
-multiple-months
-```
+Change months, weeks and days in the calendar.
 
-### Paged navigation
-
-When rendering multiple months, use `pagedNavigation` to navigate the number of
-months per time.
-
-```include-example
-multiple-months-paged
-```
-
-## Showing the outside days
+### Showing the Outside Days
 
 Use `showOutsideDays` to display the days falling out the current month.
 
-```include-example
-outside-days
-```
+import OutsideDays from 'react-day-picker/docs/examples/outside-days.tsx';
 
-## Using fixed weeks
+<SourceCode fileName="outside-days.tsx" />
 
-When `showOutsideDays` is turned on, use `fixedWeeks` to display six weeks per
-months. This will prevent the calendar to change its height when navigating.
+<RenderingBox>
+  <OutsideDays />
+</RenderingBox>
 
-```include-example
-fixedweeks
-```
+### Render Multiple Months
 
-## Showing the week numbers
+Use `numberOfMonths` to render more than one calendar. Toggle `pagedNavigation`
+to navigate the number of months per time.
 
-Use `showWeekNumber` to display the week numbers.
+<SourceCode fileName="multiple-months-paged.tsx" />
 
-```include-example
-weeknumber
-```
+import MultipleMonthsPaged from 'react-day-picker/docs/examples/multiple-months-paged.tsx';
+
+<RenderingBox>
+  <MultipleMonthsPaged />
+</RenderingBox>
+
+### Using Fixed Weeks
+
+Use `fixedWeeks` to display six weeks per months. This will prevent the calendar
+to change its height when navigating.
+
+<SourceCode fileName="fixedweeks.tsx" />
+
+import FixedWeeks from 'react-day-picker/docs/examples/fixedweeks.tsx';
+
+<RenderingBox>
+  <FixedWeeks />
+</RenderingBox>
+
+### Showing the Week Numbers
+
+Use `showWeekNumber` to display the week numbers. When this prop is set, use `onWeekNumberClick` to handle the click on a week number.
+
+import WeekNumber from 'react-day-picker/docs/examples/weeknumber.tsx';
+
+<SourceCode fileName="weeknumber.tsx" />
+
+<RenderingBox>
+  <WeekNumber />
+</RenderingBox>
 
 ### Switching to ISO Week Dates
 
-DayPicker uses [date-fns getWeek](https://date-fns.org/docs/getWeek) to calculate the week number. By default, the week starts on Sunday and the first week of the year is the one that contains January 1st.
+DayPicker uses [date-fns getWeek](https://date-fns.org/docs/getWeek) to calculate the week number. By default, the week starts on Sunday and the first week of the year is the one that contains January 1st. Use `ISOWeek` to switch using [ISO Week Dates](https://en.wikipedia.org/wiki/ISO_week_date) instead of the locale setting.
 
-Use [`ISOWeek`](/api/interfaces/DayPickerDefaultProps#isoweek) to switch using [ISO Week Dates](https://en.wikipedia.org/wiki/ISO_week_date) instead of the locale setting.
+import WeekNumberISO from 'react-day-picker/docs/examples/weeknumber-iso.tsx';
 
-```include-example
-weeknumber-iso
-```
+<SourceCode fileName="weeknumber-iso.tsx" />
 
-### Customizing week numbers
+<RenderingBox>
+  <WeekNumberISO />
+</RenderingBox>
 
-- use [`weekStartsOn`](/api/interfaces/DayPickerDefaultProps#weekstartson) to set the first day of the week.
-- use [`firstWeekContainsDate`](/api/interfaces/DayPickerDefaultProps#firstweekcontainsdate) to set the day of January, which is always in the first week of the year.
-- use [`formatters.formatWeekNumber`](/api/interfaces/DayPickerDefaultProps#formatters) to change how week numbers are displayed.
+### Customizing Week Numbers
 
-```include-example
-weeknumber-custom
-```
+- To set the first day of the week, use `weekStartsOn`.
+- To set the day of January in the first week of the year `firstWeekContainsDate`.
+- Use the `formatWeekNumber` formatter to change how week numbers are displayed.
+
+<SourceCode fileName="weeknumber-custom.tsx" />
+
+import WeekNumberCustom from 'react-day-picker/docs/examples/weeknumber-custom.tsx';
+
+<RenderingBox>
+  <WeekNumberCustom />
+</RenderingBox>

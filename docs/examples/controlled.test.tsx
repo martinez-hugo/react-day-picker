@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
+import { Card, Cards } from 'nextra/components';
 
 import { axe } from '../../test/axe';
 import { renderExampleApp } from '../../test/renderExampleApp';
@@ -18,6 +19,7 @@ test('should not have AXE violations', async () => {
 describe('when the "Go to today" button is clicked', () => {
   const getTodayButton = () =>
     screen.getByRole('button', { name: 'Go to Today' });
+
   beforeEach(async () => {
     renderExampleApp(<Example />);
     await user.click(getTodayButton());
