@@ -11,7 +11,7 @@ import Example from './controlled';
 
 freezeBeforeAll(new Date(2022, 5, 10));
 
-test('should not have AXE violations', async () => {
+test('should be accessible', async () => {
   const { app } = renderExampleApp(<Example />);
   expect(await axe(app)).toHaveNoViolations();
 });

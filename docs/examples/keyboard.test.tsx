@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, render } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import {
   addDays,
   addMonths,
@@ -17,9 +17,7 @@ import { axe } from '../../test/axe';
 import {
   getDayButton,
   getFocusedElement,
-  getMonthCaption,
-  getNextButton,
-  getPrevButton
+  getMonthCaption
 } from '../../test/selectors';
 import { user } from '../../test/user';
 import { freezeBeforeAll } from '../../test/utils';
@@ -35,17 +33,25 @@ function setup(props: DayPickerProps) {
 
 describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
   beforeEach(() => setup({ mode: 'single', dir }));
-  test('should not have AXE violations', async () => {
+  test('should be accessible', async () => {
     expect(await axe(container)).toHaveNoViolations();
   });
   describe('when clicking the previous month button', () => {
-    beforeEach(async () => act(() => user.click(getPrevButton())));
+    beforeEach(async () =>
+      act(() =>
+        user.click(screen.getByRole('button', { name: 'Go to previous month' }))
+      )
+    );
     test('should display the previous month', () => {
       expect(getMonthCaption()).toHaveTextContent('May 2022');
     });
   });
   describe('when clicking the next month button', () => {
-    beforeEach(async () => act(() => user.click(getNextButton())));
+    beforeEach(async () =>
+      act(() =>
+        user.click(screen.getByRole('button', { name: 'Go to next month' }))
+      )
+    );
 
     test('should display the next month', () => {
       expect(getMonthCaption()).toHaveTextContent('July 2022');

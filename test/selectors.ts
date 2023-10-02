@@ -56,16 +56,8 @@ export function queryTableFooter() {
   return screen.queryByRole('grid')?.querySelector('tfoot');
 }
 
-export function getPrevButton() {
-  return screen.getByRole('button', { name: 'Go to previous month' });
-}
-
 export function queryPrevButton() {
   return screen.queryByRole('button', { name: 'Go to previous month' });
-}
-
-export function getNextButton() {
-  return screen.getByRole('button', { name: 'Go to next month' });
 }
 
 export function queryNextButton() {

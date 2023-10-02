@@ -8,6 +8,7 @@ type SourceCodeProps = {
   /** The name of the file in the `docs/example` directory. */
   fileName: string;
   theme?: Theme;
+  showFileName?: boolean;
 };
 
 /**
@@ -31,7 +32,7 @@ type SourceCodeProps = {
  * @see https://github.com/shuding/nextra/discussions/2167
  */
 export function SourceCode(props: SourceCodeProps) {
-  const { fileName, theme } = props;
+  const { fileName, theme, showFileName } = props;
 
   const examples = useData();
 
@@ -54,7 +55,7 @@ export function SourceCode(props: SourceCodeProps) {
       data-theme="default"
       data-language="tsx"
       hasCopyCode
-      // filename={fileName}
+      filename={showFileName ? fileName : undefined}
     >
       <Code
         data-theme={theme}

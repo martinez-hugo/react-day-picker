@@ -3,6 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import { axe } from '../../test/axe';
+import { renderExampleApp } from '../../test/renderExampleApp';
 import { freezeBeforeAll } from '../../test/utils';
 import Example from './custom-disable-row';
 
@@ -14,8 +15,9 @@ beforeEach(() => {
   container = render(<Example />).container;
 });
 
-test('should not have AXE violations', async () => {
-  expect(await axe(container)).toHaveNoViolations();
+test('should be accessible', async () => {
+  const { app } = renderExampleApp(<Example />);
+  expect(await axe(app)).toHaveNoViolations();
 });
 
 test('should render only 3 rows', () => {

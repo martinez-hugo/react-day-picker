@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
 import { axe } from '../../test/axe';
+import { renderExampleApp } from '../../test/renderExampleApp';
 import { getDayButton, getTableFooter } from '../../test/selectors';
 import { user } from '../../test/user';
 import { freezeBeforeAll } from '../../test/utils';
@@ -12,13 +13,9 @@ import Example from './custom-multiple';
 const today = new Date(2021, 10, 25);
 freezeBeforeAll(today);
 
-let container: HTMLElement;
-beforeEach(() => {
-  container = render(<Example />).container;
-});
-
-test('should not have AXE violations', async () => {
-  expect(await axe(container)).toHaveNoViolations();
+test('should be accessible', async () => {
+  const { app } = renderExampleApp(<Example />);
+  expect(await axe(app)).toHaveNoViolations();
 });
 
 describe('when a day is clicked', () => {

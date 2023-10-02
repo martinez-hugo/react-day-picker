@@ -4,7 +4,7 @@ import { axe } from '../../test/axe';
 import { renderExampleApp } from '../../test/renderExampleApp';
 import Example from './container-attributes';
 
-test('should not have AXE violations', async () => {
+test('should be accessible', async () => {
   const { app } = renderExampleApp(<Example />);
   expect(await axe(app)).toHaveNoViolations();
 });

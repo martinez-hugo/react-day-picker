@@ -1,13 +1,9 @@
 import React from 'react';
 
-import { act, render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import { axe } from '../../test/axe';
-import {
-  getMonthCaption,
-  getNextButton,
-  getPrevButton
-} from '../../test/selectors';
+import { renderExampleApp } from '../../test/renderExampleApp';
 import { user } from '../../test/user';
 import { freezeBeforeAll } from '../../test/utils';
 import Example from './rtl';
@@ -15,32 +11,30 @@ import Example from './rtl';
 const today = new Date(2021, 10, 25);
 freezeBeforeAll(today);
 
-let container: HTMLElement;
-beforeEach(() => {
-  container = render(<Example />).container;
-});
-test('should not have AXE violations', async () => {
-  expect(await axe(container)).toHaveNoViolations();
+test('should be accessible', async () => {
+  const { app } = renderExampleApp(<Example />);
+  expect(await axe(app)).toHaveNoViolations();
 });
 
-test('should have the rtl attribute', () => {
-  expect(container.firstChild).toHaveAttribute('dir', 'rtl');
+test('should have the rtl dir attribute', () => {
+  const { app } = renderExampleApp(<Example />);
+  expect(app.firstChild).toHaveAttribute('dir', 'rtl');
 });
 
 describe('when clicking the next month button', () => {
-  beforeEach(async () => {
-    await act(() => user.click(getNextButton()));
-  });
-  test('should display the next month', () => {
-    expect(getMonthCaption()).toHaveTextContent('ديسمبر 2021');
+  test('should display the next month', async () => {
+    renderExampleApp(<Example />);
+    await user.click(screen.getByRole('button', { name: 'Go to next month' }));
+    expect(screen.getByRole('grid')).toHaveAccessibleName('ديسمبر 2021');
   });
 });
 
 describe('when clicking the previous month button', () => {
-  beforeEach(async () => {
-    await act(() => user.click(getPrevButton()));
-  });
-  test('should display the previous month', () => {
-    expect(getMonthCaption()).toHaveTextContent('أكتوبر 2021');
+  test('should display the previous month', async () => {
+    renderExampleApp(<Example />);
+    await user.click(
+      screen.getByRole('button', { name: 'Go to previous month' })
+    );
+    expect(screen.getByRole('grid')).toHaveAccessibleName('أكتوبر 2021');
   });
 });

@@ -1,16 +1,11 @@
 import React from 'react';
 
-import { act, render } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { addDays, addMonths, startOfMonth } from 'date-fns';
 import { DayPickerProps } from 'react-day-picker';
 
 import { axe } from '../../test/axe';
-import {
-  getDayButton,
-  getFocusedElement,
-  getNextButton,
-  getPrevButton
-} from '../../test/selectors';
+import { getDayButton, getFocusedElement } from '../../test/selectors';
 import { user } from '../../test/user';
 import { freezeBeforeAll } from '../../test/utils';
 import { focusDaysGrid } from '../../test/utils/focusDaysGrid';
@@ -32,16 +27,20 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
       setup({ mode: 'single', dir });
       await act(() => user.tab());
     });
-    test('should not have AXE violations', async () => {
+    test('should be accessible', async () => {
       expect(await axe(container)).toHaveNoViolations();
     });
     test('should focus on the Previous Month button', () => {
-      expect(getPrevButton()).toHaveFocus();
+      expect(
+        screen.getByRole('button', { name: 'Go to previous month' })
+      ).toHaveFocus();
     });
     describe('when pressing Tab a second time', () => {
       beforeEach(async () => act(() => user.tab()));
       test('should focus on the Next Month button', () => {
-        expect(getNextButton()).toHaveFocus();
+        expect(
+          screen.getByRole('button', { name: 'Go to next month' })
+        ).toHaveFocus();
       });
       describe('when pressing Tab a third time', () => {
         beforeEach(async () => act(() => user.tab()));
@@ -62,7 +61,11 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
             focusedElement = getFocusedElement();
           });
           describe('when the next button is focused', () => {
-            beforeEach(() => act(() => getNextButton().focus()));
+            beforeEach(() =>
+              act(() =>
+                screen.getByRole('button', { name: 'Go to next month' }).focus()
+              )
+            );
             test(`the element focused with ${key} should have lost the focus`, () => {
               expect(focusedElement).not.toHaveFocus();
             });

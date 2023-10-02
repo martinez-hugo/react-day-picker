@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import { act } from 'react-dom/test-utils';
 
 import { axe } from '../../test/axe';
+import { renderExampleApp } from '../../test/renderExampleApp';
 import { getDayButton } from '../../test/selectors';
 import { user } from '../../test/user';
 import { freezeBeforeAll } from '../../test/utils';
@@ -32,8 +33,9 @@ beforeEach(() => {
   container = render(<Example />).container;
 });
 
-test('should not have AXE violations', async () => {
-  expect(await axe(container)).toHaveNoViolations();
+test('should be accessible', async () => {
+  const { app } = renderExampleApp(<Example />);
+  expect(await axe(app)).toHaveNoViolations();
 });
 
 describe('when clicking the dialog button', () => {
@@ -41,7 +43,7 @@ describe('when clicking the dialog button', () => {
     await act(() => user.click(getDialogButton()));
     await waitPopper();
   });
-  test('should not have AXE violations', async () => {
+  test('should be accessible', async () => {
     expect(await axe(container)).toHaveNoViolations();
   });
   test('the dialog should be visible', () => {
@@ -56,7 +58,7 @@ describe('when clicking the dialog button', () => {
       await act(() => user.click(getDayButton(date)));
       await waitPopper();
     });
-    test('should not have AXE violations', async () => {
+    test('should be accessible', async () => {
       expect(await axe(container)).toHaveNoViolations();
     });
     test('the dialog should be closed', () => {
@@ -72,7 +74,7 @@ describe('when clicking the dialog button', () => {
         await act(() => user.type(getInput(), format(newDate, 'y-MM-dd')));
         await waitPopper();
       });
-      test('should not have AXE violations', async () => {
+      test('should be accessible', async () => {
         expect(await axe(container)).toHaveNoViolations();
       });
       test('the input should have the new date', () => {
@@ -92,7 +94,7 @@ describe('when clicking the dialog button', () => {
         test('the new date button should have focus', () => {
           expect(getDayButton(newDate)).toHaveFocus();
         });
-        test('should not have AXE violations', async () => {
+        test('should be accessible', async () => {
           expect(await axe(container)).toHaveNoViolations();
         });
       });

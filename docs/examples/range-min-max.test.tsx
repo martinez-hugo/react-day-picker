@@ -14,7 +14,7 @@ freezeBeforeAll(today);
 
 let container: HTMLElement;
 beforeEach(() => (container = render(<Example />).container));
-test('should not have AXE violations', async () => {
+test('should be accessible', async () => {
   expect(await axe(container)).toHaveNoViolations();
 });
 
@@ -45,7 +45,7 @@ describe('when the first day is clicked', () => {
     expect(getDayButton(setDate(today, 20))).toBeDisabled();
     expect(getDayButton(setDate(today, 21))).toBeDisabled();
   });
-  test('should not have AXE violations', async () => {
+  test('should be accessible', async () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 });

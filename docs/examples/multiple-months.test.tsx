@@ -3,7 +3,8 @@ import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 
 import { axe } from '../../test/axe';
-import { getMonthGrid, getPrevButton } from '../../test/selectors';
+import { renderExampleApp } from '../../test/renderExampleApp';
+import { getMonthGrid } from '../../test/selectors';
 import { user } from '../../test/user';
 import { freezeBeforeAll } from '../../test/utils';
 import Example from './multiple-months';
@@ -13,8 +14,9 @@ freezeBeforeAll(today);
 let container: HTMLElement;
 beforeEach(() => (container = render(<Example />).container));
 
-test('should not have AXE violations', async () => {
-  expect(await axe(container)).toHaveNoViolations();
+test('should be accessible', async () => {
+  const { app } = renderExampleApp(<Example />);
+  expect(await axe(app)).toHaveNoViolations();
 });
 
 test('should render 2 grids', () => {
@@ -40,7 +42,11 @@ test('the second grid should be December', () => {
 
 // Test pagination
 describe('when the previous month button is clicked', () => {
-  beforeEach(async () => act(() => user.click(getPrevButton())));
+  beforeEach(async () =>
+    act(() =>
+      user.click(screen.getByRole('button', { name: 'Go to previous month' }))
+    )
+  );
   test('the first month should be October', () => {
     const grids = screen.getAllByRole('grid');
     expect(grids[0]).toHaveAccessibleName('October 2021');
@@ -50,7 +56,7 @@ describe('when the previous month button is clicked', () => {
     const grids = screen.getAllByRole('grid');
     expect(grids[1]).toHaveAccessibleName('November 2021');
   });
-  test('should not have AXE violations', async () => {
+  test('should be accessible', async () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 });

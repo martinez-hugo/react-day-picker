@@ -3,7 +3,7 @@ import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 
 import { axe } from '../../test/axe';
-import { getPrevButton } from '../../test/selectors';
+import { renderExampleApp } from '../../test/renderExampleApp';
 import { user } from '../../test/user';
 import { freezeBeforeAll } from '../../test/utils';
 import Example from './multiple-months-paged';
@@ -11,11 +11,11 @@ import Example from './multiple-months-paged';
 const today = new Date(2021, 10, 25);
 freezeBeforeAll(today);
 
-let container: HTMLElement;
-beforeEach(() => (container = render(<Example />).container));
+beforeEach(() => render(<Example />).container);
 
-test('should not have AXE violations', async () => {
-  expect(await axe(container)).toHaveNoViolations();
+test('should be accessible', async () => {
+  const { app } = renderExampleApp(<Example />);
+  expect(await axe(app)).toHaveNoViolations();
 });
 
 describe('when rendering November 2021', () => {
@@ -33,7 +33,11 @@ describe('when rendering November 2021', () => {
   });
   // Test pagination
   describe('when the previous month button is clicked', () => {
-    beforeEach(async () => act(() => user.click(getPrevButton())));
+    beforeEach(async () =>
+      act(() =>
+        user.click(screen.getByRole('button', { name: 'Go to previous month' }))
+      )
+    );
     test('the first month should be October', () => {
       const grids = screen.getAllByRole('grid');
       expect(grids[0]).toHaveAccessibleName('September 2021');

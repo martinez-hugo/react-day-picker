@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
-import { queryDayButton } from '../../test/selectors';
+import { renderExampleApp } from '../../test/renderExampleApp';
 import { freezeBeforeAll } from '../../test/utils';
 import Example from './modifiers-hidden';
 
@@ -15,10 +15,9 @@ const days = [
 const today = new Date(2021, 10, 25);
 freezeBeforeAll(today);
 
-beforeEach(() => {
-  render(<Example />);
-});
-
 test.each(days)('the day %s should be hidden', (day) => {
-  expect(queryDayButton(day)).not.toBeInTheDocument();
+  renderExampleApp(<Example />);
+  expect(
+    screen.queryByRole('gridcell', { name: day.getDate().toString() })
+  ).not.toBeInTheDocument();
 });

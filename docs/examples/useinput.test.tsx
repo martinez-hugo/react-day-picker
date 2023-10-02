@@ -4,6 +4,7 @@ import { act, render, screen } from '@testing-library/react';
 import { addDays, format } from 'date-fns';
 
 import { axe } from '../../test/axe';
+import { renderExampleApp } from '../../test/renderExampleApp';
 import { getAllSelectedDays, getDayButton } from '../../test/selectors';
 import { user } from '../../test/user';
 import { freezeBeforeAll } from '../../test/utils';
@@ -20,8 +21,9 @@ function getInput(): HTMLInputElement {
 }
 beforeEach(() => (container = render(<Example />).container));
 
-test('should not have AXE violations', async () => {
-  expect(await axe(container)).toHaveNoViolations();
+test('should be accessible', async () => {
+  const { app } = renderExampleApp(<Example />);
+  expect(await axe(app)).toHaveNoViolations();
 });
 
 test('today should be selected', () => {
@@ -42,7 +44,7 @@ describe('when yesterday is clicked', () => {
       await act(() => user.clear(getInput()));
       await act(() => user.type(getInput(), format(today, 'PP')));
     });
-    test('should not have AXE violations', async () => {
+    test('should be accessible', async () => {
       expect(await axe(container)).toHaveNoViolations();
     });
     test('today should be selected', () => {
@@ -54,7 +56,7 @@ describe('when yesterday is clicked', () => {
     test('no day should be selected', () => {
       expect(getAllSelectedDays()).toHaveLength(0);
     });
-    test('should not have AXE violations', async () => {
+    test('should be accessible', async () => {
       expect(await axe(container)).toHaveNoViolations();
     });
   });

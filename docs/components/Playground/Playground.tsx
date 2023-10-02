@@ -13,6 +13,7 @@ import {
   DayPickerRangeProps,
   DayPickerSingleProps
 } from '../../../dist';
+import { RenderingBox } from '../RenderingBox';
 import { Shadow } from '../Shadow';
 import { PropsForm } from './PropsForm';
 
@@ -93,18 +94,20 @@ export function Playground() {
                 : 'bg-transparent'
             }`}
           >
-            <Shadow mode="open">
-              <DayPicker
-                locale={locale}
-                {...(mode === 'single'
-                  ? { ...baseProps, ...singleProps }
-                  : mode === 'multi'
-                  ? { ...baseProps, ...multiProps }
-                  : mode === 'range'
-                  ? { ...baseProps, ...rangeProps }
-                  : baseProps)}
-              />
-            </Shadow>
+            <RenderingBox>
+              <Shadow mode="open">
+                <DayPicker
+                  locale={locale}
+                  {...(mode === 'single'
+                    ? { ...baseProps, ...singleProps }
+                    : mode === 'multi'
+                    ? { ...baseProps, ...multiProps }
+                    : mode === 'range'
+                    ? { ...baseProps, ...rangeProps }
+                    : baseProps)}
+                />
+              </Shadow>
+            </RenderingBox>
           </div>
         </div>
       </div>

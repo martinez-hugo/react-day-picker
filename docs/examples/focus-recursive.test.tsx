@@ -28,6 +28,6 @@ test('the first selected day should have focus', () => {
   expect(getDayButton(new Date(2022, 5, 22))).toHaveFocus();
 });
 
-test('should not have AXE violations', async () => {
+test('should be accessible', async () => {
   expect(await axe(container)).toHaveNoViolations();
 });

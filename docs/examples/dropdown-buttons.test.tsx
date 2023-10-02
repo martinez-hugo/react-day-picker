@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { act, render } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 
 import { axe } from '../../test/axe';
+import { renderExampleApp } from '../../test/renderExampleApp';
 import {
   getMonthDropdown,
   getMonthGrid,
-  getNextButton,
-  getPrevButton,
   getYearDropdown
 } from '../../test/selectors';
 import { user } from '../../test/user';
@@ -22,8 +21,9 @@ beforeEach(() => {
   container = render(<Example />).container;
 });
 
-test('should not have AXE violations', async () => {
-  expect(await axe(container)).toHaveNoViolations();
+test('should be accessible', async () => {
+  const { app } = renderExampleApp(<Example />);
+  expect(await axe(app)).toHaveNoViolations();
 });
 
 test('should display the year dropdown', () => {
@@ -33,10 +33,14 @@ test('should display the month dropdown', () => {
   expect(getMonthDropdown()).toBeInTheDocument();
 });
 test('should render the next month button', () => {
-  expect(getNextButton()).toBeInTheDocument();
+  expect(
+    screen.getByRole('button', { name: 'Go to next month' })
+  ).toBeInTheDocument();
 });
 test('should render the previous month button', () => {
-  expect(getPrevButton()).toBeInTheDocument();
+  expect(
+    screen.getByRole('button', { name: 'Go to previous month' })
+  ).toBeInTheDocument();
 });
 
 describe('when choosing a month', () => {
@@ -44,7 +48,7 @@ describe('when choosing a month', () => {
   beforeEach(() =>
     act(() => user.selectOptions(getMonthDropdown(), monthName))
   );
-  test('should not have AXE violations', async () => {
+  test('should be accessible', async () => {
     expect(await axe(container)).toHaveNoViolations();
   });
   test('should display the month', () => {

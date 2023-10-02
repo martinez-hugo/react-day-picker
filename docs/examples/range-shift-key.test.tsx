@@ -13,7 +13,7 @@ freezeBeforeAll(today);
 let container: HTMLElement;
 beforeEach(() => (container = render(<Example />).container));
 
-test('should not have AXE violations', async () => {
+test('should be accessible', async () => {
   expect(await axe(container)).toHaveNoViolations();
 });
 
@@ -24,7 +24,7 @@ describe('when displaying November 2021', () => {
     test('the 11th day should have aria-selected true', () => {
       expect(getDayButton(day1)).toHaveAttribute('aria-selected', 'true');
     });
-    test('should not have AXE violations', async () => {
+    test('should be accessible', async () => {
       expect(await axe(container)).toHaveNoViolations();
     });
     describe('when clicking on the 13th', () => {
@@ -37,7 +37,7 @@ describe('when displaying November 2021', () => {
       test('the 13th day not should not have aria-selected', () => {
         expect(getDayButton(day2)).not.toHaveAttribute('aria-selected');
       });
-      test('should not have AXE violations', async () => {
+      test('should be accessible', async () => {
         expect(await axe(container)).toHaveNoViolations();
       });
     });
@@ -50,7 +50,7 @@ describe('when displaying November 2021', () => {
       test('the 13th day should have aria-selected true', () => {
         expect(getDayButton(day2)).toHaveAttribute('aria-selected', 'true');
       });
-      test('should not have AXE violations', async () => {
+      test('should be accessible', async () => {
         expect(await axe(container)).toHaveNoViolations();
       });
     });

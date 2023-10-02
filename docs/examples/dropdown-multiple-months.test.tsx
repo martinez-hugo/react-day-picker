@@ -3,6 +3,7 @@ import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 
 import { axe } from '../../test/axe';
+import { renderExampleApp } from '../../test/renderExampleApp';
 import { getMonthGrid } from '../../test/selectors';
 import { user } from '../../test/user';
 import { freezeBeforeAll } from '../../test/utils';
@@ -11,11 +12,11 @@ import Example from './dropdown-multiple-months';
 const today = new Date(2023, 9, 16);
 freezeBeforeAll(today);
 
-let container: HTMLElement;
-beforeEach(() => (container = render(<Example />).container));
+beforeEach(() => render(<Example />).container);
 
-test('should not have AXE violations', async () => {
-  expect(await axe(container)).toHaveNoViolations();
+test('should be accessible', async () => {
+  const { app } = renderExampleApp(<Example />);
+  expect(await axe(app)).toHaveNoViolations();
 });
 
 test('should display 5 year dropdowns', () => {

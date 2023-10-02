@@ -25,7 +25,8 @@ export function MonthGrid(props: MonthGridProps) {
     components,
     classNames,
     styles,
-    labels: { labelGrid }
+    labels: { labelGrid },
+    locale
   } = useDayPicker();
 
   const reactId = React.useId();
@@ -44,7 +45,7 @@ export function MonthGrid(props: MonthGridProps) {
       <div
         role="grid"
         aria-multiselectable={mode === 'multi' || mode === 'range'}
-        aria-label={labelGrid(props.month.date)}
+        aria-label={labelGrid(props.month.date, { locale })}
         className={classNames.month_grid}
         style={styles?.month_grid}
       >

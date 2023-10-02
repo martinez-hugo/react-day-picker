@@ -1,26 +1,31 @@
 import React from 'react';
 
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import { axe } from '../../test/axe';
+import { renderExampleApp } from '../../test/renderExampleApp';
 import { freezeBeforeAll } from '../../test/utils';
 import Example from './numbering-system';
 
 const today = new Date(2021, 10, 25);
 freezeBeforeAll(today);
 
-let container: HTMLElement;
-beforeEach(() => (container = render(<Example />).container));
-
-test('should not have AXE violations', async () => {
-  expect(await axe(container)).toHaveNoViolations();
+test('should be accessible', async () => {
+  const { app } = renderExampleApp(<Example />);
+  expect(await axe(app)).toHaveNoViolations();
 });
+
 test('should localize the year', () => {
-  expect(screen.getByText('نوفمبر ٢٬٠٢١')).toBeInTheDocument();
+  renderExampleApp(<Example />);
+  expect(
+    screen.getByRole('grid', { name: 'نوفمبر ٢٬٠٢١' })
+  ).toBeInTheDocument();
 });
 test('should localize the days', () => {
+  renderExampleApp(<Example />);
   expect(screen.getByText('أحد')).toBeInTheDocument();
 });
 test('should localize the week numbers', () => {
+  renderExampleApp(<Example />);
   expect(screen.getByText('٤٥')).toBeInTheDocument();
 });

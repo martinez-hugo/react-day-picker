@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 import { setDate } from 'date-fns';
 
 import { axe } from '../../test/axe';
+import { renderExampleApp } from '../../test/renderExampleApp';
 import {
   getDayButton,
   getFocusedElement,
@@ -22,8 +23,9 @@ beforeEach(() => {
   container = render(<Example />).container;
 });
 
-test('should not have AXE violations', async () => {
-  expect(await axe(container)).toHaveNoViolations();
+test('should be accessible', async () => {
+  const { app } = renderExampleApp(<Example />);
+  expect(await axe(app)).toHaveNoViolations();
 });
 
 test('should not display the previous button', () => {
@@ -43,7 +45,7 @@ describe('when the first day is focused', () => {
       expect(getMonthCaption()).toHaveTextContent('June 2022');
     });
 
-    test('should not have AXE violations', async () => {
+    test('should be accessible', async () => {
       expect(await axe(container)).toHaveNoViolations();
     });
   });
@@ -56,7 +58,7 @@ describe('when the last day is focused', () => {
     test('should still display the same month', () => {
       expect(getMonthCaption()).toHaveTextContent('June 2022');
     });
-    test('should not have AXE violations', async () => {
+    test('should be accessible', async () => {
       expect(await axe(container)).toHaveNoViolations();
     });
   });

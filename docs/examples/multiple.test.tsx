@@ -14,7 +14,7 @@ freezeBeforeAll(today);
 let container: HTMLElement;
 beforeEach(() => (container = render(<Example />).container));
 
-test('should not have AXE violations', async () => {
+test('should be accessible', async () => {
   expect(await axe(container)).toHaveNoViolations();
 });
 

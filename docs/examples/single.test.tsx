@@ -13,7 +13,7 @@ freezeBeforeAll(today);
 let container: HTMLElement;
 beforeEach(() => (container = render(<Example />).container));
 
-test('should not have AXE violations', async () => {
+test('should be accessible', async () => {
   expect(await axe(container)).toHaveNoViolations();
 });
 
@@ -33,7 +33,7 @@ describe('when a day is clicked', () => {
     test('should appear as not selected', () => {
       expect(getDayButton(day)).not.toHaveAttribute('aria-selected');
     });
-    test('should not have AXE violations', async () => {
+    test('should be accessible', async () => {
       expect(await axe(container)).toHaveNoViolations();
     });
   });
