@@ -25,7 +25,7 @@ const formatCaption: DateFormatter = (month, options) => {
   })}`;
 };
 
-export default function App() {
+export default function Example() {
   return (
     <DayPicker fromYear={2020} toYear={2025} formatters={{ formatCaption }} />
   );

@@ -31,16 +31,12 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
       expect(await axe(container)).toHaveNoViolations();
     });
     test('should focus on the Previous Month button', () => {
-      expect(
-        screen.getByRole('button', { name: 'Go to previous month' })
-      ).toHaveFocus();
+      expect(previousButton).toHaveFocus();
     });
     describe('when pressing Tab a second time', () => {
       beforeEach(async () => act(() => user.tab()));
       test('should focus on the Next Month button', () => {
-        expect(
-          screen.getByRole('button', { name: 'Go to next month' })
-        ).toHaveFocus();
+        expect(nextButton).toHaveFocus();
       });
       describe('when pressing Tab a third time', () => {
         beforeEach(async () => act(() => user.tab()));
@@ -61,11 +57,7 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
             focusedElement = getFocusedElement();
           });
           describe('when the next button is focused', () => {
-            beforeEach(() =>
-              act(() =>
-                screen.getByRole('button', { name: 'Go to next month' }).focus()
-              )
-            );
+            beforeEach(() => act(() => nextButton.focus()));
             test(`the element focused with ${key} should have lost the focus`, () => {
               expect(focusedElement).not.toHaveFocus();
             });

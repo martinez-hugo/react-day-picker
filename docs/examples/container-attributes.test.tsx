@@ -4,17 +4,22 @@ import { axe } from '../../test/axe';
 import { renderExampleApp } from '../../test/renderExampleApp';
 import Example from './container-attributes';
 
-test('should be accessible', async () => {
-  const { app } = renderExampleApp(<Example />);
+let app: HTMLElement;
+let dayPicker: HTMLElement;
+beforeEach(() => {
+  const render = renderExampleApp(<Example />);
+  app = render.app;
+  dayPicker = render.dayPicker as HTMLElement;
+});
+
+test('should pass accessibility', async () => {
   expect(await axe(app)).toHaveNoViolations();
 });
 
 test('should have the specified id', () => {
-  const { dayPicker } = renderExampleApp(<Example />);
   expect(dayPicker).toHaveAttribute('id', 'testId');
 });
 
 test('should have the data set attribute', () => {
-  const { dayPicker } = renderExampleApp(<Example />);
   expect(dayPicker).toHaveAttribute('data-test', 'testData');
 });

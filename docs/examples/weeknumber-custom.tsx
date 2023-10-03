@@ -3,7 +3,7 @@ import React from 'react';
 import { startOfYear } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 
-export default function App() {
+export default function Example() {
   return (
     <DayPicker
       defaultMonth={startOfYear(new Date())}

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { DayPicker } from 'react-day-picker';
 
-export default function App() {
+export default function Example() {
   const initialDays: Date[] = [];
   const [days, setDays] = React.useState<Date[] | undefined>(initialDays);
 

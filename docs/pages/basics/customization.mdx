@@ -20,7 +20,7 @@ export const getStaticProps = () =>
 
 Change months, weeks and days in the calendar.
 
-### Showing the Outside Days
+## Showing the Outside Days
 
 Use `showOutsideDays` to display the days falling out the current month.
 
@@ -32,7 +32,7 @@ import OutsideDays from 'react-day-picker/docs/examples/outside-days.tsx';
   <OutsideDays />
 </RenderingBox>
 
-### Render Multiple Months
+## Render Multiple Months
 
 Use `numberOfMonths` to render more than one calendar. Toggle `pagedNavigation` to navigate the number of months per time.
 
@@ -44,7 +44,7 @@ import MultipleMonthsPaged from 'react-day-picker/docs/examples/multiple-months-
   <MultipleMonthsPaged />
 </RenderingBox>
 
-### Using Fixed Weeks
+## Using Fixed Weeks
 
 Use `fixedWeeks` to display six weeks per months. This will prevent the calendar to change its height when navigating.
 
@@ -56,7 +56,7 @@ import FixedWeeks from 'react-day-picker/docs/examples/fixedweeks.tsx';
   <FixedWeeks />
 </RenderingBox>
 
-### Showing the Week Numbers
+## Show the Week Numbers
 
 Use `showWeekNumber` to display the week numbers. When this prop is set, use `onWeekNumberClick` to handle the click on a week number.
 
@@ -68,19 +68,7 @@ import WeekNumber from 'react-day-picker/docs/examples/weeknumber.tsx';
   <WeekNumber />
 </RenderingBox>
 
-### Switching to ISO Week Dates
-
-DayPicker uses [date-fns getWeek](https://date-fns.org/docs/getWeek) to calculate the week number. By default, the week starts on Sunday and the first week of the year is the one that contains January 1st. Use `ISOWeek` to switch using [ISO Week Dates](https://en.wikipedia.org/wiki/ISO_week_date) instead of the locale setting.
-
-import WeekNumberISO from 'react-day-picker/docs/examples/weeknumber-iso.tsx';
-
-<SourceCode fileName="weeknumber-iso.tsx" />
-
-<RenderingBox>
-  <WeekNumberISO />
-</RenderingBox>
-
-### Customizing Week Numbers
+### Customize the Week Numbers
 
 - To set the first day of the week, use `weekStartsOn`.
 - To set the day of January in the first week of the year `firstWeekContainsDate`.
@@ -92,4 +80,16 @@ import WeekNumberCustom from 'react-day-picker/docs/examples/weeknumber-custom.t
 
 <RenderingBox>
   <WeekNumberCustom />
+</RenderingBox>
+
+## Switch to ISO Week Dates
+
+DayPicker uses [date-fns getWeek](https://date-fns.org/docs/getWeek) to calculate the week number. By default, the week starts on Sunday and the first week of the year is the one that contains January 1st. Use `ISOWeek` to switch using [ISO Week Dates](https://en.wikipedia.org/wiki/ISO_week_date) instead of the locale setting.
+
+import WeekNumberISO from 'react-day-picker/docs/examples/weeknumber-iso.tsx';
+
+<SourceCode fileName="weeknumber-iso.tsx" />
+
+<RenderingBox>
+  <WeekNumberISO />
 </RenderingBox>

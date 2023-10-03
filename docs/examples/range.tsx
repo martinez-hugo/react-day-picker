@@ -5,7 +5,7 @@ import { DateRange, DayPicker } from 'react-day-picker';
 
 const pastMonth = new Date(2020, 10, 15);
 
-export default function App() {
+export default function Example() {
   const defaultSelected: DateRange = {
     from: pastMonth,
     to: addDays(pastMonth, 4)

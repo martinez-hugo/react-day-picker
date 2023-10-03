@@ -37,21 +37,13 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
     expect(await axe(container)).toHaveNoViolations();
   });
   describe('when clicking the previous month button', () => {
-    beforeEach(async () =>
-      act(() =>
-        user.click(screen.getByRole('button', { name: 'Go to previous month' }))
-      )
-    );
+    beforeEach(async () => act(() => user.click(previousButton)));
     test('should display the previous month', () => {
       expect(getMonthCaption()).toHaveTextContent('May 2022');
     });
   });
   describe('when clicking the next month button', () => {
-    beforeEach(async () =>
-      act(() =>
-        user.click(screen.getByRole('button', { name: 'Go to next month' }))
-      )
-    );
+    beforeEach(async () => act(() => user.click(nextButton)));
 
     test('should display the next month', () => {
       expect(getMonthCaption()).toHaveTextContent('July 2022');

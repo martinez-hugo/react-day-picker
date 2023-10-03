@@ -16,7 +16,7 @@ function DayWithShiftKey(props: DayGridCellProps) {
   return <div {...props.htmlAttributes} ref={ref} onClick={handleClick} />;
 }
 
-export default function App() {
+export default function Example() {
   const [range, setRange] = React.useState<DateRange>();
 
   let footer = <p>Please pick a day.</p>;

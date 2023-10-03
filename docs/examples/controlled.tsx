@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { DayPicker } from 'react-day-picker';
 
 import { addMonths, isSameMonth } from 'date-fns';
+import { DayPicker } from 'react-day-picker';
 
-export default function App() {
+export default function Example() {
   const today = new Date();
   const nextMonth = addMonths(new Date(), 1);
   const [month, setMonth] = useState<Date>(nextMonth);

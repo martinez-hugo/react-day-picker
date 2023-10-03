@@ -10,11 +10,13 @@ function isPastDate(date: Date) {
 function OnlyFutureRow(props: WeekRowProps) {
   const isPastRow = props.week.days.every((day) => isPastDate(day.date));
   if (isPastRow)
-    return <div role="row" aria-rowindex={props['aria-rowindex']}></div>;
+    return (
+      <div role="row" aria-rowindex={props['aria-rowindex']} aria-hidden></div>
+    );
   return <WeekRow {...props} />;
 }
 
-export default function App() {
+export default function Example() {
   return (
     <DayPicker
       fromDate={new Date()}

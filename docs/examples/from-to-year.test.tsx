@@ -1,58 +1,50 @@
 import React from 'react';
 
-import { act, render, screen } from '@testing-library/react';
 import { differenceInMonths } from 'date-fns';
 
 import { axe } from '../../test/axe';
+import { po } from '../../test/po';
 import { renderExampleApp } from '../../test/renderExampleApp';
 import { user } from '../../test/user';
 import { freezeBeforeAll } from '../../test/utils';
 import Example from './from-to-year';
 
-const fromDate = new Date(2015, 0);
-const toDate = new Date(2018, 11);
-const today = new Date(2021, 10, 25);
+const fromDate = new Date(2024, 0);
+const toDate = new Date(2026, 11);
+const today = new Date(2025, 10, 25);
 freezeBeforeAll(today);
 
-let container: HTMLElement;
-beforeEach(() => (container = render(<Example />).container));
+let app: HTMLElement;
+beforeEach(() => {
+  const render = renderExampleApp(<Example />);
+  app = render.app;
+});
 
 test('should be accessible', async () => {
-  const { app } = renderExampleApp(<Example />);
   expect(await axe(app)).toHaveNoViolations();
 });
 
 test('the previous month button should be disabled', () => {
-  expect(
-    screen.getByRole('button', { name: 'Go to previous month' })
-  ).toBeDisabled();
+  expect(po.previousButton).toBeDisabled();
 });
 test('the next month button should not be disabled', () => {
-  expect(
-    screen.getByRole('button', { name: 'Go to next month' })
-  ).not.toBeDisabled();
+  expect(po.nextButton).not.toBeDisabled();
 });
 
 describe('when navigating to the last month', () => {
   const nOfMonths = differenceInMonths(toDate, fromDate);
   beforeEach(async () => {
     for (let i = 0; i < nOfMonths; i++) {
-      await act(() =>
-        user.click(screen.getByRole('button', { name: 'Go to next month' }))
-      );
+      await user.click(po.nextButton);
     }
   });
   test('should be accessible', async () => {
-    expect(await axe(container)).toHaveNoViolations();
+    expect(await axe(app)).toHaveNoViolations();
   });
   test('the previous month button should not be disabled', () => {
-    expect(
-      screen.getByRole('button', { name: 'Go to previous month' })
-    ).not.toBeDisabled();
+    expect(po.previousButton).not.toBeDisabled();
   });
   test('the next month button should be disabled', () => {
-    expect(
-      screen.getByRole('button', { name: 'Go to next month' })
-    ).toBeDisabled();
+    expect(po.nextButton).toBeDisabled();
   });
 });

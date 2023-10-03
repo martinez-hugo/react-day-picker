@@ -11,21 +11,24 @@ import Example from './controlled';
 
 freezeBeforeAll(new Date(2022, 5, 10));
 
+let app: HTMLElement;
+beforeEach(() => {
+  const render = renderExampleApp(<Example />);
+  app = render.app;
+});
+
 test('should be accessible', async () => {
-  const { app } = renderExampleApp(<Example />);
   expect(await axe(app)).toHaveNoViolations();
 });
 
 describe('when the "Go to today" button is clicked', () => {
-  const getTodayButton = () =>
-    screen.getByRole('button', { name: 'Go to Today' });
+  const todayButton = () => screen.getByRole('button', { name: 'Go to Today' });
 
   beforeEach(async () => {
-    renderExampleApp(<Example />);
-    await user.click(getTodayButton());
+    await user.click(todayButton());
   });
   test('the button should be disabled', async () => {
-    expect(getTodayButton()).toBeDisabled();
+    expect(todayButton()).toBeDisabled();
   });
   test('should display the current month', () => {
     expect(screen.getByRole('grid')).toHaveAccessibleName('June 2022');

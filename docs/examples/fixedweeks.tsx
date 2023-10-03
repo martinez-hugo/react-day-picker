@@ -1,6 +1,7 @@
 import React from 'react';
+
 import { DayPicker } from 'react-day-picker';
 
-export default function App() {
+export default function Example() {
   return <DayPicker showOutsideDays fixedWeeks />;
 }

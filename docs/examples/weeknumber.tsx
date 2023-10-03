@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { DayPicker } from 'react-day-picker';
 
-export default function App() {
+export default function Example() {
   const [weekNumber, setWeekNumber] = useState<number>();
 
   const footer = weekNumber

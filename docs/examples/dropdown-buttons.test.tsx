@@ -3,6 +3,7 @@ import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 
 import { axe } from '../../test/axe';
+import { test } from '../../test/po';
 import { renderExampleApp } from '../../test/renderExampleApp';
 import {
   getMonthDropdown,
@@ -33,14 +34,10 @@ test('should display the month dropdown', () => {
   expect(getMonthDropdown()).toBeInTheDocument();
 });
 test('should render the next month button', () => {
-  expect(
-    screen.getByRole('button', { name: 'Go to next month' })
-  ).toBeInTheDocument();
+  expect(nextButton).toBeInTheDocument();
 });
 test('should render the previous month button', () => {
-  expect(
-    screen.getByRole('button', { name: 'Go to previous month' })
-  ).toBeInTheDocument();
+  expect(previousButton).toBeInTheDocument();
 });
 
 describe('when choosing a month', () => {

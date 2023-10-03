@@ -24,7 +24,7 @@ function CustomMonthCaption(props: MonthCaptionProps) {
   );
 }
 
-export default function App() {
+export default function Example() {
   return (
     <DayPicker
       components={{

@@ -24,7 +24,7 @@ test('should have the rtl dir attribute', () => {
 describe('when clicking the next month button', () => {
   test('should display the next month', async () => {
     renderExampleApp(<Example />);
-    await user.click(screen.getByRole('button', { name: 'Go to next month' }));
+    await user.click(nextButton);
     expect(screen.getByRole('grid')).toHaveAccessibleName('ديسمبر 2021');
   });
 });
@@ -32,9 +32,7 @@ describe('when clicking the next month button', () => {
 describe('when clicking the previous month button', () => {
   test('should display the previous month', async () => {
     renderExampleApp(<Example />);
-    await user.click(
-      screen.getByRole('button', { name: 'Go to previous month' })
-    );
+    await user.click(previousButton);
     expect(screen.getByRole('grid')).toHaveAccessibleName('أكتوبر 2021');
   });
 });

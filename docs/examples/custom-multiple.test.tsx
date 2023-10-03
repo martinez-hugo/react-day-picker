@@ -13,14 +13,19 @@ import Example from './custom-multiple';
 const today = new Date(2021, 10, 25);
 freezeBeforeAll(today);
 
+let app: HTMLElement;
+beforeEach(() => {
+  const render = renderExampleApp(<Example />);
+  app = render.app;
+});
+
 test('should be accessible', async () => {
-  const { app } = renderExampleApp(<Example />);
   expect(await axe(app)).toHaveNoViolations();
 });
 
 describe('when a day is clicked', () => {
   const day1 = new Date(2021, 10, 1);
-  beforeEach(() => act(() => user.click(getDayButton(day1))));
+  beforeEach(() => user.click(getDayButton(day1)));
   test('should appear as selected', () => {
     expect(getDayButton(day1)).toHaveAttribute('aria-selected', 'true');
   });

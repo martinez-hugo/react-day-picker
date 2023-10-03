@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import { axe } from '../../test/axe';
 import { renderExampleApp } from '../../test/renderExampleApp';
@@ -10,17 +10,16 @@ import Example from './custom-disable-row';
 const today = new Date(2021, 10, 25);
 freezeBeforeAll(today);
 
-let container: HTMLElement;
+let app: HTMLElement;
 beforeEach(() => {
-  container = render(<Example />).container;
+  const render = renderExampleApp(<Example />);
+  app = render.app;
 });
 
 test('should be accessible', async () => {
-  const { app } = renderExampleApp(<Example />);
   expect(await axe(app)).toHaveNoViolations();
 });
 
-test('should render only 3 rows', () => {
-  const rowElements = container.getElementsByTagName('tr');
-  expect(rowElements).toHaveLength(3);
+test('should have only 3 rows', () => {
+  expect(screen.getAllByRole('row')).toHaveLength(3);
 });

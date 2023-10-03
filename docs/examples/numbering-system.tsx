@@ -23,7 +23,7 @@ const formatCaption: DateFormatter = (date, options) => {
   return `${m} ${y}`;
 };
 
-export default function App() {
+export default function Example() {
   return (
     <DayPicker
       locale={arSA}

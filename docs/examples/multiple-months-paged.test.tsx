@@ -33,11 +33,7 @@ describe('when rendering November 2021', () => {
   });
   // Test pagination
   describe('when the previous month button is clicked', () => {
-    beforeEach(async () =>
-      act(() =>
-        user.click(screen.getByRole('button', { name: 'Go to previous month' }))
-      )
-    );
+    beforeEach(async () => act(() => user.click(previousButton)));
     test('the first month should be October', () => {
       const grids = screen.getAllByRole('grid');
       expect(grids[0]).toHaveAccessibleName('September 2021');

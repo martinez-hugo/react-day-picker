@@ -158,7 +158,8 @@
     "task.allowAutomaticTasks": "on",
     "github-actions.workflows.pinned.workflows": [
       "react-day-picker/.github/workflows/website.yml"
-    ]
+    ],
+    "cSpell.words": ["arrowleft"]
   },
   "launch": {
     "version": "0.2.0",

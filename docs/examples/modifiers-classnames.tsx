@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { DayPicker } from 'react-day-picker';
 
 const bookedDays = [
@@ -13,7 +14,7 @@ const style = `
   }
 `;
 
-export default function App() {
+export default function Example() {
   return (
     <>
       <style>{style}</style>

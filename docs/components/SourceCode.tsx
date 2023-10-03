@@ -89,7 +89,7 @@ export async function getSourceCodeStaticProps(fileNames: string[]) {
     const raw = await import(`!!raw-loader!../examples/${fileName}`);
     // Replace imports from the code
     const code = raw.default
-      .replace(/import .+ from .+;/g, '')
+      .replace(/import .+ from 'react.*';/g, '')
       .replace('export default ', '')
       .trim();
     const html = await highlightCode(code, 'tsx');

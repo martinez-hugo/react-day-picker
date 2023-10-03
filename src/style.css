@@ -3,7 +3,7 @@
   --rdp-font-small: 0.8125rem;
   --rdp-font-medium: 1rem;
   --rdp-font-large: 1.25rem;
-  --rdp-text-opacity: 0.5;
+  --rdp-opacity: 0.5;
   --rdp-accent-color: #007aff;
   --rdp-background-color: #e0efff;
   --rdp-outline: 2px solid var(--rdp-accent-color); /* Outline border for focused elements */
@@ -14,20 +14,20 @@
 }
 @media (prefers-contrast: more) {
   .root {
-    --rdp-text-opacity: 0.8;
+    --rdp-opacity: 0.8;
   }
 }
 .root.contrast_more {
-  --rdp-text-opacity: 0.8;
+  --rdp-opacity: 0.8;
 }
 
 @media (prefers-contrast: less) {
   .root {
-    --rdp-text-opacity: 0.4;
+    --rdp-opacity: 0.4;
   }
 }
 .root.contrast_less {
-  --rdp-text-opacity: 0.4;
+  --rdp-opacity: 0.4;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -160,6 +160,12 @@
   fill: var(--rdp-accent-color);
 }
 
+.button_next:disabled,
+.button_previous:disabled {
+  opacity: var(--rdp-opacity);
+  cursor: default;
+}
+
 .root[dir='rtl'] .button_next {
   transform: rotate(180deg);
 }
@@ -281,11 +287,11 @@
 }
 
 .day_outside {
-  opacity: var(--rdp-text-opacity);
+  opacity: var(--rdp-opacity);
 }
 
 .day_disabled {
-  opacity: var(--rdp-text-opacity);
+  opacity: var(--rdp-opacity);
 }
 
 .day_hidden {
@@ -333,7 +339,7 @@
   border-radius: 100%;
   font-size: var(--rdp-font-small);
   font-weight: 500;
-  opacity: var(--rdp-text-opacity);
+  opacity: var(--rdp-opacity);
 }
 
 .weekdays_row {
@@ -341,7 +347,7 @@
 
 .weekday_columnheader {
   text-align: center;
-  opacity: var(--rdp-text-opacity);
+  opacity: var(--rdp-opacity);
   text-transform: uppercase;
   font-size: var(--rdp-font-small);
   font-weight: 500;
