@@ -1,8 +1,8 @@
-import { format, Locale } from 'date-fns';
+import { format } from 'date-fns';
 
-/**
- * The default ARIA label for previous month grid.
- */
-export function labelGrid(month: Date, options?: { locale?: Locale }): string {
+import { FormatOptions } from 'types/FormatOptions';
+
+/** Return the default ARIA label for the month grid. */
+export function labelGrid(month: Date, options?: FormatOptions) {
   return format(month, 'LLLL y', options);
 }

@@ -9,26 +9,36 @@ import {
   startOfWeek
 } from 'date-fns';
 
+import type { FormatOptions } from 'types/FormatOptions';
+
 const NrOfDaysWithFixedWeeks = 42;
+
 /** Return all the dates to display in the calendar. */
 export function getDates(
   firstMonth: Date,
   lastMonth: Date,
-  toDate?: Date,
-  options?: {
-    fixedWeeks?: boolean | undefined;
-    ISOWeek?: boolean;
-    locale?: Locale;
-    weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+  toDate: Date | undefined,
+  options: {
+    ISOWeek: boolean;
+    fixedWeeks: boolean;
+    locale: FormatOptions['locale'];
+    weekStartsOn: FormatOptions['weekStartsOn'];
   }
 ): Date[] {
-  const firstDateOfFirstWeek = options?.ISOWeek
+  const { ISOWeek, fixedWeeks, locale, weekStartsOn } = options;
+  const firstDateOfFirstWeek = ISOWeek
     ? startOfISOWeek(firstMonth)
-    : startOfWeek(firstMonth, options);
+    : startOfWeek(firstMonth, {
+        weekStartsOn,
+        locale
+      });
 
-  const lastDateOfLastWeek = options?.ISOWeek
+  const lastDateOfLastWeek = ISOWeek
     ? endOfISOWeek(endOfMonth(lastMonth))
-    : endOfWeek(endOfMonth(lastMonth), options);
+    : endOfWeek(endOfMonth(lastMonth), {
+        weekStartsOn,
+        locale
+      });
 
   const daysDiff = differenceInCalendarDays(
     lastDateOfLastWeek,
@@ -43,10 +53,7 @@ export function getDates(
     dates.push(new Date(date));
   }
   const nOfMonths = differenceInMonths(firstMonth, lastMonth) + 1;
-  if (
-    options?.fixedWeeks &&
-    dates.length < NrOfDaysWithFixedWeeks * nOfMonths
-  ) {
+  if (fixedWeeks && dates.length < NrOfDaysWithFixedWeeks * nOfMonths) {
     for (let i = 0; i < 7; i++) {
       const date = addDays(dates[dates.length - 1], 1);
       dates.push(new Date(date));

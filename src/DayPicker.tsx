@@ -14,6 +14,7 @@ import {
   MonthChangeEventHandler,
   WeekNumberClickEventHandler
 } from 'types/events';
+import { FormatOptions } from 'types/FormatOptions';
 import { Formatters } from 'types/formatters';
 import { Labels } from 'types/labels';
 import { DateRange, Matcher } from 'types/matchers';
@@ -196,35 +197,56 @@ export interface DayPickerBaseProps {
    * - to use ISO week numbering, use the {@link ISOWeek} prop.
    * - to change how the week numbers are displayed, use the {@link Formatters} prop.
    *
-   * @see  {@link ISOWeek}, {@link weekStartsOn} and {@link firstWeekContainsDate}.
+   * @see {@link ISOWeek}, {@link weekStartsOn} and {@link firstWeekContainsDate}.
    *
    * @defaultValue false
    */
   showWeekNumber?: boolean;
+
+  /**
+   * The date-fns locale object used to localize dates.
+   *
+   * @defaultValue en-US
+   * @see https://date-fns.org/docs/Locale
+   */
+  locale?: FormatOptions['locale'];
   /**
    * The index of the first day of the week (0 - Sunday). Overrides the locale's one.
    *
-   * See also {@link ISOWeek}.
+   * @see {@link ISOWeek}.
    */
-  weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+  weekStartsOn?: FormatOptions['weekStartsOn'];
   /**
-   * The day of January, which is always in the first week of the year. See also
-   * https://date-fns.org/docs/getWeek and
-   * https://en.wikipedia.org/wiki/Week#Numbering
+   * The day of January, which is always in the first week of the year.
    *
-   * See also {@link ISOWeek}.
+   * @see {@link ISOWeek}.
+   * @see https://date-fns.org/docs/getWeek
+   * @see https://en.wikipedia.org/wiki/Week#Numbering
    */
-  firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7;
+  firstWeekContainsDate?: FormatOptions['firstWeekContainsDate'];
   /**
-   * Use ISO week dates instead of the locale setting. See also
-   * https://en.wikipedia.org/wiki/ISO_week_date.
+   * Enable `DD` and `DDDD` for week year tokens when formatting or parsing dates.
    *
-   * Setting this prop will ignore {@link weekStartsOn} and {@link firstWeekContainsDate}.
+   * @see https://date-fns.org/docs/Unicode-Tokens
+   */
+  useAdditionalWeekYearTokens?: FormatOptions['useAdditionalWeekYearTokens'];
+  /**
+   * Enable `YY` and `YYYY` for day of year tokens when formatting or parsing dates.
+   *
+   * @see https://date-fns.org/docs/Unicode-Tokens
+   */
+  useAdditionalDayOfYearTokens?: FormatOptions['useAdditionalDayOfYearTokens'];
+
+  /**
+   * Use ISO week dates instead of the locale setting. Setting this prop will
+   * ignore {@link weekStartsOn} and {@link firstWeekContainsDate}.
+   *
+   * @see https://en.wikipedia.org/wiki/ISO_week_date
    */
   ISOWeek?: boolean;
 
   /**
-   * Replace the components used to create the layout with other components
+   * Use custom components for rendering the calendar elements.
    */
   components?: CustomComponents;
 
@@ -262,17 +284,11 @@ export interface DayPickerBaseProps {
    * `today` modifier to style the day.
    */
   today?: Date;
+
   /**
    * Add modifiers to the matching days.
    */
   modifiers?: Record<CustomModifier, Matcher | Matcher[]> | undefined;
-
-  /**
-   * The date-fns locale object used to localize dates.
-   *
-   * @defaultValue en-US
-   */
-  locale?: Locale;
 
   /**
    * Labels creators to override the defaults. Use this prop to customize the

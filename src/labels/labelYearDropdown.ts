@@ -1,6 +1,7 @@
-/**
- * The default ARIA label for the WeekNumber element.
- */
-export const labelYearDropdown = (): string => {
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { FormatOptions } from 'types/FormatOptions';
+
+/** The default ARIA label for the years dropdown. */
+export function labelYearDropdown(options?: FormatOptions) {
   return 'Year: ';
-};
+}

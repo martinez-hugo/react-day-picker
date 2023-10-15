@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import { axe } from '../../test/axe';
 import { renderExampleApp } from '../../test/renderExampleApp';
@@ -11,10 +11,13 @@ import Example from './multiple-months-paged';
 const today = new Date(2021, 10, 25);
 freezeBeforeAll(today);
 
-beforeEach(() => render(<Example />).container);
+let app: HTMLElement;
+beforeEach(() => {
+  const render = renderExampleApp(<Example />);
+  app = render.app;
+});
 
 test('should be accessible', async () => {
-  const { app } = renderExampleApp(<Example />);
   expect(await axe(app)).toHaveNoViolations();
 });
 
@@ -33,12 +36,18 @@ describe('when rendering November 2021', () => {
   });
   // Test pagination
   describe('when the previous month button is clicked', () => {
-    beforeEach(async () => act(() => user.click(previousButton)));
-    test('the first month should be October', () => {
+    beforeEach(async () =>
+      user.click(
+        screen.getByRole('button', {
+          name: 'Go to previous month'
+        })
+      )
+    );
+    test('the first month should be September', () => {
       const grids = screen.getAllByRole('grid');
       expect(grids[0]).toHaveAccessibleName('September 2021');
     });
-    test('the month caption should be November', () => {
+    test('the last month should be October', () => {
       const grids = screen.getAllByRole('grid');
       expect(grids[1]).toHaveAccessibleName('October 2021');
     });

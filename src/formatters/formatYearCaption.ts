@@ -1,11 +1,8 @@
 import { format } from 'date-fns';
 
-/**
- * The default formatter for the Year caption.
- */
-export function formatYearCaption(
-  year: Date,
-  options?: { locale?: Locale }
-): string {
+import { FormatOptions } from 'types/FormatOptions';
+
+/** The default formatter for the Year caption. */
+export function formatYearCaption(year: Date, options?: FormatOptions) {
   return format(year, 'yyyy', options);
 }

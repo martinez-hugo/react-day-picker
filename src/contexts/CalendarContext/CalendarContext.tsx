@@ -19,28 +19,36 @@ export const calendarContext = createContext<DayPickerCalendar | undefined>(
  * The provider for the {@link calendarContext}, storing the calendar state.
  */
 export function CalendarProvider(providerProps: { children?: ReactNode }) {
-  const props = useDayPicker();
-  const { numberOfMonths = 1 } = props;
-  const [firstMonth, lastMonth] = getFirstLastMonths(props);
-  const [currentMonth, setMonth] = useControlledValue(firstMonth, props.month);
+  const dayPicker = useDayPicker();
+  const [firstMonth, lastMonth] = getFirstLastMonths(dayPicker);
+  const [currentMonth, setMonth] = useControlledValue(
+    firstMonth,
+    dayPicker.month
+  );
 
   const goToMonth = (date: Date) => {
-    if (props.disableNavigation) return;
+    if (dayPicker.disableNavigation) return;
     const month = startOfMonth(date);
     setMonth(month);
-    props.onMonthChange?.(month);
+    dayPicker.onMonthChange?.(month);
   };
 
-  const calendar = getMonthsAndDates(currentMonth, lastMonth, {
-    numberOfMonths: props.numberOfMonths,
-    ISOWeek: props.ISOWeek,
-    locale: props.locale,
-    weekStartsOn: props.weekStartsOn,
-    fixedWeeks: props.fixedWeeks
-  });
+  const calendar = getMonthsAndDates(
+    currentMonth,
+    lastMonth,
+    dayPicker.numberOfMonths,
+    dayPicker.reverseMonths,
+    dayPicker.ISOWeek,
+    dayPicker.fixedWeeks,
+    {
+      locale: dayPicker.locale,
+      weekStartsOn: dayPicker.weekStartsOn,
+      firstWeekContainsDate: dayPicker.firstWeekContainsDate
+    }
+  );
 
-  const nextMonth = getNextMonth(currentMonth, props);
-  const previousMonth = getPreviousMonth(currentMonth, props);
+  const nextMonth = getNextMonth(currentMonth, dayPicker);
+  const previousMonth = getPreviousMonth(currentMonth, dayPicker);
 
   const isDateDisplayed = (date: Date) => {
     return calendar.months.some((dayPickerMonth) =>
@@ -53,7 +61,7 @@ export function CalendarProvider(providerProps: { children?: ReactNode }) {
       return;
     }
     if (refDate && isBefore(date, refDate)) {
-      const month = addMonths(date, 1 + numberOfMonths * -1);
+      const month = addMonths(date, 1 + dayPicker.numberOfMonths * -1);
       goToMonth(month);
     } else {
       goToMonth(date);

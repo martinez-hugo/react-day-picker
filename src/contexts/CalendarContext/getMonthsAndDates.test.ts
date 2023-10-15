@@ -4,8 +4,23 @@ const today = new Date(2023, 6, 19);
 
 jest.setSystemTime(today);
 
+const firstMonth = today;
+const toDate = undefined;
+const numberOfMonths = 1;
+const reverseMonths = false;
+const ISOWeek = false;
+const fixedWeeks = false;
+
 describe('when using the default options', () => {
-  const calendar = getMonthsAndDates(today);
+  const calendar = getMonthsAndDates(
+    firstMonth,
+    toDate,
+    numberOfMonths,
+    reverseMonths,
+    ISOWeek,
+    fixedWeeks,
+    {}
+  );
   test('should match the snapshot', () => {
     expect(calendar).toMatchInlineSnapshot(`
       {
@@ -233,8 +248,8 @@ describe('when using the default options', () => {
   test('should return 1 month', () => {
     expect(calendar.months).toHaveLength(1);
   });
-  test('should return 35 dates', () => {
-    expect(calendar.dates).toHaveLength(35);
+  test('should return 42 dates', () => {
+    expect(calendar.dates).toHaveLength(42);
   });
   test('the first date should be sunday', () => {
     expect(calendar.dates[0].getDay()).toBe(0);
@@ -245,7 +260,15 @@ describe('when using the default options', () => {
 });
 
 describe('when using fixed weeks', () => {
-  const calendar = getMonthsAndDates(today, undefined, { fixedWeeks: true });
+  const calendar = getMonthsAndDates(
+    today,
+    toDate,
+    numberOfMonths,
+    reverseMonths,
+    ISOWeek,
+    true,
+    {}
+  );
   test('should return 42 dates', () => {
     expect(calendar.dates).toHaveLength(42);
   });

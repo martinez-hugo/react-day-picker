@@ -1,11 +1,8 @@
-import { format, Locale } from 'date-fns';
+import { format } from 'date-fns';
 
-/**
- * The default formatter for the caption.
- */
-export function formatCaption(
-  month: Date,
-  options?: { locale?: Locale }
-): string {
+import { FormatOptions } from 'types/FormatOptions';
+
+/** The default formatter for the caption element. */
+export function formatCaption(month: Date, options?: FormatOptions) {
   return format(month, 'LLLL y', options);
 }

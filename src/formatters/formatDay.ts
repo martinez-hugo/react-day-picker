@@ -1,9 +1,8 @@
-import type { Locale } from 'date-fns';
 import { format } from 'date-fns';
 
-/**
- * The default formatter for the Day button.
- */
-export function formatDay(day: Date, options?: { locale?: Locale }): string {
+import { FormatOptions } from 'types/FormatOptions';
+
+/** The default formatter for the day grid cell element. */
+export function formatDay(day: Date, options?: FormatOptions) {
   return format(day, 'd', options);
 }

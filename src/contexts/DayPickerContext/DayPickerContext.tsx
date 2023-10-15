@@ -97,6 +97,8 @@ export interface DayPickerContext<TMode extends DaysSelectionMode | unknown> {
   toMonth: Date | undefined;
   toYear: number | undefined;
   weekStartsOn: DayPickerBaseProps['weekStartsOn'];
+  useAdditionalWeekYearTokens: boolean | undefined;
+  useAdditionalDayOfYearTokens: boolean | undefined;
 
   onDayClick: DayMouseEventHandler | undefined;
   onDayFocus: DayFocusEventHandler | undefined;
@@ -149,6 +151,7 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
 
   const props = providerProps.dayPickerProps;
   const { fromDate, toDate } = parseFromToProps(props);
+
   const context: DayPickerContext<TMode> = {
     colorScheme: props.colorScheme ?? 'auto',
     contrastPreference: props.contrastPreference ?? 'no-preference',
@@ -216,6 +219,8 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
     toMonth: undefined,
     toYear: undefined,
     weekStartsOn: props.weekStartsOn,
+    useAdditionalWeekYearTokens: props.useAdditionalWeekYearTokens,
+    useAdditionalDayOfYearTokens: props.useAdditionalWeekYearTokens,
 
     // Events
     onDayBlur: props.onDayBlur,

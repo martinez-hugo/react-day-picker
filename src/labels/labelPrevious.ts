@@ -1,8 +1,10 @@
-import { NavButtonLabel } from 'types/labels';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { FormatOptions } from 'types/FormatOptions';
 
-/**
- * The default ARIA label for previous month button in navigation
- */
-export const labelPrevious: NavButtonLabel = (): string => {
-  return 'Go to previous month';
-};
+/** Return the default ARIA label for next month button. */
+export function labelPrevious(
+  month: Date | undefined,
+  options?: FormatOptions
+) {
+  return 'Go to the Previous Month';
+}
