@@ -71,7 +71,7 @@ export interface DayPickerContext<TMode extends DaysSelectionMode | unknown> {
   fromYear: number | undefined;
   hidden?: DayPickerBaseProps['hidden'];
   hideWeekdayRow: boolean;
-  id: string | undefined;
+  id: string;
   initialFocus: boolean;
   ISOWeek: boolean;
   labels: Labels;
@@ -139,6 +139,7 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
   providerProps: DayPickerProviderProps<TMode>
 ) {
   const dataAttributes: DataAttributes = {};
+  const id = React.useId();
 
   Object.entries(providerProps.dayPickerProps).forEach(([key, val]) => {
     if (key.startsWith('data-')) {
@@ -188,7 +189,7 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
     fromYear: props.fromYear,
     hidden: props.hidden,
     hideWeekdayRow: props.hideWeekdayRow ?? false,
-    id: props.id,
+    id: props.id ?? id,
     initialFocus: props.initialFocus ?? false,
     ISOWeek: props.ISOWeek ?? false,
     labels: { ...labels, ...props.labels },

@@ -14,6 +14,9 @@ export class PageObjects {
   public grid(name?: ByRoleOptions['name']) {
     return screen.getByRole('grid', name ? { name } : undefined);
   }
+  public gridcell(date: Date) {
+    return screen.getByRole('gridcell', { name: String(date.getDate()) });
+  }
 }
 
 export const po = new PageObjects();

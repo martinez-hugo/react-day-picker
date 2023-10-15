@@ -30,7 +30,8 @@ export function MonthGrid(props: MonthGridProps) {
   } = useDayPicker();
 
   const reactId = React.useId();
-  const captionId = id ? `${id}-caption` : reactId;
+  const captionId = id ? `${id}-caption-${props.displayIndex}` : reactId;
+  const gridId = id ? `${id}-grid-${props.displayIndex}` : reactId;
 
   const WeekdaysRow = components?.WeekdaysRow ?? DefaultWeekdaysRow;
   const MonthCaption = components?.MonthCaption ?? DefaultMonthCaption;
@@ -43,6 +44,7 @@ export function MonthGrid(props: MonthGridProps) {
     >
       <MonthCaption id={captionId} month={props.month} />
       <div
+        id={gridId}
         role="grid"
         aria-multiselectable={mode === 'multi' || mode === 'range'}
         aria-label={labelGrid(props.month.date, { locale })}

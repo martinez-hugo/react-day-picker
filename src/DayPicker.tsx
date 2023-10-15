@@ -84,7 +84,7 @@ export interface DayPickerBaseProps {
   contrastPreference?: DayPickerContrastPreference;
 
   /**
-   * A unique id to replace the random generated id – used by DayPicker for
+   * A unique id to replace the random generated ids – used by DayPicker for
    * accessibility.
    */
   id?: string;
