@@ -24,13 +24,16 @@ test('should be accessible', async () => {
 
 describe('when displaying November 2021', () => {
   test('should display the 45th week number', () => {
-    const weekRow = screen.getByRole('row', { name: 'Week n. 45' });
+    const weekRow = screen.getByRole('rowheader', { name: 'Week 45' });
     expect(weekRow).toBeInTheDocument();
   });
   describe('when the week button is clicked', () => {
-    beforeEach(async () => act(() => user.click(getWeekButton(45))));
+    beforeEach(
+      async () =>
+        await user.click(screen.getByRole('rowheader', { name: 'Week 45' }))
+    );
     test('should update the footer', () => {
-      expect(getTableFooter()).toHaveTextContent('You clicked the week n. 45.');
+      expect(app).toHaveTextContent('You clicked the week n. 45.');
     });
   });
 });

@@ -29,7 +29,7 @@ export function WeekdayColumnHeader(props: WeekdayColumnHeaderProps) {
       className={classNames.weekday_columnheader}
       style={styles?.weekday_columnheader}
     >
-      {props.weekday && formatWeekdayName(props.weekday, { locale })}
+      {props.weekday ? formatWeekdayName(props.weekday, { locale }) : '#'}
     </span>
   );
 }

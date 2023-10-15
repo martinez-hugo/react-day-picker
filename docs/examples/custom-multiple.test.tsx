@@ -27,8 +27,7 @@ describe('when a day is clicked', () => {
   const day1 = new Date(2021, 10, 1);
   beforeEach(async () => await user.click(po.gridcell(day1)));
   test('should appear as selected', () => {
-    const button = po.gridcell(day1);
-    expect(button).toHaveAttribute('aria-selected', 'true');
+    expect(po.gridcell(day1)).toHaveAttribute('aria-selected', 'true');
   });
   test('should update the footer', () => {
     expect(po.grid()).toHaveTextContent('You selected 1 days.');
