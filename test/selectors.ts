@@ -76,16 +76,8 @@ export function queryMonthGrids() {
   return screen.queryAllByRole('grid');
 }
 
-export function getYearDropdown() {
-  return screen.getByRole('combobox', { name: 'Year:' });
-}
-
 export function queryYearDropdown() {
   return screen.queryByRole('combobox', { name: 'Year:' });
-}
-
-export function getMonthDropdown() {
-  return screen.getByRole('combobox', { name: 'Month:' });
 }
 
 export function queryMonthDropdown() {

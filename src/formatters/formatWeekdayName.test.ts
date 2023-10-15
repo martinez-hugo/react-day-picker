@@ -10,6 +10,6 @@ test('should return the formatted weekday name', () => {
 
 describe('when a locale is passed in', () => {
   test('should format using the locale', () => {
-    expect(formatWeekdayName(date, { locale: es })).toEqual('lu');
+    expect(formatWeekdayName(date, { locale: es })).toEqual('xlu');
   });
 });

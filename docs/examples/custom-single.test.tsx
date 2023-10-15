@@ -3,6 +3,7 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 
 import { axe } from '../../test/axe';
+import { gridcell } from '../../test/po';
 import { renderExampleApp } from '../../test/renderExampleApp';
 import { user } from '../../test/user';
 import { freezeBeforeAll } from '../../test/utils';
@@ -22,15 +23,13 @@ test('should be accessible', async () => {
 });
 
 describe('when a day is clicked', () => {
-  let gridcell: HTMLElement;
   beforeEach(async () => {
-    gridcell = screen.getByRole('gridcell', { name: '1' });
-    await user.click(gridcell);
+    await user.click(gridcell(today));
   });
   test('should appear as selected', () => {
-    expect(gridcell).toHaveAttribute('aria-selected', 'true');
+    expect(gridcell(today)).toHaveAttribute('aria-selected', 'true');
   });
   test('should update the footer', () => {
-    expect(app).toHaveTextContent('You selected Mon Nov 01 2021.');
+    expect(app).toHaveTextContent('You selected Thu Nov 25 2021.');
   });
 });

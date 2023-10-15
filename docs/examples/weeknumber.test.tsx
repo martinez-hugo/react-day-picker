@@ -1,10 +1,9 @@
 import React from 'react';
 
-import { act, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import { axe } from '../../test/axe';
 import { renderExampleApp } from '../../test/renderExampleApp';
-import { getTableFooter, getWeekButton } from '../../test/selectors';
 import { user } from '../../test/user';
 import { freezeBeforeAll } from '../../test/utils';
 import Example from './weeknumber';
@@ -28,10 +27,9 @@ describe('when displaying November 2021', () => {
     expect(weekRow).toBeInTheDocument();
   });
   describe('when the week button is clicked', () => {
-    beforeEach(
-      async () =>
-        await user.click(screen.getByRole('rowheader', { name: 'Week 45' }))
-    );
+    beforeEach(async () => {
+      await user.click(screen.getByRole('rowheader', { name: 'Week 45' }));
+    });
     test('should update the footer', () => {
       expect(app).toHaveTextContent('You clicked the week n. 45.');
     });

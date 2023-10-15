@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 
 import { differenceInMonths } from 'date-fns';
 
 import { axe } from '../../test/axe';
-import { po } from '../../test/po';
+import { nextButton, previousButton } from '../../test/po';
 import { renderExampleApp } from '../../test/renderExampleApp';
 import { user } from '../../test/user';
 import Example from './from-to-month';
@@ -19,11 +19,11 @@ test('should be accessible', async () => {
 });
 
 test('the previous button should be disabled', () => {
-  expect(po.previousButton).toBeDisabled();
+  expect(previousButton()).toBeDisabled();
 });
 
 test('the next button should not be disabled', () => {
-  expect(po.nextButton).not.toBeDisabled();
+  expect(nextButton()).not.toBeDisabled();
 });
 
 describe('when navigating to the last month', () => {
@@ -32,15 +32,15 @@ describe('when navigating to the last month', () => {
   const nOfMonths = differenceInMonths(toDate, fromDate);
   beforeEach(async () => {
     for (let i = 0; i < nOfMonths; i++) {
-      await user.click(po.nextButton);
+      await user.click(nextButton());
     }
   });
 
   test('the previous button should not be disabled', () => {
-    expect(po.previousButton).not.toBeDisabled();
+    expect(previousButton()).not.toBeDisabled();
   });
 
   test('the next button should be disabled', () => {
-    expect(po.nextButton).toBeDisabled();
+    expect(nextButton()).toBeDisabled();
   });
 });

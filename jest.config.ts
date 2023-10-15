@@ -1,7 +1,7 @@
 import type { Config } from '@jest/types';
 
 const config: Config.InitialOptions = {
-  preset: 'ts-jest',
+  preset: 'ts-jest/presets/default-esm',
   roots: ['./src', './docs/examples'],
   transform: {
     '^.+\\.tsx?$': 'ts-jest'

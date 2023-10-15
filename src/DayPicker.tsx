@@ -246,7 +246,7 @@ export interface DayPickerBaseProps {
   ISOWeek?: boolean;
 
   /**
-   * Use custom components for rendering the calendar elements.
+   * Change the components used for rendering the calendar elements.
    */
   components?: CustomComponents;
 
@@ -387,7 +387,7 @@ export type DayPickerProps = DayPickerBaseProps &
  *
  * - show multi months using `numberOfMonths`
  * - display a dropdown to navigate the months via `captionLayout`
- * - display the week numbers with `showWeekNumbers`
+ * - display the week numbers with `showWeekNumber`
  * - disable or hide days with `disabled` or `hidden`
  *
  * ### Controlling the months

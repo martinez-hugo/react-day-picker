@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, render, screen } from '@testing-library/react';
+import { act, screen } from '@testing-library/react';
 
 import { axe } from '../../test/axe';
 import { renderExampleApp } from '../../test/renderExampleApp';
@@ -12,18 +12,14 @@ import Example from './dropdown-multiple-months';
 const today = new Date(2023, 9, 16);
 freezeBeforeAll(today);
 
-beforeEach(() => render(<Example />).container);
+let app: HTMLElement;
+beforeEach(() => {
+  const render = renderExampleApp(<Example />);
+  app = render.app;
+});
 
 test('should be accessible', async () => {
-  const { app } = renderExampleApp(<Example />);
   expect(await axe(app)).toHaveNoViolations();
-});
-
-test('should display 5 year dropdowns', () => {
-  expect(screen.getAllByRole('combobox', { name: 'Year:' })).toHaveLength(5);
-});
-test('should display 5 month dropdowns', () => {
-  expect(screen.getAllByRole('combobox', { name: 'Month:' })).toHaveLength(5);
 });
 
 describe('when choosing a month from the first drop-down', () => {

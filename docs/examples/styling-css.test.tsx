@@ -1,20 +1,20 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
-
+import { renderExampleApp } from '../../test/renderExampleApp';
 import { freezeBeforeAll } from '../../test/utils';
 import Example from './styling-css';
 
 const today = new Date(2021, 10, 25);
 freezeBeforeAll(today);
 
-let container: HTMLElement;
+let app: HTMLElement;
 beforeEach(() => {
-  container = render(<Example />).container;
+  const render = renderExampleApp(<Example />);
+  app = render.app;
 });
 
 test('the caption should use the custom class name', () => {
-  expect(container.getElementsByClassName('caption_aqua')[0]).toHaveTextContent(
+  expect(app.getElementsByClassName('caption_aqua')[0]).toHaveTextContent(
     'November 2021'
   );
 });

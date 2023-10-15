@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { format } from 'date-fns';
-import { DateFormatter, DayPicker } from 'react-day-picker';
+import { DayPicker, Formatters } from 'react-day-picker';
 
 const seasonEmoji: Record<string, string> = {
   winter: '⛄️',
@@ -18,7 +18,7 @@ const getSeason = (month: Date): string => {
   else return 'autumn';
 };
 
-const formatCaption: DateFormatter = (month, options) => {
+const formatCaption: Formatters['formatCaption'] = (month, options) => {
   const season = getSeason(month);
   return `${seasonEmoji[season]} ${format(month, 'LLLL', {
     locale: options?.locale

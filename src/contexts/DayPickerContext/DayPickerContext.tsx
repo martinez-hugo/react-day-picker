@@ -212,7 +212,7 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
     reverseMonths: props.reverseMonths ?? false,
     selected: props.selected,
     showOutsideDays: props.showOutsideDays ?? false,
-    showWeekNumber: props.showWeekNumber ?? false,
+    showWeekNumber: props.showWeekNumber ?? props.showWeekNumber ?? false,
     style: props.style,
     toDate,
     today: props.today ?? startOfDay(new Date()),

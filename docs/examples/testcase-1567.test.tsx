@@ -1,16 +1,17 @@
 import React from 'react';
 
-import { act, render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
+import { renderExampleApp } from '../../test/renderExampleApp';
 import { user } from '../../test/user';
 import Example from './testcase-1567';
 
 beforeEach(async () => {
-  render(<Example />);
-  await act(() => user.tab());
-  await act(() => user.tab());
-  await act(() => user.tab());
-  await act(() => user.tab());
+  renderExampleApp(<Example />);
+  await user.tab();
+  await user.tab();
+  await user.tab();
+  await user.tab();
 });
 
 test('the button should have focus', () => {

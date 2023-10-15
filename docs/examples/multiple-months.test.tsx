@@ -3,7 +3,7 @@ import React from 'react';
 import { screen } from '@testing-library/react';
 
 import { axe } from '../../test/axe';
-import { po } from '../../test/po';
+import { previousButton } from '../../test/po';
 import { renderExampleApp } from '../../test/renderExampleApp';
 import { user } from '../../test/user';
 import { freezeBeforeAll } from '../../test/utils';
@@ -38,7 +38,7 @@ test('the second grid should be December', () => {
 
 // Test pagination
 describe('when the previous month button is clicked', () => {
-  beforeEach(() => user.click(po.previousButton));
+  beforeEach(() => user.click(previousButton()));
   test('the first month should be October', () => {
     const grids = screen.getAllByRole('grid');
     expect(grids[0]).toHaveAccessibleName('October 2021');

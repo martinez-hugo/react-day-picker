@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
-
-import { getDayButton } from '../../test/selectors';
+import { gridcell } from '../../test/po';
+import { renderExampleApp } from '../../test/renderExampleApp';
 import { freezeBeforeAll } from '../../test/utils';
 import Example from './modifiers-style';
 
@@ -10,7 +9,7 @@ const today = new Date(2021, 10, 25);
 freezeBeforeAll(today);
 
 beforeEach(() => {
-  render(<Example />);
+  renderExampleApp(<Example />);
 });
 
 const days = [new Date(2021, 5, 23), new Date(2021, 5, 24)];
@@ -19,5 +18,5 @@ const style = {
   color: 'lightgreen'
 };
 test.each(days)('The day %s should have the proper inline style', (day) => {
-  expect(getDayButton(day)).toHaveStyle(style);
+  expect(gridcell(day)).toHaveStyle(style);
 });

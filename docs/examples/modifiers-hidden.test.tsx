@@ -18,6 +18,6 @@ freezeBeforeAll(today);
 test.each(days)('the day %s should be hidden', (day) => {
   renderExampleApp(<Example />);
   expect(
-    screen.queryByRole('gridcell', { name: day.getDate().toString() })
+    screen.queryByRole('gridcell', { name: `${day.getDate()}` })
   ).not.toBeInTheDocument();
 });

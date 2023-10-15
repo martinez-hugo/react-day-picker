@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
-
+import { renderExampleApp } from '../../test/renderExampleApp';
 import { getMonthCaption } from '../../test/selectors';
 import { freezeBeforeAll } from '../../test/utils';
 import Example from './styling-inline';
@@ -10,7 +9,7 @@ const today = new Date(2021, 10, 25);
 freezeBeforeAll(today);
 
 beforeEach(() => {
-  render(<Example />).container;
+  renderExampleApp(<Example />);
 });
 
 test('the caption should apply the custom style', () => {
