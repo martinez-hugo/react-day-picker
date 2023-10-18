@@ -1,18 +1,18 @@
 import React from 'react';
 
 import { differenceInMonths } from 'date-fns';
+import { user } from 'react-day-picker/test';
+import { axe } from 'react-day-picker/test/axe';
+import { nextButton, previousButton } from 'react-day-picker/test/po';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { freezeTime } from 'react-day-picker/test/utils';
 
-import { axe } from '../../test/axe';
-import { nextButton, previousButton } from '../../test/po';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { user } from '../../test/user';
-import { freezeBeforeAll } from '../../test/utils';
 import Example from './from-to-year';
 
 const fromDate = new Date(2024, 0);
 const toDate = new Date(2026, 11);
 const today = new Date(2025, 10, 25);
-freezeBeforeAll(today);
+freezeTime(today);
 
 let app: HTMLElement;
 beforeEach(() => {

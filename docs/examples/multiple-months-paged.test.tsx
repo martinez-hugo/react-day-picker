@@ -1,15 +1,11 @@
-import React from 'react';
-
 import { screen } from '@testing-library/react';
+import { axe, freezeTime, previousButton, user } from 'react-day-picker/test';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
 
-import { axe } from '../../test/axe';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { user } from '../../test/user';
-import { freezeBeforeAll } from '../../test/utils';
 import Example from './multiple-months-paged';
 
 const today = new Date(2021, 10, 25);
-freezeBeforeAll(today);
+freezeTime(today);
 
 let app: HTMLElement;
 beforeEach(() => {
@@ -36,20 +32,16 @@ describe('when rendering November 2021', () => {
   });
   // Test pagination
   describe('when the previous month button is clicked', () => {
-    beforeEach(async () =>
-      user.click(
-        screen.getByRole('button', {
-          name: 'Go to previous month'
-        })
-      )
-    );
+    beforeEach(async () => user.click(previousButton()));
     test('the first month should be September', () => {
-      const grids = screen.getAllByRole('grid');
-      expect(grids[0]).toHaveAccessibleName('September 2021');
+      expect(screen.getAllByRole('grid')[0]).toHaveAccessibleName(
+        'September 2021'
+      );
     });
     test('the last month should be October', () => {
-      const grids = screen.getAllByRole('grid');
-      expect(grids[1]).toHaveAccessibleName('October 2021');
+      expect(screen.getAllByRole('grid')[1]).toHaveAccessibleName(
+        'October 2021'
+      );
     });
   });
 });

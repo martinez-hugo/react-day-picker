@@ -2,18 +2,18 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 import { format } from 'date-fns';
+import { user } from 'react-day-picker/test';
+import { axe } from 'react-day-picker/test/axe';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { getDayButton } from 'react-day-picker/test/selectors';
+import { freezeTime } from 'react-day-picker/test/utils';
 import { act } from 'react-dom/test-utils';
 
-import { axe } from '../../test/axe';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { getDayButton } from '../../test/selectors';
-import { user } from '../../test/user';
-import { freezeBeforeAll } from '../../test/utils';
 import Example from './date-picker-dialog';
 
 const today = new Date(2022, 5, 10);
 const tomorrow = new Date(2022, 5, 11);
-freezeBeforeAll(today);
+freezeTime(today);
 
 const getDialogButton = () => {
   return screen.getByRole('button', { name: 'Pick a date' });

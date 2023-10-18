@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
+import { user } from 'react-day-picker/test';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
 
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { user } from '../../test/user';
 import Example from './testcase-1567';
 
 beforeEach(async () => {

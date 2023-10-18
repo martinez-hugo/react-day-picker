@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { freezeBeforeAll } from '../../test/utils';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { freezeTime } from 'react-day-picker/test/utils';
+
 import Example from './custom-day';
 
-freezeBeforeAll(new Date(2021, 10, 25));
+freezeTime(new Date(2021, 10, 25));
 
 let app: HTMLElement;
 beforeEach(() => {

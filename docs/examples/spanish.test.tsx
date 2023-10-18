@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { render, screen } from '@testing-library/react';
+import { axe } from 'react-day-picker/test/axe';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { freezeTime } from 'react-day-picker/test/utils';
 
-import { axe } from '../../test/axe';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { freezeBeforeAll } from '../../test/utils';
 import Example from './spanish';
 
 const today = new Date(2021, 10, 25);
-freezeBeforeAll(today);
+freezeTime(today);
 
 test('should be accessible', async () => {
   const { app } = renderExampleApp(<Example />);

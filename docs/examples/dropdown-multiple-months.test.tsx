@@ -1,16 +1,16 @@
 import React from 'react';
 
 import { act, screen } from '@testing-library/react';
+import { user } from 'react-day-picker/test';
+import { axe } from 'react-day-picker/test/axe';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { getMonthGrid } from 'react-day-picker/test/selectors';
+import { freezeTime } from 'react-day-picker/test/utils';
 
-import { axe } from '../../test/axe';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { getMonthGrid } from '../../test/selectors';
-import { user } from '../../test/user';
-import { freezeBeforeAll } from '../../test/utils';
 import Example from './dropdown-multiple-months';
 
 const today = new Date(2023, 9, 16);
-freezeBeforeAll(today);
+freezeTime(today);
 
 let app: HTMLElement;
 beforeEach(() => {

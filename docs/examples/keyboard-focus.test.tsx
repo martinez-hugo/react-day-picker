@@ -3,18 +3,21 @@ import React from 'react';
 import { act, render, screen } from '@testing-library/react';
 import { addDays, addMonths, startOfMonth } from 'date-fns';
 import { DayPickerProps } from 'react-day-picker';
+import { user } from 'react-day-picker/test';
+import { axe } from 'react-day-picker/test/axe';
+import {
+  getDayButton,
+  getFocusedElement
+} from 'react-day-picker/test/selectors';
+import { freezeTime } from 'react-day-picker/test/utils';
+import { focusDaysGrid } from 'react-day-picker/test/utils/focusDaysGrid';
 
-import { axe } from '../../test/axe';
-import { getDayButton, getFocusedElement } from '../../test/selectors';
-import { user } from '../../test/user';
-import { freezeBeforeAll } from '../../test/utils';
-import { focusDaysGrid } from '../../test/utils/focusDaysGrid';
 import Example from './keyboard';
 
 const yesterday = new Date(2022, 5, 9);
 const today = new Date(2022, 5, 10);
 const tomorrow = new Date(2022, 5, 11);
-freezeBeforeAll(today);
+freezeTime(today);
 
 let container: HTMLElement;
 function setup(props: DayPickerProps) {

@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { gridcell } from '../../test/po';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { freezeBeforeAll } from '../../test/utils';
+import { gridcell } from 'react-day-picker/test/po';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { freezeTime } from 'react-day-picker/test/utils';
+
 import Example from './modifiers-classnames';
 
 const days = [
@@ -12,12 +13,12 @@ const days = [
 ];
 
 const today = new Date(2021, 10, 25);
-freezeBeforeAll(today);
+freezeTime(today);
 
 beforeEach(() => {
   renderExampleApp(<Example />);
 });
 
 test.each(days)('the day %s should have the `my-booked-class` class', (day) => {
-  expect(grisdcell(day)).toHaveClass('my-booked-class');
+  expect(gridcell(day)).toHaveClass('my-booked-class');
 });

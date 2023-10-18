@@ -153,7 +153,6 @@
         "regex": "^[.]"
       }
     ],
-    "jest.disabledWorkspaceFolders": ["docs"],
     "npm.packageManager": "pnpm",
     "task.allowAutomaticTasks": "on",
     "github-actions.workflows.pinned.workflows": [

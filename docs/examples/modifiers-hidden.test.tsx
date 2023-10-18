@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { freezeTime } from 'react-day-picker/test/utils';
 
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { freezeBeforeAll } from '../../test/utils';
 import Example from './modifiers-hidden';
 
 const days = [
@@ -13,7 +13,7 @@ const days = [
 ];
 
 const today = new Date(2021, 10, 25);
-freezeBeforeAll(today);
+freezeTime(today);
 
 test.each(days)('the day %s should be hidden', (day) => {
   renderExampleApp(<Example />);

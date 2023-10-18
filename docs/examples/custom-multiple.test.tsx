@@ -1,16 +1,16 @@
 import React from 'react';
 
+import { user } from 'react-day-picker/test';
+import { axe } from 'react-day-picker/test/axe';
+import { grid, gridcell } from 'react-day-picker/test/po';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { freezeTime } from 'react-day-picker/test/utils';
 import { act } from 'react-dom/test-utils';
 
-import { axe } from '../../test/axe';
-import { grid, gridcell } from '../../test/po';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { user } from '../../test/user';
-import { freezeBeforeAll } from '../../test/utils';
 import Example from './custom-multiple';
 
 const today = new Date(2021, 10, 25);
-freezeBeforeAll(today);
+freezeTime(today);
 
 let app: HTMLElement;
 beforeEach(() => {

@@ -1,14 +1,10 @@
 import React from 'react';
 
-import { grid } from '../../test/po';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { freezeBeforeAll } from '../../test/utils';
+import { columnheader, renderExampleApp } from 'react-day-picker/test';
+
 import Example from './spanish-week-starts-on';
 
-const today = new Date(2021, 10, 25);
-freezeBeforeAll(today);
-
-test('should have "Domingo" as first day of week', () => {
+test('should have "domingo" as first day of week', () => {
   renderExampleApp(<Example />);
-  expect(grid()).toHaveAccessibleName('domingo');
+  expect(columnheader('domingo')).toBeInTheDocument();
 });

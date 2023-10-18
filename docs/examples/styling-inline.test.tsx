@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { getMonthCaption } from '../../test/selectors';
-import { freezeBeforeAll } from '../../test/utils';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { getMonthCaption } from 'react-day-picker/test/selectors';
+import { freezeTime } from 'react-day-picker/test/utils';
+
 import Example from './styling-inline';
 
 const today = new Date(2021, 10, 25);
-freezeBeforeAll(today);
+freezeTime(today);
 
 beforeEach(() => {
   renderExampleApp(<Example />);

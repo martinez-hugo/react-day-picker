@@ -3,6 +3,15 @@ import {
   getSourceCodeStaticProps
 } from '../../components/SourceCode';
 import { RenderingBox } from '../../components/RenderingBox';
+
+import FixedWeeks from '@examples/fixedweeks.tsx';
+import MultipleMonths from '@examples/multiple-months.tsx';
+import MultipleMonthsPaged from '@examples/multiple-months-paged.tsx';
+import OutsideDays from '@examples/outside-days.tsx';
+import WeekNumber from '@examples/weeknumber.tsx';
+import WeekNumberCustom from '@examples/weeknumber-custom.tsx';
+import WeekNumberISO from '@examples/weeknumber-iso.tsx';
+
 import 'react-day-picker/dist/style.css';
 
 export const getStaticProps = () =>
@@ -24,8 +33,6 @@ Change months, weeks and days in the calendar.
 
 Use `showOutsideDays` to display the days falling out the current month.
 
-import OutsideDays from 'react-day-picker/docs/examples/outside-days.tsx';
-
 <SourceCode fileName="outside-days.tsx" />
 
 <RenderingBox>
@@ -38,8 +45,6 @@ Use `numberOfMonths` to render more than one calendar.
 
 <SourceCode fileName="multiple-months.tsx" />
 
-import MultipleMonths from 'react-day-picker/docs/examples/multiple-months.tsx';
-
 <RenderingBox>
   <MultipleMonths />
 </RenderingBox>
@@ -47,8 +52,6 @@ import MultipleMonths from 'react-day-picker/docs/examples/multiple-months.tsx';
 Toggle `pagedNavigation` to navigate the number of months per time.
 
 <SourceCode fileName="multiple-months-paged.tsx" />
-
-import MultipleMonthsPaged from 'react-day-picker/docs/examples/multiple-months-paged.tsx';
 
 <RenderingBox>
   <MultipleMonthsPaged />
@@ -60,8 +63,6 @@ Use `fixedWeeks` to display six weeks per months. This will prevent the calendar
 
 <SourceCode fileName="fixedweeks.tsx" />
 
-import FixedWeeks from 'react-day-picker/docs/examples/fixedweeks.tsx';
-
 <RenderingBox>
   <FixedWeeks />
 </RenderingBox>
@@ -70,9 +71,7 @@ import FixedWeeks from 'react-day-picker/docs/examples/fixedweeks.tsx';
 
 Use `showWeekNumber` to display the week numbers. When this prop is set, use `onWeekNumberClick` to handle the click on a week number.
 
-import WeekNumber from 'react-day-picker/docs/examples/weeknumber.tsx';
-
-<SourceCode fileName="weeknumbers.tsx" />
+<SourceCode fileName="weeknumber.tsx" />
 
 <RenderingBox>
   <WeekNumber />
@@ -86,8 +85,6 @@ import WeekNumber from 'react-day-picker/docs/examples/weeknumber.tsx';
 
 <SourceCode fileName="weeknumber-custom.tsx" />
 
-import WeekNumberCustom from 'react-day-picker/docs/examples/weeknumber-custom.tsx';
-
 <RenderingBox>
   <WeekNumberCustom />
 </RenderingBox>
@@ -95,8 +92,6 @@ import WeekNumberCustom from 'react-day-picker/docs/examples/weeknumber-custom.t
 ## Switch to ISO Week Dates
 
 DayPicker uses [date-fns getWeek](https://date-fns.org/docs/getWeek) to calculate the week number. By default, the week starts on Sunday and the first week of the year is the one that contains January 1st. Use `ISOWeek` to switch using [ISO Week Dates](https://en.wikipedia.org/wiki/ISO_week_date) instead of the locale setting.
-
-import WeekNumberISO from 'react-day-picker/docs/examples/weeknumber-iso.tsx';
 
 <SourceCode fileName="weeknumber-iso.tsx" />
 

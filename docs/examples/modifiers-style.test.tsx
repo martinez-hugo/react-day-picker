@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { gridcell } from '../../test/po';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { freezeBeforeAll } from '../../test/utils';
+import { gridcell } from 'react-day-picker/test/po';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { freezeTime } from 'react-day-picker/test/utils';
+
 import Example from './modifiers-style';
 
 const today = new Date(2021, 10, 25);
-freezeBeforeAll(today);
+freezeTime(today);
 
 beforeEach(() => {
   renderExampleApp(<Example />);

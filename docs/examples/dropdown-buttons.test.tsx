@@ -1,22 +1,22 @@
 import React from 'react';
 
 import { act, render } from '@testing-library/react';
-
-import { axe } from '../../test/axe';
+import { user } from 'react-day-picker/test';
+import { axe } from 'react-day-picker/test/axe';
 import {
   grid,
   monthDropdown,
   nextButton,
   previousButton,
   yearDropdown
-} from '../../test/po';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { user } from '../../test/user';
-import { freezeBeforeAll } from '../../test/utils';
+} from 'react-day-picker/test/po';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { freezeTime } from 'react-day-picker/test/utils';
+
 import Example from './dropdown-buttons';
 
 const today = new Date(2022, 5, 10);
-freezeBeforeAll(today);
+freezeTime(today);
 
 let app: HTMLElement;
 beforeEach(() => {

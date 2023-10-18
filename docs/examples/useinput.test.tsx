@@ -2,17 +2,17 @@ import React from 'react';
 
 import { screen } from '@testing-library/react';
 import { addDays, format } from 'date-fns';
+import { user } from 'react-day-picker/test';
+import { axe } from 'react-day-picker/test/axe';
+import { gridcell } from 'react-day-picker/test/po';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { getAllSelectedDays } from 'react-day-picker/test/selectors';
+import { freezeTime } from 'react-day-picker/test/utils';
 
-import { axe } from '../../test/axe';
-import { gridcell } from '../../test/po';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { getAllSelectedDays } from '../../test/selectors';
-import { user } from '../../test/user';
-import { freezeBeforeAll } from '../../test/utils';
 import Example from './useinput';
 
 const today = new Date(2021, 10, 15);
-freezeBeforeAll(today);
+freezeTime(today);
 
 const yday = addDays(today, -1);
 

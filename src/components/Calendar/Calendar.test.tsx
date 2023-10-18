@@ -5,7 +5,7 @@ import { addDays } from 'date-fns';
 import { DayPickerProps } from 'DayPicker';
 import { customRender } from 'test/render';
 import { getDayButton, queryMonthGrids } from 'test/selectors';
-import { freezeBeforeAll } from 'test/utils';
+import { freezeTime } from 'test/utils';
 
 import { defaultClassNames } from 'contexts/DayPickerContext/defaultClassNames';
 import { ClassNames } from 'types/styles';
@@ -13,7 +13,7 @@ import { ClassNames } from 'types/styles';
 import { Calendar } from './Calendar';
 
 const today = new Date(2020, 10, 4);
-freezeBeforeAll(today);
+freezeTime(today);
 
 let container: HTMLElement;
 let view: RenderResult;

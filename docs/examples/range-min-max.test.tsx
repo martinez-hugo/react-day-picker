@@ -2,16 +2,16 @@ import React from 'react';
 
 import { act, render } from '@testing-library/react';
 import { setDate } from 'date-fns';
+import { user } from 'react-day-picker/test';
+import { axe } from 'react-day-picker/test/axe';
+import { gridcell } from 'react-day-picker/test/po';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { freezeTime } from 'react-day-picker/test/utils';
 
-import { axe } from '../../test/axe';
-import { gridcell } from '../../test/po';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { user } from '../../test/user';
-import { freezeBeforeAll } from '../../test/utils';
 import Example from './range-min-max';
 
 const today = new Date(2022, 8, 25);
-freezeBeforeAll(today);
+freezeTime(today);
 
 let app: HTMLElement;
 beforeEach(() => {

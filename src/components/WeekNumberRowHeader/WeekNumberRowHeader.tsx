@@ -14,7 +14,8 @@ export function WeekNumberRowHeader(props: WeekNumberRowHeaderProps) {
     formatters: { formatWeekNumber },
     labels: { labelWeekNumber },
     locale,
-    styles
+    styles,
+    onWeekNumberClick
   } = useDayPicker();
   return (
     <div
@@ -23,6 +24,13 @@ export function WeekNumberRowHeader(props: WeekNumberRowHeaderProps) {
       aria-label={labelWeekNumber(props.week.weekNumber, { locale })}
       className={classNames.weeknumber_rowheader}
       style={styles?.weeknumber_rowheader}
+      onClick={(e) =>
+        onWeekNumberClick?.(
+          props.week.weekNumber,
+          props.week.days.map((day) => day.date),
+          e
+        )
+      }
     >
       {formatWeekNumber(props.week.weekNumber, { locale })}
     </div>

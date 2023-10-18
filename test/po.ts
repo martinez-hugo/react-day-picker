@@ -12,6 +12,10 @@ export function nextButton() {
   });
 }
 
+export function columnheader(name?: ByRoleOptions['name']) {
+  return screen.getByRole('columnheader', name ? { name } : undefined);
+}
+
 export function grid(name?: ByRoleOptions['name']) {
   return screen.getByRole('grid', name ? { name } : undefined);
 }
@@ -20,6 +24,9 @@ export function gridcell(date: Date) {
   return screen.getByRole('gridcell', { name: String(date.getDate()) });
 }
 
+export function rowheader(name?: ByRoleOptions['name']) {
+  return screen.getByRole('rowheader', name ? { name } : undefined);
+}
 export function yearDropdown() {
   return screen.getByRole('combobox', { name: 'Year:' });
 }

@@ -1,15 +1,15 @@
 import React from 'react';
 
 import { addDays } from 'date-fns';
+import { user } from 'react-day-picker/test';
+import { grid, gridcell } from 'react-day-picker/test/po';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { freezeTime } from 'react-day-picker/test/utils';
 
-import { grid, gridcell } from '../../test/po';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { user } from '../../test/user';
-import { freezeBeforeAll } from '../../test/utils';
 import Example from './modifiers-today';
 
 const today = new Date(2022, 5, 10);
-freezeBeforeAll(today);
+freezeTime(today);
 
 let app: HTMLElement;
 beforeEach(() => {

@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 import { differenceInMonths } from 'date-fns';
+import { user } from 'react-day-picker/test';
+import { axe } from 'react-day-picker/test/axe';
+import { nextButton, previousButton } from 'react-day-picker/test/po';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
 
-import { axe } from '../../test/axe';
-import { nextButton, previousButton } from '../../test/po';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { user } from '../../test/user';
 import Example from './from-to-month';
 
 let app: HTMLElement;

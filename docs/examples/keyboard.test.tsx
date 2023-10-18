@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, render, screen } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import {
   addDays,
   addMonths,
@@ -12,19 +12,24 @@ import {
   startOfWeek
 } from 'date-fns';
 import { DayPickerProps } from 'react-day-picker';
-
-import { axe } from '../../test/axe';
+import {
+  axe,
+  freezeTime,
+  nextButton,
+  previousButton,
+  user
+} from 'react-day-picker/test';
 import {
   getDayButton,
   getFocusedElement,
   getMonthCaption
-} from '../../test/selectors';
-import { user } from '../../test/user';
-import { freezeBeforeAll } from '../../test/utils';
+} from 'react-day-picker/test/selectors';
+
+import {} from '../../test';
 import Example from './keyboard';
 
 const today = new Date(2022, 5, 10);
-freezeBeforeAll(today);
+freezeTime(today);
 
 let container: HTMLElement;
 function setup(props: DayPickerProps) {
@@ -37,13 +42,13 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
     expect(await axe(container)).toHaveNoViolations();
   });
   describe('when clicking the previous month button', () => {
-    beforeEach(async () => act(() => user.click(previousButton)));
+    beforeEach(async () => act(() => user.click(previousButton())));
     test('should display the previous month', () => {
       expect(getMonthCaption()).toHaveTextContent('May 2022');
     });
   });
   describe('when clicking the next month button', () => {
-    beforeEach(async () => act(() => user.click(nextButton)));
+    beforeEach(async () => act(() => user.click(nextButton())));
 
     test('should display the next month', () => {
       expect(getMonthCaption()).toHaveTextContent('July 2022');

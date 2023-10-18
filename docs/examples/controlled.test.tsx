@@ -2,14 +2,14 @@ import React from 'react';
 
 import { screen } from '@testing-library/react';
 import { Card, Cards } from 'nextra/components';
+import { user } from 'react-day-picker/test';
+import { axe } from 'react-day-picker/test/axe';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { freezeTime } from 'react-day-picker/test/utils';
 
-import { axe } from '../../test/axe';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { user } from '../../test/user';
-import { freezeBeforeAll } from '../../test/utils';
 import Example from './controlled';
 
-freezeBeforeAll(new Date(2022, 5, 10));
+freezeTime(new Date(2022, 5, 10));
 
 let app: HTMLElement;
 beforeEach(() => {

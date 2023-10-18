@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { grid } from '../../test/po';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { freezeBeforeAll } from '../../test/utils';
+import { grid } from 'react-day-picker/test/po';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { freezeTime } from 'react-day-picker/test/utils';
+
 import Example from './default-month';
 
 const today = new Date(2022, 5, 10);
-freezeBeforeAll(today);
+freezeTime(today);
 
 test('should display September 1979', () => {
   renderExampleApp(<Example />);

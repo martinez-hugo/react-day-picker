@@ -1,17 +1,16 @@
 import React from 'react';
 
-import { act, render } from '@testing-library/react';
 import { addDays } from 'date-fns';
+import { user } from 'react-day-picker/test';
+import { axe } from 'react-day-picker/test/axe';
+import { grid, gridcell } from 'react-day-picker/test/po';
+import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { freezeTime } from 'react-day-picker/test/utils';
 
-import { axe } from '../../test/axe';
-import { grid, gridcell } from '../../test/po';
-import { renderExampleApp } from '../../test/renderExampleApp';
-import { user } from '../../test/user';
-import { freezeBeforeAll } from '../../test/utils';
 import Example from './multiple-min-max';
 
 const today = new Date(2021, 10, 10);
-freezeBeforeAll(today);
+freezeTime(today);
 
 const days = [
   today,
@@ -32,7 +31,9 @@ test('should be accessible', async () => {
 });
 
 describe('when a day is clicked', () => {
-  beforeEach(async () => act(() => user.click(gridcell(days[0]))));
+  beforeEach(async () => {
+    await user.click(gridcell(days[0]));
+  });
   test('should appear as selected', () => {
     expect(gridcell(days[0])).toHaveAttribute('aria-selected', 'true');
   });
@@ -43,7 +44,9 @@ describe('when a day is clicked', () => {
     expect(await axe(app)).toHaveNoViolations();
   });
   describe('when a second day is clicked', () => {
-    beforeEach(async () => act(() => user.click(gridcell(days[1]))));
+    beforeEach(async () => {
+      await user.click(gridcell(days[1]));
+    });
     test('the first day should appear as selected', () => {
       expect(gridcell(days[0])).toHaveAttribute('aria-selected', 'true');
     });
@@ -57,7 +60,9 @@ describe('when a day is clicked', () => {
       expect(await axe(app)).toHaveNoViolations();
     });
     describe('when clicked again', () => {
-      beforeEach(async () => act(() => user.click(gridcell(days[1]))));
+      beforeEach(async () => {
+        await user.click(gridcell(days[1]));
+      });
       test('the first day should still appear as selected', () => {
         expect(gridcell(days[0])).toHaveAttribute('aria-selected', 'true');
       });

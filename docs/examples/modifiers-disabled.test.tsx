@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
+import { getDayButton } from 'react-day-picker/test/selectors';
+import { freezeTime } from 'react-day-picker/test/utils';
 
-import { getDayButton } from '../../test/selectors';
-import { freezeBeforeAll } from '../../test/utils';
 import Example from './modifiers-disabled';
 
 const days = [
@@ -12,7 +12,7 @@ const days = [
   new Date(2022, 5, 20)
 ];
 const today = new Date(2021, 10, 25);
-freezeBeforeAll(today);
+freezeTime(today);
 
 beforeEach(() => {
   render(<Example />);

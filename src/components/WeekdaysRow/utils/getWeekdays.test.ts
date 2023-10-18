@@ -1,6 +1,5 @@
 import { es } from 'date-fns/locale';
-
-import { freezeBeforeAll } from 'test/utils';
+import { freezeTime } from 'test/utils';
 
 import { getWeekdays } from './getWeekdays';
 
@@ -8,7 +7,7 @@ const today = new Date(2022, 1, 12);
 const prevSunday = new Date(2022, 1, 6);
 const prevMonday = new Date(2022, 1, 7);
 
-freezeBeforeAll(today);
+freezeTime(today);
 
 let result: Date[];
 
