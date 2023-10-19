@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { renderExampleApp, freezeTime } from 'react-day-picker/test';
 import { getMonthCaption } from 'react-day-picker/test/selectors';
-import { freezeTime } from 'react-day-picker/test/utils';
 
 import Example from './styling-inline';
 

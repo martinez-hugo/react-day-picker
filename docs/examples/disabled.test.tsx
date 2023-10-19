@@ -1,8 +1,11 @@
 import { screen } from '@testing-library/react';
-import { user } from 'react-day-picker/test';
-import { axe } from 'react-day-picker/test/axe';
-import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
-import { freezeTime } from 'react-day-picker/test/utils';
+import {
+  user,
+  axe,
+  renderExampleApp,
+  freezeTime,
+  grid
+} from 'react-day-picker/test';
 
 import Example from './disabled';
 
@@ -36,7 +39,7 @@ describe('when the first day is focused', () => {
       expect(await axe(app)).toHaveNoViolations();
     });
     test('should still display the same month', () => {
-      expect(screen.getByRole('grid')).toHaveTextContent('June 2022');
+      expect(grid()).toHaveTextContent('June 2022');
     });
   });
 });
@@ -50,7 +53,7 @@ describe('when the last day is focused', () => {
       expect(await axe(app)).toHaveNoViolations();
     });
     test('should still display the same month', () => {
-      expect(screen.getByRole('grid')).toHaveTextContent('June 2022');
+      expect(grid()).toHaveTextContent('June 2022');
     });
   });
 });

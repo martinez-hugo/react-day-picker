@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { axe } from 'react-day-picker/test/axe';
-import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { axe, renderExampleApp } from 'react-day-picker/test';
 
 import Example from './container-attributes';
 

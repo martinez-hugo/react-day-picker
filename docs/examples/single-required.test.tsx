@@ -1,10 +1,13 @@
 import React from 'react';
 
-import { user } from 'react-day-picker/test';
-import { axe } from 'react-day-picker/test/axe';
-import { grid, gridcell } from 'react-day-picker/test/po';
-import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
-import { freezeTime } from 'react-day-picker/test/utils';
+import {
+  user,
+  axe,
+  grid,
+  gridcell,
+  renderExampleApp,
+  freezeTime
+} from 'react-day-picker/test';
 
 import Example from './single-required';
 

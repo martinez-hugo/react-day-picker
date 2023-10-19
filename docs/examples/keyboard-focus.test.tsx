@@ -1,16 +1,20 @@
 import React from 'react';
 
-import { act, render, screen } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { addDays, addMonths, startOfMonth } from 'date-fns';
 import { DayPickerProps } from 'react-day-picker';
-import { user } from 'react-day-picker/test';
-import { axe } from 'react-day-picker/test/axe';
+import {
+  axe,
+  nextButton,
+  user,
+  freezeTime,
+  previousButton,
+  focusDaysGrid
+} from 'react-day-picker/test';
 import {
   getDayButton,
   getFocusedElement
 } from 'react-day-picker/test/selectors';
-import { freezeTime } from 'react-day-picker/test/utils';
-import { focusDaysGrid } from 'react-day-picker/test/utils/focusDaysGrid';
 
 import Example from './keyboard';
 
@@ -34,7 +38,7 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
       expect(await axe(container)).toHaveNoViolations();
     });
     test('should focus on the Previous Month button', () => {
-      expect(previousButton).toHaveFocus();
+      expect(previousButton()).toHaveFocus();
     });
     describe('when pressing Tab a second time', () => {
       beforeEach(async () => act(() => user.tab()));
@@ -60,7 +64,7 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
             focusedElement = getFocusedElement();
           });
           describe('when the next button is focused', () => {
-            beforeEach(() => act(() => nextButton.focus()));
+            beforeEach(() => act(() => nextButton().focus()));
             test(`the element focused with ${key} should have lost the focus`, () => {
               expect(focusedElement).not.toHaveFocus();
             });
@@ -101,7 +105,7 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
   });
 
   describe('when multiple days are selected', () => {
-    const mode = 'multiple';
+    const mode = 'multi';
     const selected = [yesterday, tomorrow];
     beforeEach(() => {
       setup({ dir, selected, mode });

@@ -1,9 +1,6 @@
 import React from 'react';
 
-import { render, screen } from '@testing-library/react';
-import { axe } from 'react-day-picker/test/axe';
-import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
-import { freezeTime } from 'react-day-picker/test/utils';
+import { axe, renderExampleApp, freezeTime, grid } from 'react-day-picker/test';
 
 import Example from './spanish';
 
@@ -17,5 +14,5 @@ test('should be accessible', async () => {
 
 test('should localize the caption in Spanish', () => {
   renderExampleApp(<Example />);
-  expect(screen.getByRole('grid')).toHaveAccessibleName('noviembre 2021');
+  expect(grid()).toHaveAccessibleName('noviembre 2021');
 });

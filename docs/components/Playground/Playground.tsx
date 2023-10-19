@@ -44,7 +44,9 @@ export function Playground() {
   };
 
   const handleBookmark = () => {
-    const searchParams = new URLSearchParams(baseProps);
+    const searchParams = new URLSearchParams(
+      baseProps as Record<string, string>
+    );
     searchParams.toString() && router.push(`#${searchParams.toString()}`);
   };
 

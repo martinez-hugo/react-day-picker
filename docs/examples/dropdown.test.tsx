@@ -1,15 +1,12 @@
 import React from 'react';
 
 import { act, render } from '@testing-library/react';
-import { user } from 'react-day-picker/test';
-import { axe } from 'react-day-picker/test/axe';
-import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { user, axe, renderExampleApp, freezeTime } from 'react-day-picker/test';
 import {
   getMonthDropdown,
   getMonthGrid,
   getYearDropdown
 } from 'react-day-picker/test/selectors';
-import { freezeTime } from 'react-day-picker/test/utils';
 
 import Example from './dropdown';
 

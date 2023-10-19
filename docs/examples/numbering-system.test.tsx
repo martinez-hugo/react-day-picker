@@ -1,10 +1,7 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
-import { axe } from 'react-day-picker/test/axe';
-import { grid } from 'react-day-picker/test/po';
-import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
-import { freezeTime } from 'react-day-picker/test/utils';
+import { axe, grid, renderExampleApp, freezeTime } from 'react-day-picker/test';
 
 import Example from './numbering-system';
 

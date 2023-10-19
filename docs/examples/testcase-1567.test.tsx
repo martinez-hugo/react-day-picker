@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
-import { user } from 'react-day-picker/test';
-import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import { user, renderExampleApp } from 'react-day-picker/test';
 
 import Example from './testcase-1567';
 

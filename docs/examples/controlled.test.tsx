@@ -1,11 +1,13 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
-import { Card, Cards } from 'nextra/components';
-import { user } from 'react-day-picker/test';
-import { axe } from 'react-day-picker/test/axe';
-import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
-import { freezeTime } from 'react-day-picker/test/utils';
+import {
+  user,
+  axe,
+  renderExampleApp,
+  freezeTime,
+  grid
+} from 'react-day-picker/test';
 
 import Example from './controlled';
 
@@ -31,6 +33,6 @@ describe('when the "Go to today" button is clicked', () => {
     expect(todayButton()).toBeDisabled();
   });
   test('should display the current month', () => {
-    expect(screen.getByRole('grid')).toHaveAccessibleName('June 2022');
+    expect(grid()).toHaveAccessibleName('June 2022');
   });
 });

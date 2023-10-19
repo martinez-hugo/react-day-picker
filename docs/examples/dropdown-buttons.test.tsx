@@ -1,17 +1,17 @@
 import React from 'react';
 
 import { act, render } from '@testing-library/react';
-import { user } from 'react-day-picker/test';
-import { axe } from 'react-day-picker/test/axe';
 import {
+  user,
+  axe,
   grid,
   monthDropdown,
   nextButton,
   previousButton,
-  yearDropdown
-} from 'react-day-picker/test/po';
-import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
-import { freezeTime } from 'react-day-picker/test/utils';
+  yearDropdown,
+  renderExampleApp,
+  freezeTime
+} from 'react-day-picker/test';
 
 import Example from './dropdown-buttons';
 

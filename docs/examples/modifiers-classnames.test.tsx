@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { gridcell } from 'react-day-picker/test/po';
-import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
-import { freezeTime } from 'react-day-picker/test/utils';
+import { gridcell, renderExampleApp, freezeTime } from 'react-day-picker/test';
 
 import Example from './modifiers-classnames';
 

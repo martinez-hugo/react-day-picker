@@ -1,6 +1,11 @@
 import { screen } from '@testing-library/react';
-import { axe, freezeTime, previousButton, user } from 'react-day-picker/test';
-import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
+import {
+  axe,
+  freezeTime,
+  previousButton,
+  user,
+  renderExampleApp
+} from 'react-day-picker/test';
 
 import Example from './multiple-months-paged';
 

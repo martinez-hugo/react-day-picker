@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
-import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
-import { freezeTime } from 'react-day-picker/test/utils';
+import { renderExampleApp, freezeTime } from 'react-day-picker/test';
 
 import Example from './modifiers-hidden';
 

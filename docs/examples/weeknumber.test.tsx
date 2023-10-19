@@ -1,10 +1,13 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
-import { rowheader, user } from 'react-day-picker/test';
-import { axe } from 'react-day-picker/test/axe';
-import { renderExampleApp } from 'react-day-picker/test/renderExampleApp';
-import { freezeTime } from 'react-day-picker/test/utils';
+import {
+  rowheader,
+  user,
+  axe,
+  renderExampleApp,
+  freezeTime
+} from 'react-day-picker/test';
 
 import Example from './weeknumber';
 
