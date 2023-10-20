@@ -1,4 +1,4 @@
-.root {
+.rdp {
   --rdp-cell-size: 2.75rem;
   --rdp-font-small: 0.8125rem;
   --rdp-font-medium: 1rem;
@@ -10,50 +10,50 @@
   --rdp-outline-selected: 3px solid var(--rdp-accent-color); /* Outline border for focused _and_ selected elements */
 }
 
-.root.contrast_no-preference {
+.rdp.contrast_no-preference {
 }
 @media (prefers-contrast: more) {
-  .root {
+  .rdp {
     --rdp-opacity: 0.8;
   }
 }
-.root.contrast_more {
+.rdp.contrast_more {
   --rdp-opacity: 0.8;
 }
 
 @media (prefers-contrast: less) {
-  .root {
+  .rdp {
     --rdp-opacity: 0.4;
   }
 }
-.root.contrast_less {
+.rdp.contrast_less {
   --rdp-opacity: 0.4;
 }
 
 @media (prefers-color-scheme: dark) {
-  .root {
+  .rdp {
     --rdp-accent-color: #0a84ff;
     --rdp-background-color: #02203d;
   }
 }
-.root.color_light {
+.rdp.color_light {
   --rdp-accent-color: #0a84ff;
   --rdp-background-color: #02203d;
 }
-.root.color_dark {
+.rdp.color_dark {
   --rdp-accent-color: #0a84ff;
   --rdp-background-color: #02203d;
 }
-.root.color_auto {
+.rdp.color_auto {
 }
 
-.root {
+.rdp {
   display: inline-block;
   position: relative;
 }
 
-.root,
-.root * {
+.rdp,
+.rdp * {
   box-sizing: border-box;
 }
 
@@ -166,11 +166,11 @@
   cursor: default;
 }
 
-.root[dir='rtl'] .button_next {
+.rdp[dir='rtl'] .button_next {
   transform: rotate(180deg);
 }
 
-.root[dir='rtl'] .button_previous {
+.rdp[dir='rtl'] .button_previous {
   transform: rotate(180deg);
   transform-origin: 50%;
 }
@@ -302,22 +302,22 @@
   z-index: 1;
 }
 
-.root:not([dir='rtl']) .day_range_start:not(.day_range_end) {
+.rdp:not([dir='rtl']) .day_range_start:not(.day_range_end) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.root:not([dir='rtl']) .day_range_end:not(.day_range_start) {
+.rdp:not([dir='rtl']) .day_range_end:not(.day_range_start) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.root[dir='rtl'] .day_range_start:not(.day_range_end) {
+.rdp[dir='rtl'] .day_range_start:not(.day_range_end) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.root[dir='rtl'] .day_range_end:not(.day_range_start) {
+.rdp[dir='rtl'] .day_range_end:not(.day_range_start) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }

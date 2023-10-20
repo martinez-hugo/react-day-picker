@@ -1,5 +1,5 @@
 declare const styles: {
-  'root': string
+  'rdp': string
   'contrast_no-preference': string
   'contrast_more': string
   'contrast_less': string

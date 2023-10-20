@@ -1,51 +1,5 @@
 import { defaultClassNames } from './defaultClassNames';
 
 test('should match the snapshot', () => {
-  expect(defaultClassNames).toMatchInlineSnapshot(`
-    {
-      "button_icon": "button_icon",
-      "button_next": "button_next",
-      "button_previous": "button_previous",
-      "caption": "caption",
-      "caption_between": "caption_between",
-      "caption_dropdowns": "caption_dropdowns",
-      "caption_end": "caption_end",
-      "caption_label": "caption_label",
-      "caption_start": "caption_start",
-      "cell": "cell",
-      "day": "day",
-      "day_disabled": "day_disabled",
-      "day_hidden": "day_hidden",
-      "day_outside": "day_outside",
-      "day_range_end": "day_range_end",
-      "day_range_middle": "day_range_middle",
-      "day_range_start": "day_range_start",
-      "day_selected": "day_selected",
-      "day_today": "day_today",
-      "dropdown": "dropdown",
-      "dropdown_icon": "dropdown_icon",
-      "dropdown_month": "dropdown_month",
-      "dropdown_year": "dropdown_year",
-      "footer": "",
-      "head": "head",
-      "head_cell": "head_cell",
-      "head_row": "head_row",
-      "month_caption": "month_caption",
-      "month_grid": "month_grid",
-      "month_grid_wrapper": "month_grid_wrapper",
-      "month_rowgroup": "month_rowgroup",
-      "months_wrapper": "months_wrapper",
-      "multiple_months": "multiple_months",
-      "nav": "nav",
-      "root": "root",
-      "row": "row",
-      "tbody": "tbody",
-      "vhidden": "vhidden",
-      "week_row": "week_row",
-      "weekday_columnheader": "weekday_columnheader",
-      "weekdays_row": "weekdays_row",
-      "weeknumber_rowheader": "weeknumber_rowheader",
-      "with_weeknumber": "with_weeknumber",
-    }
-  `);
+  expect(defaultClassNames).toMatchSnapshot();
 });

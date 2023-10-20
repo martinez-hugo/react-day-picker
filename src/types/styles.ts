@@ -2,8 +2,8 @@ import style from '../style.css';
 
 /** The style (either via class names or via in-line styles) of an element. */
 export type StyledElement<T = string | React.CSSProperties> = {
-  /** The calendar element (root). */
-  readonly root: T;
+  /** The root element. */
+  readonly rdp: T;
 
   readonly contrast_more: T;
   readonly dark: T;

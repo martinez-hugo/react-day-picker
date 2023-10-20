@@ -45,7 +45,7 @@ describe('when the number of months is greater than 1', () => {
 
 describe('when using the "classNames" prop', () => {
   const classNames: ClassNames = {
-    root: 'foo',
+    rdp: 'foo-rdp',
     vhidden: '',
     with_weeknumber: '',
     months_wrapper: '',

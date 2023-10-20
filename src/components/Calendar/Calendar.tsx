@@ -1,4 +1,6 @@
 import { MonthGrid as DefaultMonthGrid } from '../MonthGrid';
+import { Months as DefaultMonths } from '../Months';
+import { Footer as DefaultFooter } from '../Footer';
 import { Nav as DefaultNav } from '../Nav';
 import { useCalendar } from '../../contexts/CalendarContext';
 import { useDayPicker } from '../../contexts/DayPickerContext';
@@ -47,7 +49,7 @@ export function Calendar(): JSX.Element {
   // ]);
 
   // Apply classnames according to props
-  const cssClassNames = [classNames.root];
+  const cssClassNames = [classNames.rdp];
   if (className) {
     cssClassNames.push(className);
   }
@@ -66,17 +68,22 @@ export function Calendar(): JSX.Element {
 
   const MonthGrid = components?.MonthGrid ?? DefaultMonthGrid;
   const Nav = components?.Nav ?? DefaultNav;
+  const Months = components?.Months ?? DefaultMonths;
+  const Footer = components?.Footer ?? DefaultFooter;
 
   return (
     <div
       className={cssClassNames.join(' ')}
-      style={{ ...styles?.root, ...style }}
+      style={{ ...styles?.rdp, ...style }}
       dir={dir}
       id={id}
       {...dataAttributes}
     >
       <Nav />
-      <div className={classNames.months_wrapper} style={styles?.months_wrapper}>
+      <Months
+        className={classNames.months_wrapper}
+        style={styles?.months_wrapper}
+      >
         {calendar.months.map((month, i) => (
           <MonthGrid
             aria-labelledby={id}
@@ -85,11 +92,11 @@ export function Calendar(): JSX.Element {
             month={month}
           />
         ))}
-      </div>
+      </Months>
       {footer && (
-        <div className={classNames.footer} style={styles?.footer}>
+        <Footer className={classNames.footer} style={styles?.footer}>
           {footer}
-        </div>
+        </Footer>
       )}
     </div>
   );

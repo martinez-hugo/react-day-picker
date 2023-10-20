@@ -4,7 +4,7 @@ import type { ClassNames } from '../../types/styles';
  * The name of the default CSS classes.
  */
 export const defaultClassNames: Required<ClassNames> = {
-  root: 'root',
+  rdp: 'rdp',
   multiple_months: 'multiple_months',
   with_weeknumber: 'with_weeknumber',
   vhidden: 'vhidden',
