@@ -4,7 +4,7 @@ import {
   freezeTime,
   previousButton,
   user,
-  renderExampleApp
+  renderApp
 } from 'react-day-picker/test';
 
 import Example from './multiple-months-paged';
@@ -14,7 +14,7 @@ freezeTime(today);
 
 let app: HTMLElement;
 beforeEach(() => {
-  const render = renderExampleApp(<Example />);
+  const render = renderApp(<Example />);
   app = render.app;
 });
 

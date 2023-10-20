@@ -6,14 +6,14 @@ import {
   axe,
   nextButton,
   previousButton,
-  renderExampleApp
+  renderApp
 } from 'react-day-picker/test';
 
 import Example from './from-to-month';
 
 let app: HTMLElement;
 beforeEach(() => {
-  const render = renderExampleApp(<Example />);
+  const render = renderApp(<Example />);
   app = render.app;
 });
 

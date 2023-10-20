@@ -1,11 +1,5 @@
 import { screen } from '@testing-library/react';
-import {
-  user,
-  axe,
-  renderExampleApp,
-  freezeTime,
-  grid
-} from 'react-day-picker/test';
+import { user, axe, renderApp, freezeTime, grid } from 'react-day-picker/test';
 
 import Example from './disabled';
 
@@ -15,7 +9,7 @@ freezeTime(today);
 let app: HTMLElement;
 let dayCell: HTMLElement;
 beforeEach(async () => {
-  app = renderExampleApp(<Example />).app;
+  app = renderApp(<Example />).app;
   dayCell = screen.getByRole('gridcell', { name: '1' });
   return dayCell.focus();
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
-import { axe, renderExampleApp, freezeTime } from 'react-day-picker/test';
+import { axe, renderApp, freezeTime } from 'react-day-picker/test';
 
 import Example from './outside-days';
 
@@ -9,13 +9,13 @@ const today = new Date(2021, 10, 25);
 freezeTime(today);
 
 test('should be accessible', async () => {
-  const { app } = renderExampleApp(<Example />);
+  const { app } = renderApp(<Example />);
   expect(await axe(app)).toHaveNoViolations();
 });
 
 describe('when displaying a month with outside days', () => {
   test('should display the outside day', () => {
-    renderExampleApp(<Example />);
+    renderApp(<Example />);
     expect(screen.getByRole('gridcell', { name: '31' })).toBeInTheDocument();
   });
 });

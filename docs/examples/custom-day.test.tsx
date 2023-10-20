@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderExampleApp, freezeTime } from 'react-day-picker/test';
+import { renderApp, freezeTime } from 'react-day-picker/test';
 
 import Example from './custom-day';
 
@@ -8,7 +8,7 @@ freezeTime(new Date(2021, 10, 25));
 
 let app: HTMLElement;
 beforeEach(() => {
-  const render = renderExampleApp(<Example />);
+  const render = renderApp(<Example />);
   app = render.app;
 });
 

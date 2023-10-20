@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
-import { user, renderExampleApp } from 'react-day-picker/test';
+import { user, renderApp } from 'react-day-picker/test';
 
 import Example from './testcase-1567';
 
 beforeEach(async () => {
-  renderExampleApp(<Example />);
+  renderApp(<Example />);
   await user.tab();
   await user.tab();
   await user.tab();

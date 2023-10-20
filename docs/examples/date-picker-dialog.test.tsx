@@ -2,7 +2,7 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 import { format } from 'date-fns';
-import { user, axe, renderExampleApp, freezeTime } from 'react-day-picker/test';
+import { user, axe, renderApp, freezeTime } from 'react-day-picker/test';
 import { getDayButton } from 'react-day-picker/test/selectors';
 import { act } from 'react-dom/test-utils';
 
@@ -31,7 +31,7 @@ beforeEach(() => {
 });
 
 test('should be accessible', async () => {
-  const { app } = renderExampleApp(<Example />);
+  const { app } = renderApp(<Example />);
   expect(await axe(app)).toHaveNoViolations();
 });
 

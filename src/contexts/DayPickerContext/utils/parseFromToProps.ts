@@ -14,7 +14,7 @@ export function parseFromToProps(
     | 'today'
   >
 ): { fromDate: Date | undefined; toDate: Date | undefined } {
-  const { fromYear, toYear, fromMonth, toMonth, today = new Date() } = props;
+  const { fromYear, toYear, fromMonth, toMonth } = props;
   let { fromDate, toDate } = props;
 
   if (fromMonth) {

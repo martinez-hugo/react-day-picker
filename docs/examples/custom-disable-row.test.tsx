@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
-import { axe, renderExampleApp, freezeTime } from 'react-day-picker/test';
+import { axe, renderApp, freezeTime } from 'react-day-picker/test';
 
 import Example from './custom-disable-row';
 
@@ -10,7 +10,7 @@ freezeTime(today);
 
 let app: HTMLElement;
 beforeEach(() => {
-  const render = renderExampleApp(<Example />);
+  const render = renderApp(<Example />);
   app = render.app;
 });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { act, screen } from '@testing-library/react';
-import { user, axe, renderExampleApp, freezeTime } from 'react-day-picker/test';
+import { user, axe, renderApp, freezeTime } from 'react-day-picker/test';
 import { getMonthGrid } from 'react-day-picker/test/selectors';
 
 import Example from './dropdown-multiple-months';
@@ -11,7 +11,7 @@ freezeTime(today);
 
 let app: HTMLElement;
 beforeEach(() => {
-  const render = renderExampleApp(<Example />);
+  const render = renderApp(<Example />);
   app = render.app;
 });
 

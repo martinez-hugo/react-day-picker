@@ -1,13 +1,7 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
-import {
-  user,
-  axe,
-  renderExampleApp,
-  freezeTime,
-  grid
-} from 'react-day-picker/test';
+import { user, axe, renderApp, freezeTime, grid } from 'react-day-picker/test';
 
 import Example from './controlled';
 
@@ -15,7 +9,7 @@ freezeTime(new Date(2022, 5, 10));
 
 let app: HTMLElement;
 beforeEach(() => {
-  const render = renderExampleApp(<Example />);
+  const render = renderApp(<Example />);
   app = render.app;
 });
 

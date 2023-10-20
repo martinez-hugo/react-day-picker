@@ -18,7 +18,6 @@ export default function Example() {
       required
       selected={selectedDay}
       onSelect={(date) => {
-        console.log('onSelect', date);
         setSelectedDay(date);
       }}
       footer={footer}

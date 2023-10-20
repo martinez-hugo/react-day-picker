@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { gridcell, renderExampleApp, freezeTime } from 'react-day-picker/test';
+import { gridcell, renderApp, freezeTime } from 'react-day-picker/test';
 
 import Example from './modifiers-classnames';
 
@@ -14,7 +14,7 @@ const today = new Date(2021, 10, 25);
 freezeTime(today);
 
 beforeEach(() => {
-  renderExampleApp(<Example />);
+  renderApp(<Example />);
 });
 
 test.each(days)('the day %s should have the `my-booked-class` class', (day) => {

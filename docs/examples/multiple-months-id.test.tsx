@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
-import { renderExampleApp, freezeTime } from 'react-day-picker/test';
+import { renderApp, freezeTime } from 'react-day-picker/test';
 
 import Example from './multiple-months-id';
 
@@ -9,7 +9,7 @@ const today = new Date(2021, 10, 25);
 freezeTime(today);
 
 test('the table ids should include the display index', () => {
-  renderExampleApp(<Example />);
+  renderApp(<Example />);
   const tableId1 = screen
     .getByRole('grid', { name: 'November 2021' })
     .getAttribute('id');

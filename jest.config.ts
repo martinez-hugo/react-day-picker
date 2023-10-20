@@ -1,11 +1,8 @@
-import type { Config } from '@jest/types';
+import type { JestConfigWithTsJest } from 'ts-jest';
 
-const config: Config.InitialOptions = {
-  preset: 'ts-jest/presets/default-esm',
+const config: JestConfigWithTsJest = {
+  preset: 'ts-jest',
   roots: ['./src'],
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest'
-  },
   moduleNameMapper: {
     '^test/(.*)': ['<rootDir>/test/$1'],
     '^labels(.*)': ['<rootDir>/src/labels$1'],

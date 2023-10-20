@@ -6,7 +6,7 @@ import {
   user,
   axe,
   gridcell,
-  renderExampleApp,
+  renderApp,
   freezeTime
 } from 'react-day-picker/test';
 import { getAllSelectedDays } from 'react-day-picker/test/selectors';
@@ -24,7 +24,7 @@ function getInput(): HTMLInputElement {
 
 let app: HTMLElement;
 beforeEach(() => {
-  const render = renderExampleApp(<Example />);
+  const render = renderApp(<Example />);
   app = render.app;
 });
 

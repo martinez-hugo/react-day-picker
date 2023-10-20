@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { act, render } from '@testing-library/react';
 import {
   user,
   axe,
@@ -9,7 +8,7 @@ import {
   nextButton,
   previousButton,
   yearDropdown,
-  renderExampleApp,
+  renderApp,
   freezeTime
 } from 'react-day-picker/test';
 
@@ -20,7 +19,7 @@ freezeTime(today);
 
 let app: HTMLElement;
 beforeEach(() => {
-  const render = renderExampleApp(<Example />);
+  const render = renderApp(<Example />);
   app = render.app;
 });
 
@@ -43,7 +42,9 @@ test('should render the previous month button', () => {
 
 describe('when choosing a month', () => {
   const monthName = 'January';
-  beforeEach(() => act(() => user.selectOptions(monthDropdown(), monthName)));
+  beforeEach(async () => {
+    await user.selectOptions(monthDropdown(), monthName);
+  });
   test('should be accessible', async () => {
     expect(await axe(app)).toHaveNoViolations();
   });

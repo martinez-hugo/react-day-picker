@@ -4,7 +4,7 @@ import {
   user,
   axe,
   gridcell,
-  renderExampleApp,
+  renderApp,
   freezeTime
 } from 'react-day-picker/test';
 import { getFocusedElement } from 'react-day-picker/test/selectors';
@@ -16,7 +16,7 @@ freezeTime(today);
 
 let app: HTMLElement;
 beforeEach(async () => {
-  app = renderExampleApp(<Example />).app;
+  app = renderApp(<Example />).app;
   await user.tab();
   await user.tab();
   await user.tab();

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { labelWeekNumber } from 'labels';
-
 import { useDayPicker } from 'contexts/DayPickerContext';
 
 export interface WeekdayColumnHeaderProps

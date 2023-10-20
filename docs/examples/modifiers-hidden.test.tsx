@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
-import { renderExampleApp, freezeTime } from 'react-day-picker/test';
+import { renderApp, freezeTime } from 'react-day-picker/test';
 
 import Example from './modifiers-hidden';
 
@@ -15,7 +15,7 @@ const today = new Date(2021, 10, 25);
 freezeTime(today);
 
 test.each(days)('the day %s should be hidden', (day) => {
-  renderExampleApp(<Example />);
+  renderApp(<Example />);
   expect(
     screen.queryByRole('gridcell', { name: `${day.getDate()}` })
   ).not.toBeInTheDocument();

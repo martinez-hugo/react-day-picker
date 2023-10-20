@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { act, render } from '@testing-library/react';
 import { setDate } from 'date-fns';
 import {
   user,
   axe,
   gridcell,
-  renderExampleApp,
+  renderApp,
   freezeTime
 } from 'react-day-picker/test';
 
@@ -17,7 +16,7 @@ freezeTime(today);
 
 let app: HTMLElement;
 beforeEach(() => {
-  const render = renderExampleApp(<Example />);
+  const render = renderApp(<Example />);
   app = render.app;
 });
 
@@ -27,7 +26,9 @@ test('should be accessible', async () => {
 
 describe('when the first day is clicked', () => {
   const fromDay = setDate(today, 14);
-  beforeEach(async () => act(() => user.click(gridcell(fromDay))));
+  beforeEach(async () => {
+    await user.click(gridcell(fromDay));
+  });
   test('the clicked day should be selected', () => {
     expect(gridcell(fromDay)).toHaveAttribute('aria-selected', 'true');
   });

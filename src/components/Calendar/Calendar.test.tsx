@@ -143,7 +143,7 @@ describe('when showing the week numbers', () => {
   });
 });
 
-describe.skip('when "initialFocus" is set', () => {
+describe('when "initialFocus" is set', () => {
   const baseProps: DayPickerProps = {
     initialFocus: true,
     mode: 'single'
@@ -164,7 +164,7 @@ describe.skip('when "initialFocus" is set', () => {
       });
     });
   });
-  describe.skip('when a day is selected', () => {
+  describe('when a day is selected', () => {
     const selected = addDays(today, 1);
     const props: DayPickerProps = { ...baseProps, selected };
     beforeEach(() => {

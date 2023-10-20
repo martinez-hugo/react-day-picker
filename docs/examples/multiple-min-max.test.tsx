@@ -6,7 +6,7 @@ import {
   axe,
   grid,
   gridcell,
-  renderExampleApp,
+  renderApp,
   freezeTime
 } from 'react-day-picker/test';
 
@@ -25,7 +25,7 @@ const days = [
 
 let app: HTMLElement;
 beforeEach(() => {
-  const render = renderExampleApp(<Example />);
+  const render = renderApp(<Example />);
   app = render.app;
 });
 

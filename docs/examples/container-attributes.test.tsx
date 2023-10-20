@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { axe, renderExampleApp } from 'react-day-picker/test';
+import { axe, renderApp } from 'react-day-picker/test';
 
 import Example from './container-attributes';
 
 let app: HTMLElement;
 let dayPicker: HTMLElement;
 beforeEach(() => {
-  const render = renderExampleApp(<Example />);
+  const render = renderApp(<Example />);
   app = render.app;
   dayPicker = render.dayPicker as HTMLElement;
 });

@@ -1,20 +1,10 @@
-import React, {
-  createContext,
-  EventHandler,
-  ReactNode,
-  useContext,
-  useState
-} from 'react';
+import React, { createContext, ReactNode, useContext, useState } from 'react';
 
 import { isSameDay } from 'date-fns';
 import { DayPickerSelectedValue, DaysSelectionMode } from 'DayPicker';
 
-import { useCalendar } from 'contexts/CalendarContext';
 import { useDayPicker } from 'contexts/DayPickerContext';
-import { dateMatchModifiers } from 'contexts/ModifiersContext/utils/dateMatchModifiers';
 import { DateRange, MatchingModifiers } from 'types';
-
-import { addToRange } from './utils/addToRange';
 
 export type SelectionContext<TMode extends DaysSelectionMode | unknown> = {
   value: DayPickerSelectedValue<TMode>;
@@ -79,12 +69,12 @@ export function SelectionProvider<
     return newSingleValue;
   };
 
-  const setMultiValue = (date: Date) => {
+  const setMultiValue = () => {
     setInternalMultiValue(multiValue);
     return multiValue;
   };
 
-  const setRangeValue = (date: Date) => {
+  const setRangeValue = () => {
     setInternalRangeValue(rangeValue);
     return rangeValue;
   };

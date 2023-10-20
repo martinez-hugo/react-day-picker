@@ -4,7 +4,7 @@ import {
   axe,
   freezeTime,
   gridcell,
-  renderExampleApp,
+  renderApp,
   user
 } from 'react-day-picker/test';
 
@@ -15,7 +15,7 @@ freezeTime(today);
 
 let app: HTMLElement;
 beforeEach(async () => {
-  const render = renderExampleApp(<Example />);
+  const render = renderApp(<Example />);
   app = render.app;
 });
 
