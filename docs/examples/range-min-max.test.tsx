@@ -1,6 +1,6 @@
 import { setDate } from 'date-fns';
-import { user, axe, gridcell, renderApp, freezeTime } from '../../test';
 
+import { axe, freezeTime, gridcell, renderApp, user } from '../../test';
 import Example from './range-min-max';
 
 const today = new Date(2022, 8, 25);

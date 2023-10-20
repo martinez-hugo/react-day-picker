@@ -1,5 +1,6 @@
+import { MouseEventHandler, useRef, useState } from 'react';
+
 import { isSameDay } from 'date-fns';
-import { useRef, MouseEventHandler, useState } from 'react';
 import { DateRange, DayGridCellProps, DayPicker } from 'react-day-picker';
 
 function DayWithShiftKey(props: DayGridCellProps) {

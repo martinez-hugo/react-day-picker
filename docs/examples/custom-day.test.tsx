@@ -1,5 +1,4 @@
-import { renderApp, freezeTime } from '../../test';
-
+import { freezeTime, renderApp } from '../../test';
 import Example from './custom-day';
 
 freezeTime(new Date(2021, 10, 25));

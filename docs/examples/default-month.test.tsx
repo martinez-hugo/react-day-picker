@@ -1,5 +1,4 @@
-import { grid, renderApp, freezeTime } from '../../test';
-
+import { freezeTime, grid, renderApp } from '../../test';
 import Example from './default-month';
 
 const today = new Date(2022, 5, 10);

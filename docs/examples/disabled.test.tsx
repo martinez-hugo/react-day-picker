@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
-import { user, axe, renderApp, freezeTime, grid } from '../../test';
 
+import { axe, freezeTime, grid, renderApp, user } from '../../test';
 import Example from './disabled';
 
 const today = new Date(2022, 5, 10);

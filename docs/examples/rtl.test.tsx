@@ -1,13 +1,12 @@
 import {
-  user,
   axe,
+  freezeTime,
+  grid,
   nextButton,
   previousButton,
   renderApp,
-  freezeTime,
-  grid
+  user
 } from '../../test';
-
 import Example from './rtl';
 
 const today = new Date(2021, 10, 25);

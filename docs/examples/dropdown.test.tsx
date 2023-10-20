@@ -1,14 +1,14 @@
 import { act, render } from '@testing-library/react';
-import {
-  user,
-  axe,
-  renderApp,
-  freezeTime,
-  yearDropdown,
-  monthDropdown,
-  grid
-} from '../../test';
 
+import {
+  axe,
+  freezeTime,
+  grid,
+  monthDropdown,
+  renderApp,
+  user,
+  yearDropdown
+} from '../../test';
 import Example from './dropdown';
 
 const today = new Date(2022, 5, 10);

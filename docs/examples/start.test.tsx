@@ -1,5 +1,4 @@
 import { axe, freezeTime, gridcell, renderApp, user } from '../../test';
-
 import Example from './start';
 
 const today = new Date(2021, 10, 25);

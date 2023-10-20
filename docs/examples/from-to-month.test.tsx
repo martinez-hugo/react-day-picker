@@ -1,6 +1,6 @@
 import { differenceInMonths } from 'date-fns';
-import { user, axe, nextButton, previousButton, renderApp } from '../../test';
 
+import { axe, nextButton, previousButton, renderApp, user } from '../../test';
 import Example from './from-to-month';
 
 let app: HTMLElement;

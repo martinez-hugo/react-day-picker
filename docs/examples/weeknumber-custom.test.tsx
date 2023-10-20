@@ -1,5 +1,4 @@
 import { freezeTime, renderApp, rowheader } from '../../test';
-
 import Example from './weeknumber-custom';
 
 const today = new Date(2022, 0, 1);

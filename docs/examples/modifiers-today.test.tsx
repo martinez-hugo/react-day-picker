@@ -1,6 +1,6 @@
 import { addDays } from 'date-fns';
-import { user, grid, gridcell, renderApp, freezeTime } from '../../test';
 
+import { freezeTime, grid, gridcell, renderApp, user } from '../../test';
 import Example from './modifiers-today';
 
 const today = new Date(2022, 5, 10);

@@ -1,5 +1,4 @@
-import { rowheader, user, axe, renderApp, freezeTime } from '../../test';
-
+import { axe, freezeTime, renderApp, rowheader, user } from '../../test';
 import Example from './weeknumber';
 
 const today = new Date(2021, 10, 25);

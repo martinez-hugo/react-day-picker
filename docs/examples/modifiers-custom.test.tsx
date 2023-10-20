@@ -1,7 +1,7 @@
 import { act, render } from '@testing-library/react';
-import { user } from '../../test';
 import { getDayButton, getTableFooter } from 'react-day-picker/test/selectors';
 
+import { user } from '../../test';
 import Example from './modifiers-custom';
 
 const bookedDays = [new Date(2021, 5, 8), new Date(2021, 5, 9)];

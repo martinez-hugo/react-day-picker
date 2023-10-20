@@ -10,7 +10,6 @@ import { DayPickerDay } from '../../contexts/CalendarContext';
 import { useDayPicker } from '../../contexts/DayPickerContext';
 import { useModifiers } from '../../contexts/ModifiersContext';
 import { useSelection } from '../../contexts/SelectionContext';
-
 import { DayGridCell as _DayGridCell } from './DayGridCell';
 import { getClassNameByMatchingModifiers } from './getClassNameByMatchingModifiers';
 import { getStyleFromMatchingModifiers } from './getStyleFromMatchingModifiers';
@@ -212,4 +211,8 @@ export function DayGridCellWrapper(
       {formatDay(props.day.date, { locale })}
     </DayGridCell>
   );
+}
+
+function blur() {
+  throw new Error('Function not implemented.');
 }

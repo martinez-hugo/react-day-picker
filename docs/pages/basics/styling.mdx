@@ -1,5 +1,5 @@
 import { Steps, Callout } from 'nextra/components';
-import 'react-day-picker/dist/style.css';
+import 'react-day-picker/style.css';
 
 import {
   SourceCode,
@@ -24,14 +24,14 @@ DayPicker comes with for a minimal, lightweight style. Import it into your app's
 
 ```tsx filename="App.tsx" {2}
 import './my-app.css';
-import 'react-day-picker/dist/style.css';
+import 'react-day-picker/style.css';
 
 export default App() {
   // snip
 }
 ```
 
-This will add the [DayPicker stylesheet](https://github.com/gpbl/react-day-picker/blob/main/src/style.css#L29) into your app. The stylesheet includes some CSS global variables, to override colors and sizes:
+This will add the [DayPicker stylesheet](https://github.com/gpbl/react-day-picker/blob/main/style.css) into your app. The stylesheet includes some CSS global variables, to override colors and sizes:
 
 ```css
 .rdp {
@@ -88,13 +88,13 @@ This approach involves just CSS and works well if you need the same style across
 Create and import it after the default style, e.g. `my-date-picker.css`:
 
 ```tsx
-import 'react-day-picker/dist/style.css';
+import 'react-day-picker/style.css';
 import './my-date-picker.css';
 ```
 
 ### Override the default CSS properties
 
-Use the browser's DevTools or refer to the [stylesheet source](https://github.com/gpbl/react-day-picker/blob/main/src/style.css) to find the right selectors to override.
+Use the browser's DevTools or refer to the [stylesheet source](https://github.com/gpbl/react-day-picker/blob/main/style.css) to find the right selectors to override.
 
 ```css title="my-date-picker.css"
 .rdp-day_today {
@@ -106,7 +106,7 @@ Use the browser's DevTools or refer to the [stylesheet source](https://github.co
 
 ### Using CSS Modules
 
-With CSS modules, import instead `react-day-picker/dist/style.module.css` (not `style.css`) and pass the generated class names to the `classNames` prop.
+With CSS modules, import the generated class name from the CSS and pass them to the `classNames` prop.
 
 <SourceCode fileName="styling-css-modules.tsx" />
 

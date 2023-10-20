@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { format } from 'date-fns';
-import { user, axe, renderApp, freezeTime } from '../../test';
 import { getDayButton } from 'react-day-picker/test/selectors';
 import { act } from 'react-dom/test-utils';
 
+import { axe, freezeTime, renderApp, user } from '../../test';
 import Example from './date-picker-dialog';
 
 const today = new Date(2022, 5, 10);

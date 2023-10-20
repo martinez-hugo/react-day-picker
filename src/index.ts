@@ -7,5 +7,3 @@ export * from './formatters/index';
 export * from './hooks/index';
 export * from './labels/index';
 export * from './types/index';
-
-import './style.css';

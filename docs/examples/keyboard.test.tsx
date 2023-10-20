@@ -10,14 +10,13 @@ import {
   startOfWeek
 } from 'date-fns';
 import { DayPickerProps } from 'react-day-picker';
-import { axe, freezeTime, nextButton, previousButton, user } from '../../test';
-
 import {
   getDayButton,
   getFocusedElement,
   getMonthCaption
 } from 'react-day-picker/test/selectors';
 
+import { axe, freezeTime, nextButton, previousButton, user } from '../../test';
 import Example from './keyboard';
 
 const today = new Date(2022, 5, 10);

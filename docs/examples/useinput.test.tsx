@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
 import { addDays, format } from 'date-fns';
-import { user, axe, gridcell, renderApp, freezeTime } from '../../test';
 import { getAllSelectedDays } from 'react-day-picker/test/selectors';
 
+import { axe, freezeTime, gridcell, renderApp, user } from '../../test';
 import Example from './useinput';
 
 const today = new Date(2021, 10, 15);

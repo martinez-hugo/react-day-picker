@@ -1,7 +1,7 @@
 import { addDays } from 'date-fns';
-import { user, axe, gridcell, renderApp } from '../../test';
 import { getAllSelectedDays } from 'react-day-picker/test/selectors';
 
+import { axe, gridcell, renderApp, user } from '../../test';
 import Example from './range';
 
 const pastMonth = new Date(2020, 10, 15);

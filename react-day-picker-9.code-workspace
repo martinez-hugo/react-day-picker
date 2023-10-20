@@ -25,59 +25,19 @@
         "label": "build",
         "type": "shell",
         "command": "pnpm build",
-        "isBackground": true,
-        "problemMatcher": ["$rollup-ts-watch"],
+        "isBackground": false,
+        "problemMatcher": ["$tsc"],
         "presentation": {
+          "reveal": "always",
           "close": false,
+          "focus": true,
           "panel": "dedicated",
           "showReuseMessage": false
         },
         "group": {
           "kind": "build",
-          "isDefault": false
-        }
-      },
-      {
-        "label": "build-watch",
-        "detail": "Run rollup-js to build in watch mode.",
-        "type": "shell",
-        "command": "pnpm run build-watch",
-        "isBackground": true,
-        "problemMatcher": ["$rollup-ts-watch"],
-        "runOptions": {
-          "runOn": "folderOpen",
-          "instanceLimit": 1
-        },
-        "presentation": {
-          "reveal": "silent",
-          "focus": false,
-          "panel": "dedicated",
-          "clear": true
-        },
-        "group": {
-          "kind": "build",
           "isDefault": true
-        },
-        "dependsOn": ["build"]
-      },
-      {
-        "label": "tsc-watch",
-        "detail": "Typecheck in watch mode.",
-        "type": "shell",
-        "command": "pnpm run typecheck-watch",
-        "isBackground": true,
-        "problemMatcher": ["$tsc-watch"],
-        "runOptions": {
-          "runOn": "folderOpen",
-          "instanceLimit": 1
-        },
-        "presentation": {
-          "reveal": "silent",
-          "focus": false,
-          "panel": "dedicated",
-          "clear": true
-        },
-        "dependsOn": ["build"]
+        }
       },
       {
         "label": "website: tsc-watch",

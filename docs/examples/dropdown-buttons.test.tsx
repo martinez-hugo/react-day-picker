@@ -1,15 +1,14 @@
 import {
-  user,
   axe,
+  freezeTime,
   grid,
   monthDropdown,
   nextButton,
   previousButton,
-  yearDropdown,
   renderApp,
-  freezeTime
+  user,
+  yearDropdown
 } from '../../test';
-
 import Example from './dropdown-buttons';
 
 const today = new Date(2022, 5, 10);

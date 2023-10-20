@@ -1,15 +1,13 @@
 import { useState } from 'react';
 
 import { differenceInCalendarDays, format as _format, parse } from 'date-fns';
-import { enUS } from 'date-fns/locale';
-import { DayPickerBaseProps, DayPickerSingleProps } from '../../DayPicker';
 
 import { parseFromToProps } from '../../contexts/DayPickerContext/utils/parseFromToProps';
+import { DayPickerBaseProps, DayPickerSingleProps } from '../../DayPicker';
 import {
   DayClickEventHandler,
   MonthChangeEventHandler
 } from '../../types/events';
-
 import { isValidDate } from './utils/isValidDate';
 
 /** The props to attach to the input field when using {@link useInput}. */
@@ -71,7 +69,7 @@ export interface UseInputValue {
 /** Return props and setters for binding an input field to DayPicker. */
 export function useInput(options: UseInputOptions = {}): UseInputValue {
   const {
-    locale = enUS,
+    locale,
     required,
     format = 'PP',
     defaultSelected,

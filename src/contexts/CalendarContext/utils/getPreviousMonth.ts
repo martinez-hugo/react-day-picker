@@ -37,6 +37,5 @@ export function getPreviousMonth(
     return undefined;
   }
 
-  // Jump back as the number of months when paged navigation
   return addMonths(month, -offset);
 }

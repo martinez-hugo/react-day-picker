@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
-import { renderApp, freezeTime } from '../../test';
 
+import { freezeTime, renderApp } from '../../test';
 import Example from './modifiers-hidden';
 
 const days = [

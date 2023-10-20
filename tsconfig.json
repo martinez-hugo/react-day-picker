@@ -1,20 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "jsx": "react-jsx",
-    "module": "es6",
+    "target": "ES5",
     "moduleResolution": "node",
-    "rootDir": "./",
-    "noEmit": true,
-    "declaration": true,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "importHelpers": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "jsx": "react-jsx",
+    "esModuleInterop": false,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "declaration": true,
+    "isolatedModules": false,
+    "outDir": "./dist",
+    "baseUrl": "./src",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "removeComments": true
   },
-  "include": ["src", "dist"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules", "**/*.test.ts", "**/*.test.tsx"]
 }

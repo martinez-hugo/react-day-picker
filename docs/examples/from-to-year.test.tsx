@@ -1,13 +1,13 @@
 import { differenceInMonths } from 'date-fns';
+
 import {
-  user,
   axe,
+  freezeTime,
   nextButton,
   previousButton,
   renderApp,
-  freezeTime
+  user
 } from '../../test';
-
 import Example from './from-to-year';
 
 const fromDate = new Date(2024, 0);

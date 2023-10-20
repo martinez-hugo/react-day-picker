@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
-import { axe, renderApp, freezeTime } from '../../test';
 
+import { axe, freezeTime, renderApp } from '../../test';
 import Example from './outside-days';
 
 const today = new Date(2021, 10, 25);

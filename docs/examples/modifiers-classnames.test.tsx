@@ -1,5 +1,4 @@
-import { gridcell, renderApp, freezeTime } from '../../test';
-
+import { freezeTime, gridcell, renderApp } from '../../test';
 import Example from './modifiers-classnames';
 
 const days = [

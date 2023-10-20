@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
-import { axe, freezeTime, previousButton, user, renderApp } from '../../test';
 
+import { axe, freezeTime, previousButton, renderApp, user } from '../../test';
 import Example from './multiple-months-paged';
 
 const today = new Date(2021, 10, 25);

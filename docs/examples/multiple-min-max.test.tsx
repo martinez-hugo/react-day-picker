@@ -1,6 +1,6 @@
 import { addDays } from 'date-fns';
-import { user, axe, grid, gridcell, renderApp, freezeTime } from '../../test';
 
+import { axe, freezeTime, grid, gridcell, renderApp, user } from '../../test';
 import Example from './multiple-min-max';
 
 const today = new Date(2021, 10, 10);

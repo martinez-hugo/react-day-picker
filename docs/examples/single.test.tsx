@@ -1,5 +1,4 @@
-import { user, axe, gridcell, renderApp, freezeTime } from '../../test';
-
+import { axe, freezeTime, gridcell, renderApp, user } from '../../test';
 import Example from './single';
 
 const today = new Date(2021, 10, 25);

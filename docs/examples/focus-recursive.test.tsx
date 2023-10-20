@@ -1,6 +1,6 @@
-import { user, axe, gridcell, renderApp, freezeTime } from '../../test';
 import { getFocusedElement } from 'react-day-picker/test/selectors';
 
+import { axe, freezeTime, gridcell, renderApp, user } from '../../test';
 import Example from './focus-recursive';
 
 const today = new Date(2022, 5, 10);

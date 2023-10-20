@@ -1,4 +1,5 @@
-import { useState, ChangeEventHandler } from 'react';
+import { ChangeEventHandler, useState } from 'react';
+
 import { DayPicker } from 'react-day-picker';
 
 export default function Example() {

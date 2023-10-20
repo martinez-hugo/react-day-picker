@@ -1,6 +1,6 @@
-import { user, axe, grid, gridcell, renderApp, freezeTime } from '../../test';
 import { act } from 'react-dom/test-utils';
 
+import { axe, freezeTime, grid, gridcell, renderApp, user } from '../../test';
 import Example from './custom-multiple';
 
 const today = new Date(2021, 10, 25);

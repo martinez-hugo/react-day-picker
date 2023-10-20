@@ -2,18 +2,18 @@ import { act, render } from '@testing-library/react';
 import { addDays, addMonths, startOfMonth } from 'date-fns';
 import { DayPickerProps } from 'react-day-picker';
 import {
-  axe,
-  nextButton,
-  user,
-  freezeTime,
-  previousButton,
-  focusDaysGrid
-} from '../../test';
-import {
   getDayButton,
   getFocusedElement
 } from 'react-day-picker/test/selectors';
 
+import {
+  axe,
+  focusDaysGrid,
+  freezeTime,
+  nextButton,
+  previousButton,
+  user
+} from '../../test';
 import Example from './keyboard';
 
 const yesterday = new Date(2022, 5, 9);

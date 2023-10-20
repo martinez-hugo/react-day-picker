@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
-import { user, renderApp } from '../../test';
 
+import { renderApp, user } from '../../test';
 import Example from './testcase-1567';
 
 beforeEach(async () => {
