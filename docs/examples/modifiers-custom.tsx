@@ -1,10 +1,11 @@
+import { useState } from 'react';
 import { DayMouseEventHandler, DayPicker } from 'react-day-picker';
 
 const bookedDays = [new Date(2021, 5, 8), new Date(2021, 5, 9)];
 const bookedStyle = { border: '2px solid currentColor' };
 
 export default function Example() {
-  const [booked, setBooked] = React.useState(false);
+  const [booked, setBooked] = useState(false);
 
   const handleDayClick: DayMouseEventHandler = (day, { booked }) => {
     setBooked(day && booked);

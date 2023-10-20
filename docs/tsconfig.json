@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "jsx": "react-jsx",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "jsx": "preserve",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -14,7 +18,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "paths": {
-      "@examples/*": ["./examples/*"]
+      "@examples/*": [
+        "./examples/*"
+      ]
     },
     "plugins": [
       {
@@ -23,6 +29,13 @@
     ],
     "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 
 export default function Example() {
-  const [days, setDays] = React.useState<Date[]>();
+  const [days, setDays] = useState<Date[]>();
 
   const footer =
     days && days.length > 0 ? (

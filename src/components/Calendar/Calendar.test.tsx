@@ -2,7 +2,7 @@ import { RenderResult } from '@testing-library/react';
 import { addDays } from 'date-fns';
 
 import { customRender } from '../../../test/render';
-import { getDayButton, queryMonthGrids } from '../../../test/selectors';
+import { queryMonthGrids } from '../../../test/selectors';
 import { freezeTime } from '../../../test/utils';
 
 import { defaultClassNames } from '../../contexts/DayPickerContext/defaultClassNames';
@@ -10,6 +10,7 @@ import { ClassNames } from '../../types/styles';
 
 import { Calendar } from './Calendar';
 import { DayPickerProps } from '../../DayPicker';
+import { gridcell } from '../../../test';
 
 const today = new Date(2020, 10, 4);
 freezeTime(today);
@@ -152,11 +153,11 @@ describe('when "initialFocus" is set', () => {
       setup(baseProps);
     });
     test('should focus today', () => {
-      expect(getDayButton(today)).toHaveFocus();
+      expect(gridcell(today)).toHaveFocus();
     });
     describe('when a new day is focused', () => {
       beforeEach(() => {
-        getDayButton(addDays(today, 1)).focus();
+        gridcell(addDays(today, 1)).focus();
       });
       describe('and the calendar is rerendered', () => {
         test.todo('should focus the new day');
@@ -170,7 +171,7 @@ describe('when "initialFocus" is set', () => {
       setup(props);
     });
     test('should focus the selected day', () => {
-      expect(getDayButton(selected)).toHaveFocus();
+      expect(gridcell(selected)).toHaveFocus();
     });
   });
 });

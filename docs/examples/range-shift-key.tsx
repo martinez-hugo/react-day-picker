@@ -1,11 +1,12 @@
 import { isSameDay } from 'date-fns';
+import { useRef, MouseEventHandler, useState } from 'react';
 import { DateRange, DayGridCellProps, DayPicker } from 'react-day-picker';
 
 function DayWithShiftKey(props: DayGridCellProps) {
-  const ref = React.useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const { state } = props;
 
-  const handleClick: React.MouseEventHandler<HTMLDivElement> = (e) => {
+  const handleClick: MouseEventHandler<HTMLDivElement> = (e) => {
     if (!state.selected || e.shiftKey) {
       props.htmlAttributes.onClick?.(e);
     }
@@ -15,7 +16,7 @@ function DayWithShiftKey(props: DayGridCellProps) {
 }
 
 export default function Example() {
-  const [range, setRange] = React.useState<DateRange>();
+  const [range, setRange] = useState<DateRange>();
 
   let footer = <p>Please pick a day.</p>;
 

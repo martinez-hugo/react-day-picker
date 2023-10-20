@@ -1,10 +1,11 @@
+import { useState, ChangeEventHandler } from 'react';
 import { DayPicker } from 'react-day-picker';
 
 export default function Example() {
-  const [selected, setSelected] = React.useState<Date>();
-  const [timeValue, setTimeValue] = React.useState<string>('00:00');
+  const [selected, setSelected] = useState<Date>();
+  const [timeValue, setTimeValue] = useState<string>('00:00');
 
-  const handleTimeChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+  const handleTimeChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     const time = e.target.value;
     if (!selected) {
       setTimeValue(time);
