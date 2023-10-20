@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import { user, axe, renderApp, freezeTime, grid } from 'react-day-picker/test';
+import { user, axe, renderApp, freezeTime, grid } from '../../test';
 
 import Example from './disabled';
 

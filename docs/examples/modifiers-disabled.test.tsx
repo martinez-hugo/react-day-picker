@@ -2,7 +2,7 @@ import React from 'react';
 
 import { render } from '@testing-library/react';
 import { getDayButton } from 'react-day-picker/test/selectors';
-import { freezeTime } from 'react-day-picker/test';
+import { freezeTime } from '../../test';
 
 import Example from './modifiers-disabled';
 

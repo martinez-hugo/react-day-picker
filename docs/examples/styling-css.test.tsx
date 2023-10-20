@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderApp, freezeTime } from 'react-day-picker/test';
+import { renderApp, freezeTime } from '../../test';
 
 import Example from './styling-css';
 

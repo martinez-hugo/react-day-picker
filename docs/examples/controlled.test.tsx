@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
-import { user, axe, renderApp, freezeTime, grid } from 'react-day-picker/test';
+import { user, axe, renderApp, freezeTime, grid } from '../../test';
 
 import Example from './controlled';
 
@@ -19,7 +19,6 @@ test('should be accessible', async () => {
 
 describe('when the "Go to today" button is clicked', () => {
   const todayButton = () => screen.getByRole('button', { name: 'Go to Today' });
-
   beforeEach(async () => {
     await user.click(todayButton());
   });

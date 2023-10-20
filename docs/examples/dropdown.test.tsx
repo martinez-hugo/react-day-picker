@@ -9,7 +9,7 @@ import {
   yearDropdown,
   monthDropdown,
   grid
-} from 'react-day-picker/test';
+} from '../../test';
 
 import Example from './dropdown';
 

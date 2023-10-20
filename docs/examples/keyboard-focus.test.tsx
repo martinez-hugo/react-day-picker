@@ -10,7 +10,7 @@ import {
   freezeTime,
   previousButton,
   focusDaysGrid
-} from 'react-day-picker/test';
+} from '../../test';
 import {
   getDayButton,
   getFocusedElement

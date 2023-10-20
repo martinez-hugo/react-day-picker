@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
-import { renderApp, freezeTime } from 'react-day-picker/test';
+import { renderApp, freezeTime } from '../../test';
 
 import Example from './multiple-months-id';
 

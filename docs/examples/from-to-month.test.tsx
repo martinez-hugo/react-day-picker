@@ -1,13 +1,7 @@
 import * as React from 'react';
 
 import { differenceInMonths } from 'date-fns';
-import {
-  user,
-  axe,
-  nextButton,
-  previousButton,
-  renderApp
-} from 'react-day-picker/test';
+import { user, axe, nextButton, previousButton, renderApp } from '../../test';
 
 import Example from './from-to-month';
 

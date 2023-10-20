@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react';
-import { axe, renderApp, freezeTime } from 'react-day-picker/test';
+import { axe, renderApp, freezeTime } from '../../test';
 
 import Example from './fixedweeks';
 

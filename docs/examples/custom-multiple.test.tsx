@@ -1,13 +1,6 @@
 import React from 'react';
 
-import {
-  user,
-  axe,
-  grid,
-  gridcell,
-  renderApp,
-  freezeTime
-} from 'react-day-picker/test';
+import { user, axe, grid, gridcell, renderApp, freezeTime } from '../../test';
 import { act } from 'react-dom/test-utils';
 
 import Example from './custom-multiple';
@@ -27,7 +20,9 @@ test('should be accessible', async () => {
 
 describe('when a day is clicked', () => {
   const day1 = new Date(2021, 10, 1);
-  beforeEach(async () => await user.click(gridcell(day1)));
+  beforeEach(async () => {
+    await user.click(gridcell(day1));
+  });
   test('should appear as selected', () => {
     expect(gridcell(day1)).toHaveAttribute('aria-selected', 'true');
   });

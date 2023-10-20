@@ -1,12 +1,6 @@
 import React from 'react';
 
-import {
-  rowheader,
-  user,
-  axe,
-  renderApp,
-  freezeTime
-} from 'react-day-picker/test';
+import { rowheader, user, axe, renderApp, freezeTime } from '../../test';
 
 import Example from './weeknumber';
 

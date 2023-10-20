@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { act, render } from '@testing-library/react';
-import { user } from 'react-day-picker/test';
+import { user } from '../../test';
 import { getDayButton, getTableFooter } from 'react-day-picker/test/selectors';
 
 import Example from './modifiers-custom';

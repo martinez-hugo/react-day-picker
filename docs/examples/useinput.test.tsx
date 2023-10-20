@@ -2,13 +2,7 @@ import React from 'react';
 
 import { screen } from '@testing-library/react';
 import { addDays, format } from 'date-fns';
-import {
-  user,
-  axe,
-  gridcell,
-  renderApp,
-  freezeTime
-} from 'react-day-picker/test';
+import { user, axe, gridcell, renderApp, freezeTime } from '../../test';
 import { getAllSelectedDays } from 'react-day-picker/test/selectors';
 
 import Example from './useinput';

@@ -1,13 +1,7 @@
 import React from 'react';
 
 import { setDate } from 'date-fns';
-import {
-  user,
-  axe,
-  gridcell,
-  renderApp,
-  freezeTime
-} from 'react-day-picker/test';
+import { user, axe, gridcell, renderApp, freezeTime } from '../../test';
 
 import Example from './range-min-max';
 

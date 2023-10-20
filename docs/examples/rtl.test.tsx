@@ -8,7 +8,7 @@ import {
   renderApp,
   freezeTime,
   grid
-} from 'react-day-picker/test';
+} from '../../test';
 
 import Example from './rtl';
 

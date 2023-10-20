@@ -1,13 +1,7 @@
 import React from 'react';
 
 import { addDays } from 'date-fns';
-import {
-  user,
-  grid,
-  gridcell,
-  renderApp,
-  freezeTime
-} from 'react-day-picker/test';
+import { user, grid, gridcell, renderApp, freezeTime } from '../../test';
 
 import Example from './modifiers-today';
 

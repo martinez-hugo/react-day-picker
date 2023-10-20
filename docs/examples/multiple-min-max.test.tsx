@@ -1,14 +1,7 @@
 import React from 'react';
 
 import { addDays } from 'date-fns';
-import {
-  user,
-  axe,
-  grid,
-  gridcell,
-  renderApp,
-  freezeTime
-} from 'react-day-picker/test';
+import { user, axe, grid, gridcell, renderApp, freezeTime } from '../../test';
 
 import Example from './multiple-min-max';
 

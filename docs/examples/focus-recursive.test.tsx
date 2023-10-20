@@ -1,12 +1,6 @@
 import React from 'react';
 
-import {
-  user,
-  axe,
-  gridcell,
-  renderApp,
-  freezeTime
-} from 'react-day-picker/test';
+import { user, axe, gridcell, renderApp, freezeTime } from '../../test';
 import { getFocusedElement } from 'react-day-picker/test/selectors';
 
 import Example from './focus-recursive';

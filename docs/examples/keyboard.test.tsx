@@ -12,13 +12,7 @@ import {
   startOfWeek
 } from 'date-fns';
 import { DayPickerProps } from 'react-day-picker';
-import {
-  axe,
-  freezeTime,
-  nextButton,
-  previousButton,
-  user
-} from 'react-day-picker/test';
+import { axe, freezeTime, nextButton, previousButton, user } from '../../test';
 import {
   getDayButton,
   getFocusedElement,

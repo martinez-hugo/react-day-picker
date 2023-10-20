@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { gridcell, renderApp, freezeTime } from 'react-day-picker/test';
+import { gridcell, renderApp, freezeTime } from '../../test';
 
 import Example from './modifiers-classnames';
 

@@ -10,7 +10,7 @@ import {
   yearDropdown,
   renderApp,
   freezeTime
-} from 'react-day-picker/test';
+} from '../../test';
 
 import Example from './dropdown-buttons';
 
