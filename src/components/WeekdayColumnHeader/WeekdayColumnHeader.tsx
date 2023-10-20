@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { useDayPicker } from 'contexts/DayPickerContext';
+import { useDayPicker } from '../../contexts/DayPickerContext';
 
 export interface WeekdayColumnHeaderProps
   extends Pick<React.AriaAttributes, 'aria-colindex' | 'aria-label'> {

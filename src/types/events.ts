@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { DayPickerSelectedValue, DaysSelectionMode } from 'DayPicker';
+import { DayPickerSelectedValue, DaysSelectionMode } from '../DayPicker';
 
 import { MatchingModifiers } from './modifiers';
 

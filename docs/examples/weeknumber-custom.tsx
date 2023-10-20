@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { startOfYear } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 

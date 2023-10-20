@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { differenceInCalendarDays } from 'date-fns';
 import { DayPicker, WeekRow, WeekRowProps } from 'react-day-picker';
 

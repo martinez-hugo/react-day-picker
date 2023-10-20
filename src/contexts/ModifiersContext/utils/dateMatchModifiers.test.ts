@@ -6,7 +6,7 @@ import {
   DateInterval,
   DateRange,
   DayOfWeek
-} from 'types/matchers';
+} from '../../../types/matchers';
 
 import { dateMatchModifiers } from './dateMatchModifiers';
 

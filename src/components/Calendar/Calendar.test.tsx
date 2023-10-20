@@ -1,16 +1,15 @@
-import React from 'react';
-
 import { RenderResult } from '@testing-library/react';
 import { addDays } from 'date-fns';
-import { DayPickerProps } from 'DayPicker';
-import { customRender } from 'test/render';
-import { getDayButton, queryMonthGrids } from 'test/selectors';
-import { freezeTime } from 'test/utils';
 
-import { defaultClassNames } from 'contexts/DayPickerContext/defaultClassNames';
-import { ClassNames } from 'types/styles';
+import { customRender } from '../../../test/render';
+import { getDayButton, queryMonthGrids } from '../../../test/selectors';
+import { freezeTime } from '../../../test/utils';
+
+import { defaultClassNames } from '../../contexts/DayPickerContext/defaultClassNames';
+import { ClassNames } from '../../types/styles';
 
 import { Calendar } from './Calendar';
+import { DayPickerProps } from '../../DayPicker';
 
 const today = new Date(2020, 10, 4);
 freezeTime(today);

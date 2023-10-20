@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { gridcell, renderApp, freezeTime } from '../../test';
 
 import Example from './modifiers-style';

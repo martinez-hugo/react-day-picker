@@ -1,10 +1,9 @@
-import React from 'react';
-
-import { MonthCaption as DefaultMonthCaption } from 'components/MonthCaption';
-import { WeekdaysRow as DefaultWeekdaysRow } from 'components/WeekdaysRow';
-import { WeekRow as DefaultWeekRow } from 'components/WeekRow';
-import { DayPickerMonth } from 'contexts/CalendarContext';
-import { useDayPicker } from 'contexts/DayPickerContext';
+import { useId } from 'react';
+import { MonthCaption as DefaultMonthCaption } from '../MonthCaption';
+import { WeekdaysRow as DefaultWeekdaysRow } from '../WeekdaysRow';
+import { WeekRow as DefaultWeekRow } from '../WeekRow';
+import { DayPickerMonth } from '../../contexts/CalendarContext';
+import { useDayPicker } from '../../contexts/DayPickerContext';
 
 export interface MonthGridProps
   extends Pick<React.AriaAttributes, 'aria-labelledby'> {
@@ -29,7 +28,7 @@ export function MonthGrid(props: MonthGridProps) {
     locale
   } = useDayPicker();
 
-  const reactId = React.useId();
+  const reactId = useId();
   const captionId = id ? `${id}-caption-${props.displayIndex}` : reactId;
   const gridId = id ? `${id}-grid-${props.displayIndex}` : reactId;
 

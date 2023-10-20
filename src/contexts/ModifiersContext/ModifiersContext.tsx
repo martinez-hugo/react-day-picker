@@ -1,11 +1,11 @@
-import React, { createContext, ReactNode, useContext } from 'react';
+import { createContext, ReactNode, useContext } from 'react';
 
 import { isSameDay, isSameMonth } from 'date-fns';
 
-import { DayPickerDay, useCalendar } from 'contexts/CalendarContext';
-import { useDayPicker } from 'contexts/DayPickerContext';
-import { useSelection } from 'contexts/SelectionContext';
-import { InternalModifier, MatchingModifiers } from 'types';
+import { DayPickerDay, useCalendar } from '../../contexts/CalendarContext';
+import { useDayPicker } from '../../contexts/DayPickerContext';
+import { useSelection } from '../../contexts/SelectionContext';
+import { InternalModifier, MatchingModifiers } from '../../types';
 
 import { dateMatchModifiers } from './utils/dateMatchModifiers';
 

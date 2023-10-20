@@ -1,7 +1,5 @@
-import React from 'react';
-
-import { WeekdayColumnHeader as DefaultWeekdayColumnHeader } from 'components/WeekdayColumnHeader';
-import { useDayPicker } from 'contexts/DayPickerContext';
+import { WeekdayColumnHeader as DefaultWeekdayColumnHeader } from '../WeekdayColumnHeader';
+import { useDayPicker } from '../../contexts/DayPickerContext';
 
 import { getWeekdays } from './utils/getWeekdays';
 

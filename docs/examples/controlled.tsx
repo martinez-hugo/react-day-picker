@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { addMonths, isSameMonth } from 'date-fns';
 import { DayPicker } from 'react-day-picker';

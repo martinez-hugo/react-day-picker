@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, createRef, useState } from 'react';
+import { ChangeEventHandler, createRef, useState } from 'react';
 
 import { format, isValid, parse } from 'date-fns';
 import FocusTrap from 'focus-trap-react';

@@ -1,9 +1,9 @@
-import { formatCaption } from 'formatters/formatCaption';
-import { formatDay } from 'formatters/formatDay';
-import { formatMonthCaption } from 'formatters/formatMonthCaption';
-import { formatWeekdayName } from 'formatters/formatWeekdayName';
-import { formatWeekNumber } from 'formatters/formatWeekNumber';
-import { formatYearCaption } from 'formatters/formatYearCaption';
+import { formatCaption } from '../formatters/formatCaption';
+import { formatDay } from '../formatters/formatDay';
+import { formatMonthCaption } from '../formatters/formatMonthCaption';
+import { formatWeekdayName } from '../formatters/formatWeekdayName';
+import { formatWeekNumber } from '../formatters/formatWeekNumber';
+import { formatYearCaption } from '../formatters/formatYearCaption';
 
 /** Represent a map of formatters used to render localized content. */
 export type Formatters = {

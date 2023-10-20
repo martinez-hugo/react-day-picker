@@ -1,10 +1,13 @@
-import React, { createContext, ReactNode, useContext } from 'react';
+import { createContext, ReactNode, useContext } from 'react';
 
 import { addMonths, isBefore, isSameMonth, startOfMonth } from 'date-fns';
 
-import { DayPickerCalendar, DayPickerDay } from 'contexts/CalendarContext';
-import { useDayPicker } from 'contexts/DayPickerContext';
-import { useControlledValue } from 'hooks/useControlledValue';
+import {
+  DayPickerCalendar,
+  DayPickerDay
+} from '../../contexts/CalendarContext';
+import { useDayPicker } from '../../contexts/DayPickerContext';
+import { useControlledValue } from '../../hooks/useControlledValue';
 
 import { getMonthsAndDates } from './getMonthsAndDates';
 import { getFirstLastMonths } from './utils/getFirstLastMonths';

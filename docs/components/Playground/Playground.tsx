@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { Locale } from 'date-fns';
 import { useRouter } from 'next/router';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { DayPicker, useInput } from 'react-day-picker';
 
 export default function Example() {

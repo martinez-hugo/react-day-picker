@@ -1,9 +1,7 @@
-import React from 'react';
-
-import { MonthGrid as DefaultMonthGrid } from 'components/MonthGrid';
-import { Nav as DefaultNav } from 'components/Nav';
-import { useCalendar } from 'contexts/CalendarContext';
-import { useDayPicker } from 'contexts/DayPickerContext';
+import { MonthGrid as DefaultMonthGrid } from '../MonthGrid';
+import { Nav as DefaultNav } from '../Nav';
+import { useCalendar } from '../../contexts/CalendarContext';
+import { useDayPicker } from '../../contexts/DayPickerContext';
 
 /**
  * Render the container with navigation and the month grids.

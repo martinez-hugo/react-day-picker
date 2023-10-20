@@ -1,10 +1,8 @@
-import React from 'react';
-
-import { Styles } from 'types';
+import { Styles } from '../../types';
 import {
   MatchingModifiers as MatchingModifiers,
   ModifiersStyles
-} from 'types/modifiers';
+} from '../../types/modifiers';
 
 export function getStyleFromMatchingModifiers(
   matchingModifiers: MatchingModifiers,

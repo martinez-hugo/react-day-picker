@@ -1,5 +1,3 @@
-import React from 'react';
-
 import style from '../style.css';
 
 /** The style (either via class names or via in-line styles) of an element. */

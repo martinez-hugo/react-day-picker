@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { isSameDay } from 'date-fns';
 import { DateRange, DayGridCellProps, DayPicker } from 'react-day-picker';
 

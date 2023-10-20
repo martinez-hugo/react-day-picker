@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { differenceInCalendarDays, format as _format, parse } from 'date-fns';
 import { enUS } from 'date-fns/locale';
-import { DayPickerBaseProps, DayPickerSingleProps } from 'DayPicker';
+import { DayPickerBaseProps, DayPickerSingleProps } from '../../DayPicker';
 
-import { parseFromToProps } from 'contexts/DayPickerContext/utils/parseFromToProps';
-import { DayClickEventHandler, MonthChangeEventHandler } from 'types/events';
+import { parseFromToProps } from '../../contexts/DayPickerContext/utils/parseFromToProps';
+import {
+  DayClickEventHandler,
+  MonthChangeEventHandler
+} from '../../types/events';
 
 import { isValidDate } from './utils/isValidDate';
 

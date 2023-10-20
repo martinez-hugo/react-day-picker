@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { user, axe, gridcell, renderApp, freezeTime } from '../../test';
 import { getFocusedElement } from 'react-day-picker/test/selectors';
 

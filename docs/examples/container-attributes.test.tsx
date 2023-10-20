@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { axe, renderApp } from '../../test';
 
 import Example from './container-attributes';

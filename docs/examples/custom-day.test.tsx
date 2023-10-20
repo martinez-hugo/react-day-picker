@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { renderApp, freezeTime } from '../../test';
 
 import Example from './custom-day';

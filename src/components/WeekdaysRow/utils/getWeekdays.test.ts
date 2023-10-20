@@ -1,5 +1,5 @@
 import { es } from 'date-fns/locale';
-import { freezeTime } from 'test/utils';
+import { freezeTime } from '../../../../test/utils';
 
 import { getWeekdays } from './getWeekdays';
 

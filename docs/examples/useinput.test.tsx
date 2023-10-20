@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { screen } from '@testing-library/react';
 import { addDays, format } from 'date-fns';
 import { user, axe, gridcell, renderApp, freezeTime } from '../../test';

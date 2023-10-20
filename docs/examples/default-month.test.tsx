@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { grid, renderApp, freezeTime } from '../../test';
 
 import Example from './default-month';

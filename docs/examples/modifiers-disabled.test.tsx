@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { render } from '@testing-library/react';
 import { getDayButton } from 'react-day-picker/test/selectors';
 import { freezeTime } from '../../test';

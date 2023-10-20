@@ -1,9 +1,7 @@
-import React from 'react';
-
-import * as components from 'components';
-import { Calendar } from 'components/Calendar';
-import { CaptionLayout } from 'components/Nav';
-import { ContextProviders } from 'contexts/ContextProviders';
+import * as components from './components';
+import { Calendar } from './components/Calendar';
+import { CaptionLayout } from './components/Nav';
+import { ContextProviders } from './contexts/ContextProviders';
 import {
   DayFocusEventHandler,
   DayKeyboardEventHandler,
@@ -13,17 +11,17 @@ import {
   DayTouchEventHandler,
   MonthChangeEventHandler,
   WeekNumberClickEventHandler
-} from 'types/events';
-import { FormatOptions } from 'types/FormatOptions';
-import { Formatters } from 'types/formatters';
-import { Labels } from 'types/labels';
-import { DateRange, Matcher } from 'types/matchers';
+} from './types/events';
+import { FormatOptions } from './types/FormatOptions';
+import { Formatters } from './types/formatters';
+import { Labels } from './types/labels';
+import { DateRange, Matcher } from './types/matchers';
 import {
   CustomModifier,
   ModifiersClassNames,
   ModifiersStyles
-} from 'types/modifiers';
-import { ClassNames, Styles } from 'types/styles';
+} from './types/modifiers';
+import { ClassNames, Styles } from './types/styles';
 
 export type CustomComponents = {
   [key in keyof typeof components]?: (typeof components)[key];

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { axe, freezeTime, gridcell, renderApp, user } from '../../test';
 
 import Example from './start';

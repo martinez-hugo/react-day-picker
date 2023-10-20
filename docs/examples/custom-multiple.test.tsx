@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { user, axe, grid, gridcell, renderApp, freezeTime } from '../../test';
 import { act } from 'react-dom/test-utils';
 

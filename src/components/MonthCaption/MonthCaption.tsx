@@ -1,7 +1,5 @@
-import React from 'react';
-
-import { DayPickerMonth } from 'contexts/CalendarContext';
-import { useDayPicker } from 'contexts/DayPickerContext';
+import { DayPickerMonth } from '../../contexts/CalendarContext';
+import { useDayPicker } from '../../contexts/DayPickerContext';
 
 export interface MonthCaptionProps {
   id: string;

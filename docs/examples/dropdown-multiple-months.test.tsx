@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { act, screen } from '@testing-library/react';
 import { user, axe, renderApp, freezeTime } from '../../test';
 import { getMonthGrid } from 'react-day-picker/test/selectors';

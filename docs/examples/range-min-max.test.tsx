@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { setDate } from 'date-fns';
 import { user, axe, gridcell, renderApp, freezeTime } from '../../test';
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { act, render } from '@testing-library/react';
 import { user } from '../../test';
 import { getDayButton, getTableFooter } from 'react-day-picker/test/selectors';

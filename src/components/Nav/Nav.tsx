@@ -1,7 +1,5 @@
-import React from 'react';
-
-import { useCalendar } from 'contexts/CalendarContext';
-import { useDayPicker } from 'contexts/DayPickerContext';
+import { useCalendar } from '../../contexts/CalendarContext';
+import { useDayPicker } from '../../contexts/DayPickerContext';
 
 export type CaptionLayout = 'dropdown' | 'buttons' | 'dropdown-buttons';
 

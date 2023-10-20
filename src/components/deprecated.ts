@@ -1,4 +1,4 @@
-import type { DaySelectEventHandler } from 'types/events';
+import type { DaySelectEventHandler } from '../types/events';
 
 import { DayGridCell, DayGridCellProps } from './DayGridCell';
 import { MonthCaption, MonthCaptionProps } from './MonthCaption';

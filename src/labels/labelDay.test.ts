@@ -1,6 +1,6 @@
 import { es } from 'date-fns/locale';
 
-import { MatchingModifiers } from 'types';
+import { MatchingModifiers } from '../types';
 
 import { labelDay } from './labelDay';
 

@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext } from 'react';
+import { createContext, ReactNode, useContext, useId } from 'react';
 
 import { Locale, startOfDay } from 'date-fns';
 import { enUS } from 'date-fns/locale';
@@ -12,11 +12,11 @@ import {
   DayPickerRangeProps,
   DayPickerSingleProps,
   DaysSelectionMode
-} from 'DayPicker';
-import * as formatters from 'formatters';
-import * as labels from 'labels';
+} from '../../DayPicker';
+import * as formatters from '../../formatters';
+import * as labels from '../../labels';
 
-import { CaptionLayout } from 'components/Nav';
+import { CaptionLayout } from '../../components/Nav';
 import {
   ClassNames,
   CustomModifier,
@@ -26,7 +26,7 @@ import {
   ModifiersClassNames,
   ModifiersStyles,
   Styles
-} from 'types';
+} from '../../types';
 import {
   DayFocusEventHandler,
   DayKeyboardEventHandler,
@@ -36,7 +36,7 @@ import {
   DayTouchEventHandler,
   MonthChangeEventHandler,
   WeekNumberClickEventHandler
-} from 'types/events';
+} from '../../types/events';
 
 import { defaultClassNames } from './defaultClassNames';
 import { parseFromToProps } from './utils/parseFromToProps';
@@ -141,7 +141,7 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
   providerProps: DayPickerProviderProps<TMode>
 ) {
   const dataAttributes: DataAttributes = {};
-  const id = React.useId();
+  const id = useId();
 
   Object.entries(providerProps.dayPickerProps).forEach(([key, val]) => {
     if (key.startsWith('data-')) {

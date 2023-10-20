@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
 
 /** Renders the examples into an application for easier testing. */

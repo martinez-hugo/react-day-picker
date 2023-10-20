@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { freezeTime, renderApp, rowheader } from '../../test';
 
 import Example from './weeknumber-custom';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { format } from 'date-fns';
 import { DayPicker, MonthCaptionProps, useCalendar } from 'react-day-picker';
 

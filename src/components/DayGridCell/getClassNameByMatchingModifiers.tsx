@@ -1,10 +1,10 @@
-import { ClassNames } from 'types';
+import { ClassNames } from '../../types';
 import {
   CustomModifier,
   InternalModifier,
   MatchingModifiers,
   ModifiersClassNames
-} from 'types/modifiers';
+} from '../../types/modifiers';
 
 export function getClassNameByMatchingModifiers(
   matchingModifiers: MatchingModifiers,

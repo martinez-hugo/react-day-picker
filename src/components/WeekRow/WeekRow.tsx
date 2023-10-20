@@ -1,11 +1,9 @@
-import React from 'react';
-
 import { getUnixTime } from 'date-fns';
 
-import { DayGridCellWrapper } from 'components/DayGridCell/DayGridCellWrapper';
-import { WeekNumberRowHeader as DefaultWeekNumberRowHeader } from 'components/WeekNumberRowHeader';
-import { DayPickerWeek } from 'contexts/CalendarContext';
-import { useDayPicker } from 'contexts/DayPickerContext';
+import { DayGridCellWrapper } from '../DayGridCell/DayGridCellWrapper';
+import { WeekNumberRowHeader as DefaultWeekNumberRowHeader } from '../WeekNumberRowHeader';
+import { DayPickerWeek } from '../../contexts/CalendarContext';
+import { useDayPicker } from '../../contexts/DayPickerContext';
 
 /**
  * The props for the {@link WeekRow} component.

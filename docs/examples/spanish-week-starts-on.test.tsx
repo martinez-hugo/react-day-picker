@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { columnheader, renderApp } from '../../test';
 
 import Example from './spanish-week-starts-on';

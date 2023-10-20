@@ -9,7 +9,7 @@ import {
   startOfWeek
 } from 'date-fns';
 
-import type { FormatOptions } from 'types/FormatOptions';
+import type { FormatOptions } from '../../../types/FormatOptions';
 
 const NrOfDaysWithFixedWeeks = 42;
 

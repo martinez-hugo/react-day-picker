@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { DayPickerProps } from 'DayPicker';
+import { DayPickerProps } from '../DayPicker';
 
 import { CalendarProvider } from './CalendarContext';
 import { DayPickerProvider } from './DayPickerContext';

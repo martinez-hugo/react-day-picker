@@ -1,4 +1,4 @@
-import React, {
+import {
   FocusEventHandler,
   KeyboardEventHandler,
   MouseEventHandler,
@@ -6,10 +6,10 @@ import React, {
   TouchEventHandler
 } from 'react';
 
-import { DayPickerDay } from 'contexts/CalendarContext';
-import { useDayPicker } from 'contexts/DayPickerContext';
-import { useModifiers } from 'contexts/ModifiersContext';
-import { useSelection } from 'contexts/SelectionContext';
+import { DayPickerDay } from '../../contexts/CalendarContext';
+import { useDayPicker } from '../../contexts/DayPickerContext';
+import { useModifiers } from '../../contexts/ModifiersContext';
+import { useSelection } from '../../contexts/SelectionContext';
 
 import { DayGridCell as _DayGridCell } from './DayGridCell';
 import { getClassNameByMatchingModifiers } from './getClassNameByMatchingModifiers';

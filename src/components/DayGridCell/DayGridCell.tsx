@@ -1,7 +1,5 @@
-import React from 'react';
-
-import { DayPickerDay } from 'contexts/CalendarContext';
-import { MatchingModifiers } from 'types/modifiers';
+import { DayPickerDay } from '../../contexts/CalendarContext';
+import { MatchingModifiers } from '../../types/modifiers';
 
 export interface DayGridCellProps extends React.PropsWithChildren {
   day: DayPickerDay;

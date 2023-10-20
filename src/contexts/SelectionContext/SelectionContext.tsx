@@ -1,10 +1,10 @@
-import React, { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 import { isSameDay } from 'date-fns';
-import { DayPickerSelectedValue, DaysSelectionMode } from 'DayPicker';
+import { DayPickerSelectedValue, DaysSelectionMode } from '../../DayPicker';
 
-import { useDayPicker } from 'contexts/DayPickerContext';
-import { DateRange, MatchingModifiers } from 'types';
+import { useDayPicker } from '../../contexts/DayPickerContext';
+import { DateRange, MatchingModifiers } from '../../types';
 
 export type SelectionContext<TMode extends DaysSelectionMode | unknown> = {
   value: DayPickerSelectedValue<TMode>;
