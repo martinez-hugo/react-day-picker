@@ -1,6 +1,14 @@
 import { addDays } from 'date-fns';
 
-import { axe, freezeTime, grid, gridcell, renderApp, user } from '../../test';
+import {
+  app,
+  axe,
+  freezeTime,
+  grid,
+  gridcell,
+  renderApp,
+  user
+} from '../../test';
 import Example from './multiple-min-max';
 
 const today = new Date(2021, 10, 10);
@@ -14,14 +22,12 @@ const days = [
   addDays(today, 4)
 ];
 
-let app: HTMLElement;
 beforeEach(() => {
-  const render = renderApp(<Example />);
-  app = render.app;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 describe('when a day is clicked', () => {
@@ -35,7 +41,7 @@ describe('when a day is clicked', () => {
     expect(grid()).toHaveTextContent('You selected 1 day(s).');
   });
   test('should be accessible', async () => {
-    expect(await axe(app)).toHaveNoViolations();
+    expect(await axe(app())).toHaveNoViolations();
   });
   describe('when a second day is clicked', () => {
     beforeEach(async () => {
@@ -51,7 +57,7 @@ describe('when a day is clicked', () => {
       expect(grid()).toHaveTextContent('You selected 2 day(s).');
     });
     test('should be accessible', async () => {
-      expect(await axe(app)).toHaveNoViolations();
+      expect(await axe(app())).toHaveNoViolations();
     });
     describe('when clicked again', () => {
       beforeEach(async () => {
@@ -67,7 +73,7 @@ describe('when a day is clicked', () => {
         expect(grid()).toHaveTextContent('You selected 2 day(s).');
       });
       test('should be accessible', async () => {
-        expect(await axe(app)).toHaveNoViolations();
+        expect(await axe(app())).toHaveNoViolations();
       });
     });
   });

@@ -1,21 +1,27 @@
 import { screen } from '@testing-library/react';
 
-import { axe, freezeTime, grid, renderApp, user } from '../../test';
+import {
+  app,
+  axe,
+  freezeTime,
+  grid,
+  gridcell,
+  renderApp,
+  user
+} from '../../test';
 import Example from './disabled';
 
 const today = new Date(2022, 5, 10);
+const firstOfMonth = new Date(2022, 5, 1);
 freezeTime(today);
 
-let app: HTMLElement;
-let dayCell: HTMLElement;
 beforeEach(async () => {
-  app = renderApp(<Example />).app;
-  dayCell = screen.getByRole('gridcell', { name: '1' });
-  return dayCell.focus();
+  renderApp(<Example />);
+  return gridcell(firstOfMonth).focus();
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 test('should not display the previous button', () => {
@@ -27,10 +33,10 @@ test('should not display the previous button', () => {
 describe('when the first day is focused', () => {
   describe('when the Arrow Left is pressed', () => {
     beforeEach(async () => {
-      await user.type(app, '{arrowleft}');
+      await user.type(app(), '{arrowleft}');
     });
     test('should be accessible', async () => {
-      expect(await axe(app)).toHaveNoViolations();
+      expect(await axe(app())).toHaveNoViolations();
     });
     test('should still display the same month', () => {
       expect(grid()).toHaveTextContent('June 2022');
@@ -40,11 +46,11 @@ describe('when the first day is focused', () => {
 describe('when the last day is focused', () => {
   describe('when the Arrow Right is pressed', () => {
     beforeEach(async () => {
-      await user.type(app, '{arrowleft}');
+      await user.type(app(), '{arrowleft}');
     });
 
     test('should be accessible', async () => {
-      expect(await axe(app)).toHaveNoViolations();
+      expect(await axe(app())).toHaveNoViolations();
     });
     test('should still display the same month', () => {
       expect(grid()).toHaveTextContent('June 2022');

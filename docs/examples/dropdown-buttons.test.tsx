@@ -1,4 +1,5 @@
 import {
+  app,
   axe,
   freezeTime,
   grid,
@@ -14,14 +15,12 @@ import Example from './dropdown-buttons';
 const today = new Date(2022, 5, 10);
 freezeTime(today);
 
-let app: HTMLElement;
 beforeEach(() => {
-  const render = renderApp(<Example />);
-  app = render.app;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 test('should display the year dropdown', () => {
@@ -43,7 +42,7 @@ describe('when choosing a month', () => {
     await user.selectOptions(monthDropdown(), monthName);
   });
   test('should be accessible', async () => {
-    expect(await axe(app)).toHaveNoViolations();
+    expect(await axe(app())).toHaveNoViolations();
   });
   test('should display the month', () => {
     expect(grid()).toHaveAccessibleName(`${monthName} 2022`);

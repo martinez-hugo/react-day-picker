@@ -16,7 +16,10 @@ const getSeason = (month: Date): string => {
   else return 'autumn';
 };
 
-const formatCaption: Formatters['formatCaption'] = (month, options) => {
+const formatMonthCaption: Formatters['formatMonthCaption'] = (
+  month,
+  options
+) => {
   const season = getSeason(month);
   return `${seasonEmoji[season]} ${format(month, 'LLLL', {
     locale: options?.locale
@@ -25,6 +28,10 @@ const formatCaption: Formatters['formatCaption'] = (month, options) => {
 
 export default function Example() {
   return (
-    <DayPicker fromYear={2020} toYear={2025} formatters={{ formatCaption }} />
+    <DayPicker
+      fromYear={2020}
+      toYear={2025}
+      formatters={{ formatMonthCaption }}
+    />
   );
 }

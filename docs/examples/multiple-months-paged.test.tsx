@@ -1,19 +1,24 @@
 import { screen } from '@testing-library/react';
 
-import { axe, freezeTime, previousButton, renderApp, user } from '../../test';
+import {
+  app,
+  axe,
+  freezeTime,
+  previousButton,
+  renderApp,
+  user
+} from '../../test';
 import Example from './multiple-months-paged';
 
 const today = new Date(2021, 10, 25);
 freezeTime(today);
 
-let app: HTMLElement;
 beforeEach(() => {
-  const render = renderApp(<Example />);
-  app = render.app;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 describe('when rendering November 2021', () => {

@@ -1,18 +1,16 @@
 import { screen } from '@testing-library/react';
 
-import { axe, freezeTime, grid, renderApp, user } from '../../test';
+import { app, axe, freezeTime, grid, renderApp, user } from '../../test';
 import Example from './controlled';
 
 freezeTime(new Date(2022, 5, 10));
 
-let app: HTMLElement;
 beforeEach(() => {
-  const render = renderApp(<Example />);
-  app = render.app;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 describe('when the "Go to today" button is clicked', () => {

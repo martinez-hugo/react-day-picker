@@ -1,17 +1,16 @@
-import { act, render } from '@testing-library/react';
 import { addDays, addMonths, startOfMonth } from 'date-fns';
 import { DayPickerProps } from 'react-day-picker';
-import {
-  getDayButton,
-  getFocusedElement
-} from 'react-day-picker/test/selectors';
+import { getFocusedElement } from 'react-day-picker/test/selectors';
 
 import {
+  app,
   axe,
   focusDaysGrid,
   freezeTime,
+  gridcell,
   nextButton,
   previousButton,
+  renderApp,
   user
 } from '../../test';
 import Example from './keyboard';
@@ -21,32 +20,35 @@ const today = new Date(2022, 5, 10);
 const tomorrow = new Date(2022, 5, 11);
 freezeTime(today);
 
-let container: HTMLElement;
 function setup(props: DayPickerProps) {
-  container = render(<Example {...props} />).container;
+  renderApp(<Example {...props} />);
 }
 
 describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
   describe('when pressing Tab', () => {
     beforeEach(async () => {
       setup({ mode: 'single', dir });
-      await act(() => user.tab());
+      await user.tab();
     });
     test('should be accessible', async () => {
-      expect(await axe(container)).toHaveNoViolations();
+      expect(await axe(app())).toHaveNoViolations();
     });
     test('should focus on the Previous Month button', () => {
       expect(previousButton()).toHaveFocus();
     });
     describe('when pressing Tab a second time', () => {
-      beforeEach(async () => act(() => user.tab()));
+      beforeEach(async () => {
+        await user.tab();
+      });
       test('should focus on the Next Month button', () => {
         expect(nextButton).toHaveFocus();
       });
       describe('when pressing Tab a third time', () => {
-        beforeEach(async () => act(() => user.tab()));
+        beforeEach(async () => {
+          await user.tab();
+        });
         test('should have the current day selected', () => {
-          expect(getDayButton(today)).toHaveFocus();
+          expect(gridcell(today)).toHaveFocus();
         });
 
         const tests: [key: string, handler: () => Promise<void>][] = [
@@ -58,16 +60,20 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
         describe.each(tests)(`when pressing %s`, (key, handler) => {
           let focusedElement: Element;
           beforeEach(async () => {
-            await act(() => handler());
+            await handler();
             focusedElement = getFocusedElement();
           });
           describe('when the next button is focused', () => {
-            beforeEach(() => act(() => nextButton().focus()));
+            beforeEach(() => {
+              nextButton().focus();
+            });
             test(`the element focused with ${key} should have lost the focus`, () => {
               expect(focusedElement).not.toHaveFocus();
             });
             describe('when pressing Tab', () => {
-              beforeEach(async () => act(() => user.tab()));
+              beforeEach(async () => {
+                await user.tab();
+              });
               test(`the element focused with ${key} should have focus again`, () => {
                 expect(focusedElement).toHaveFocus();
               });
@@ -75,13 +81,13 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
           });
           describe('when navigating to the next month', () => {
             beforeEach(async () => {
-              await act(() => user.tab({ shift: true }));
-              await act(() => user.keyboard('{enter}'));
-              await act(() => user.tab());
+              await user.tab({ shift: true });
+              await user.keyboard('{enter}');
+              await user.tab();
             });
             test('the first active day of the next month should have focus', () => {
               const startOfNextMonth = startOfMonth(addMonths(today, 1));
-              expect(getDayButton(startOfNextMonth)).toHaveFocus();
+              expect(gridcell(startOfNextMonth)).toHaveFocus();
             });
           });
         });
@@ -95,9 +101,11 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
       setup({ mode: 'single', dir, selected });
     });
     describe('when focusing the days grid', () => {
-      beforeEach(() => focusDaysGrid());
+      beforeEach(() => {
+        focusDaysGrid();
+      });
       test('the selected day should have focus', () => {
-        expect(getDayButton(tomorrow)).toHaveFocus();
+        expect(gridcell(tomorrow)).toHaveFocus();
       });
     });
   });
@@ -109,10 +117,12 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
       setup({ dir, selected, mode });
     });
     describe('when focusing the days grid', () => {
-      beforeEach(() => focusDaysGrid());
+      beforeEach(() => {
+        focusDaysGrid();
+      });
 
       test('the first selected day should have focus', () => {
-        expect(getDayButton(yesterday)).toHaveFocus();
+        expect(gridcell(yesterday)).toHaveFocus();
       });
     });
   });
@@ -125,9 +135,11 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
         setup({ mode: 'single', dir, defaultMonth, numberOfMonths });
       });
       describe('when focusing the days grid', () => {
-        beforeEach(() => focusDaysGrid());
+        beforeEach(() => {
+          focusDaysGrid();
+        });
         test('the today button should have focus', () => {
-          expect(getDayButton(today, 2)).toHaveFocus();
+          expect(gridcell(today, 2)).toHaveFocus();
         });
       });
     });
@@ -144,9 +156,11 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
       setup({ mode: 'single', dir, disabled, hidden, selected });
     });
     describe('when focusing the days grid', () => {
-      beforeEach(() => focusDaysGrid());
+      beforeEach(() => {
+        focusDaysGrid();
+      });
       test('the first not disabled day should have focus', () => {
-        expect(getDayButton(notDisabled)).toHaveFocus();
+        expect(gridcell(notDisabled)).toHaveFocus();
       });
     });
   });

@@ -5,7 +5,10 @@ const today = new Date(2022, 0, 1);
 
 freezeTime(today);
 
-test('should display the 53th week', () => {
+beforeEach(() => {
   renderApp(<Example />);
+});
+
+test('should display the 53th week', () => {
   expect(rowheader('Week 53')).toBeInTheDocument();
 });

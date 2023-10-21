@@ -1,44 +1,41 @@
-import { act, screen } from '@testing-library/react';
-import { getMonthGrid } from 'react-day-picker/test/selectors';
+import { screen } from '@testing-library/react';
 
-import { axe, freezeTime, renderApp, user } from '../../test';
+import { app, axe, freezeTime, grid, renderApp, user } from '../../test';
 import Example from './dropdown-multiple-months';
 
 const today = new Date(2023, 9, 16);
 freezeTime(today);
 
-let app: HTMLElement;
 beforeEach(() => {
-  const render = renderApp(<Example />);
-  app = render.app;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 describe('when choosing a month from the first drop-down', () => {
-  const newMonthName = 'January';
-  beforeEach(() => {
+  const monthName = 'January';
+  beforeEach(async () => {
     const firstDropDown = screen.getAllByRole('combobox', {
       name: 'Month:'
     })[0];
-    return act(() => user.selectOptions(firstDropDown, newMonthName));
+    await user.selectOptions(firstDropDown, monthName);
   });
   test('should display the month in the first dropdown', () => {
-    expect(getMonthGrid(0)).toHaveAccessibleName(`${newMonthName} 2023`);
+    expect(grid(`${monthName} 2023`)).toBeInTheDocument();
   });
 });
 
 describe('when choosing a month from the third drop-down', () => {
   const newMonthName = 'October';
-  beforeEach(() => {
+  beforeEach(async () => {
     const thirdDropDown = screen.getAllByRole('combobox', {
       name: 'Month:'
     })[2];
-    return act(() => user.selectOptions(thirdDropDown, newMonthName));
+    await user.selectOptions(thirdDropDown, newMonthName);
   });
   test('should display the month selected the third dropdown', () => {
-    expect(getMonthGrid(2)).toHaveAccessibleName(`${newMonthName} 2023`);
+    expect(grid(`${newMonthName} 2023`)).toBeInTheDocument();
   });
 });

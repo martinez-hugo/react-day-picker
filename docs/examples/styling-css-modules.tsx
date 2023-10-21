@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { ClassNames, DayPicker } from 'react-day-picker';
-import styles from 'react-day-picker/style.css';
+import styles from 'react-day-picker/dist/style.css';
 
 export default function Example() {
   const [selectedDay, setSelectedDay] = useState<Date>();

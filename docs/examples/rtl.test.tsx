@@ -1,4 +1,5 @@
 import {
+  app,
   axe,
   freezeTime,
   grid,
@@ -12,18 +13,16 @@ import Example from './rtl';
 const today = new Date(2021, 10, 25);
 freezeTime(today);
 
-let app: HTMLElement;
 beforeEach(() => {
-  const render = renderApp(<Example />);
-  app = render.app;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 test('should have the rtl dir attribute', () => {
-  expect(app.firstChild).toHaveAttribute('dir', 'rtl');
+  expect(app().firstChild).toHaveAttribute('dir', 'rtl');
 });
 
 describe('when clicking the next month button', () => {

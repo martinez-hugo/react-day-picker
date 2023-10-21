@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import { addDays, format } from 'date-fns';
 import { getAllSelectedDays } from 'react-day-picker/test/selectors';
 
-import { axe, freezeTime, gridcell, renderApp, user } from '../../test';
+import { app, axe, freezeTime, gridcell, renderApp, user } from '../../test';
 import Example from './useinput';
 
 const today = new Date(2021, 10, 15);
@@ -14,14 +14,12 @@ function getInput(): HTMLInputElement {
   return screen.getByRole('textbox');
 }
 
-let app: HTMLElement;
 beforeEach(() => {
-  const render = renderApp(<Example />);
-  app = render.app;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 test('today should be selected', () => {
@@ -45,7 +43,7 @@ describe('when yesterday is clicked', () => {
       await user.type(getInput(), format(today, 'PP'));
     });
     test('should be accessible', async () => {
-      expect(await axe(app)).toHaveNoViolations();
+      expect(await axe(app())).toHaveNoViolations();
     });
     test('today should be selected', () => {
       expect(gridcell(today)).toHaveAttribute('aria-selected', 'true');
@@ -57,7 +55,7 @@ describe('when yesterday is clicked', () => {
       expect(getAllSelectedDays()).toHaveLength(0);
     });
     test('should be accessible', async () => {
-      expect(await axe(app)).toHaveNoViolations();
+      expect(await axe(app())).toHaveNoViolations();
     });
   });
 });

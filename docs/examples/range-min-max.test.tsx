@@ -1,19 +1,17 @@
 import { setDate } from 'date-fns';
 
-import { axe, freezeTime, gridcell, renderApp, user } from '../../test';
+import { app, axe, freezeTime, gridcell, renderApp, user } from '../../test';
 import Example from './range-min-max';
 
 const today = new Date(2022, 8, 25);
 freezeTime(today);
 
-let app: HTMLElement;
 beforeEach(() => {
-  const render = renderApp(<Example />);
-  app = render.app;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 describe('when the first day is clicked', () => {
@@ -46,6 +44,6 @@ describe('when the first day is clicked', () => {
     expect(gridcell(setDate(today, 21))).toBeDisabled();
   });
   test('should be accessible', async () => {
-    expect(await axe(app)).toHaveNoViolations();
+    expect(await axe(app())).toHaveNoViolations();
   });
 });

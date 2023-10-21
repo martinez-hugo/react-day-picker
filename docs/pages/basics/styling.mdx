@@ -1,5 +1,5 @@
 import { Steps, Callout } from 'nextra/components';
-import 'react-day-picker/style.css';
+import 'react-day-picker/dist/style.css';
 
 import {
   SourceCode,
@@ -24,7 +24,7 @@ DayPicker comes with for a minimal, lightweight style. Import it into your app's
 
 ```tsx filename="App.tsx" {2}
 import './my-app.css';
-import 'react-day-picker/style.css';
+import 'react-day-picker/dist/style.css';
 
 export default App() {
   // snip
@@ -88,7 +88,7 @@ This approach involves just CSS and works well if you need the same style across
 Create and import it after the default style, e.g. `my-date-picker.css`:
 
 ```tsx
-import 'react-day-picker/style.css';
+import 'react-day-picker/dist/style.css';
 import './my-date-picker.css';
 ```
 

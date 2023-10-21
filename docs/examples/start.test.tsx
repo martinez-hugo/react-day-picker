@@ -1,17 +1,15 @@
-import { axe, freezeTime, gridcell, renderApp, user } from '../../test';
+import { app, axe, freezeTime, gridcell, renderApp, user } from '../../test';
 import Example from './start';
 
 const today = new Date(2021, 10, 25);
 freezeTime(today);
 
-let app: HTMLElement;
 beforeEach(async () => {
-  const render = renderApp(<Example />);
-  app = render.app;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 const day = new Date(2021, 10, 1);
@@ -24,6 +22,6 @@ describe('when a day is clicked', () => {
     expect(gridcell(day)).toHaveAttribute('aria-selected', 'true');
   });
   test('should be accessible', async () => {
-    expect(await axe(app)).toHaveNoViolations();
+    expect(await axe(app())).toHaveNoViolations();
   });
 });

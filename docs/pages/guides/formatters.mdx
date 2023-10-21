@@ -1,13 +1,28 @@
+import {
+  SourceCode,
+  getSourceCodeStaticProps
+} from '../../components/SourceCode';
+import { RenderingBox } from '../../components/RenderingBox';
+
+import Formatters from '@examples/formatters.tsx';
+
+import 'react-day-picker/dist/style.css';
+
+export const getStaticProps = () =>
+  getSourceCodeStaticProps(['formatters.tsx']);
+
 # Formatters
 
-Use the [formatters](/api/interfaces/daypickerdefaultprops#formatters) to change the default format for the day, the weekday name, etc.
-
-Formatters can be useful for a custom [localization](/basics/localization).
+Use DayPicker [formatters](/api/interfaces/daypickerdefaultprops#formatters) to
+change the default format for the day, the weekday name, etc. Formatters can be
+useful for a custom [localization](/basics/localization).
 
 ## Example: add emoji to the calendar
 
 The following example add some emoji to the caption and to the day cells.
 
-```include-example
-formatters
-```
+<SourceCode fileName="formatters.tsx" />
+
+<RenderingBox>
+  <Formatters />
+</RenderingBox>

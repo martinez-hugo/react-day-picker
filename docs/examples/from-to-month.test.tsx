@@ -1,16 +1,21 @@
 import { differenceInMonths } from 'date-fns';
 
-import { axe, nextButton, previousButton, renderApp, user } from '../../test';
+import {
+  app,
+  axe,
+  nextButton,
+  previousButton,
+  renderApp,
+  user
+} from '../../test';
 import Example from './from-to-month';
 
-let app: HTMLElement;
 beforeEach(() => {
-  const render = renderApp(<Example />);
-  app = render.app;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 test('the previous button should be disabled', () => {

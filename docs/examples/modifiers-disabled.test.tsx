@@ -1,7 +1,6 @@
 import { render } from '@testing-library/react';
-import { getDayButton } from 'react-day-picker/test/selectors';
 
-import { freezeTime } from '../../test';
+import { freezeTime, gridcell } from '../../test';
 import Example from './modifiers-disabled';
 
 const days = [
@@ -17,5 +16,5 @@ beforeEach(() => {
 });
 
 test.each(days)('the day %s should be disabled', (day) => {
-  expect(getDayButton(day)).toBeDisabled();
+  expect(gridcell(day)).toHaveAttribute('aria-disabled', 'true');
 });

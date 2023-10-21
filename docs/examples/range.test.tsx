@@ -1,7 +1,7 @@
 import { addDays } from 'date-fns';
 import { getAllSelectedDays } from 'react-day-picker/test/selectors';
 
-import { axe, gridcell, renderApp, user } from '../../test';
+import { app, axe, gridcell, renderApp, user } from '../../test';
 import Example from './range';
 
 const pastMonth = new Date(2020, 10, 15);
@@ -13,18 +13,16 @@ const days = [
   addDays(pastMonth, 4)
 ];
 
-let app: HTMLElement;
 beforeEach(() => {
-  const render = renderApp(<Example />);
-  app = render.app;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 test('should match the snapshot', () => {
-  expect(app).toMatchSnapshot();
+  expect(app()).toMatchSnapshot();
 });
 test.each(days)('%s should be selected', (day) => {
   expect(gridcell(day)).toHaveAttribute('aria-selected', 'true');

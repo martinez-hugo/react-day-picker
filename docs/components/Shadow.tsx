@@ -3,7 +3,7 @@
 import { Component, PropsWithChildren } from 'react';
 
 // @ts-expect-error - ignore TS errors
-import style from '!!url-loader!react-day-picker/style.css';
+import style from '!!url-loader!react-day-picker/dist/style.css';
 import { createPortal } from 'react-dom';
 
 export interface ShadowProps extends PropsWithChildren {

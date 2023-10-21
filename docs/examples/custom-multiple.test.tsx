@@ -1,19 +1,23 @@
-import { act } from 'react-dom/test-utils';
-
-import { axe, freezeTime, grid, gridcell, renderApp, user } from '../../test';
+import {
+  app,
+  axe,
+  freezeTime,
+  grid,
+  gridcell,
+  renderApp,
+  user
+} from '../../test';
 import Example from './custom-multiple';
 
 const today = new Date(2021, 10, 25);
 freezeTime(today);
 
-let app: HTMLElement;
 beforeEach(() => {
-  const render = renderApp(<Example />);
-  app = render.app;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 describe('when a day is clicked', () => {
@@ -29,7 +33,9 @@ describe('when a day is clicked', () => {
   });
   describe('when a second day is clicked', () => {
     const day2 = new Date(2021, 10, 2);
-    beforeEach(() => act(() => user.click(gridcell(day2))));
+    beforeEach(async () => {
+      await user.click(gridcell(day2));
+    });
     test('the first day should appear as selected', () => {
       expect(gridcell(day1)).toHaveAttribute('aria-selected', 'true');
     });

@@ -1,22 +1,18 @@
-import { axe, renderApp } from '../../test';
+import { app, axe, renderApp } from '../../test';
 import Example from './container-attributes';
 
-let app: HTMLElement;
-let dayPicker: HTMLElement;
 beforeEach(() => {
-  const render = renderApp(<Example />);
-  app = render.app;
-  dayPicker = render.dayPicker as HTMLElement;
+  renderApp(<Example />);
 });
 
 test('should pass accessibility', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 test('should have the specified id', () => {
-  expect(dayPicker).toHaveAttribute('id', 'testId');
+  expect(app().firstChild).toHaveAttribute('id', 'testId');
 });
 
 test('should have the data set attribute', () => {
-  expect(dayPicker).toHaveAttribute('data-test', 'testData');
+  expect(app().firstChild).toHaveAttribute('data-test', 'testData');
 });

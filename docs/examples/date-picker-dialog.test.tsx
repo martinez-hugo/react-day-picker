@@ -1,9 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { format } from 'date-fns';
-import { getDayButton } from 'react-day-picker/test/selectors';
 import { act } from 'react-dom/test-utils';
 
-import { axe, freezeTime, renderApp, user } from '../../test';
+import { app, axe, freezeTime, gridcell, renderApp, user } from '../../test';
 import Example from './date-picker-dialog';
 
 const today = new Date(2022, 5, 10);
@@ -23,38 +22,36 @@ async function waitPopper() {
   await act(async () => await null);
 }
 
-let container: HTMLElement;
 beforeEach(() => {
-  container = render(<Example />).container;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  const { app } = renderApp(<Example />);
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 describe('when clicking the dialog button', () => {
   beforeEach(async () => {
-    await act(() => user.click(getDialogButton()));
+    await user.click(getDialogButton());
     await waitPopper();
   });
   test('should be accessible', async () => {
-    expect(await axe(container)).toHaveNoViolations();
+    expect(await axe(app())).toHaveNoViolations();
   });
   test('the dialog should be visible', () => {
     expect(screen.getByRole('dialog')).toBeVisible();
   });
   test('the today button should have focus', () => {
-    expect(getDayButton(today)).toHaveFocus();
+    expect(gridcell(today)).toHaveFocus();
   });
   describe('when clicking a day', () => {
     const date = today;
     beforeEach(async () => {
-      await act(() => user.click(getDayButton(date)));
+      await user.click(gridcell(date));
       await waitPopper();
     });
     test('should be accessible', async () => {
-      expect(await axe(container)).toHaveNoViolations();
+      expect(await axe(app())).toHaveNoViolations();
     });
     test('the dialog should be closed', () => {
       expect(screen.queryByRole('dialog')).toBeNull();
@@ -65,32 +62,29 @@ describe('when clicking the dialog button', () => {
     describe('when typing a new date into the input', () => {
       const newDate = tomorrow;
       beforeEach(async () => {
-        await act(() => user.clear(getInput()));
-        await act(() => user.type(getInput(), format(newDate, 'y-MM-dd')));
+        await user.clear(getInput());
+        await user.type(getInput(), format(newDate, 'y-MM-dd'));
         await waitPopper();
       });
       test('should be accessible', async () => {
-        expect(await axe(container)).toHaveNoViolations();
+        expect(await axe(app())).toHaveNoViolations();
       });
       test('the input should have the new date', () => {
         expect(getInput()).toHaveValue(format(newDate, 'y-MM-dd'));
       });
       describe('when clicking the dialog button', () => {
         beforeEach(async () => {
-          await act(() => user.click(getDialogButton()));
+          await user.click(getDialogButton());
           await waitPopper();
         });
         test('the new date should be selected', () => {
-          expect(getDayButton(newDate)).toHaveAttribute(
-            'aria-selected',
-            'true'
-          );
+          expect(gridcell(newDate)).toHaveAttribute('aria-selected', 'true');
         });
         test('the new date button should have focus', () => {
-          expect(getDayButton(newDate)).toHaveFocus();
+          expect(gridcell(newDate)).toHaveFocus();
         });
         test('should be accessible', async () => {
-          expect(await axe(container)).toHaveNoViolations();
+          expect(await axe(app())).toHaveNoViolations();
         });
       });
     });

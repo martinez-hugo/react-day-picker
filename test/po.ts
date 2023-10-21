@@ -1,5 +1,9 @@
 import { ByRoleOptions, screen } from '@testing-library/react';
 
+export function app() {
+  return screen.getByRole('application');
+}
+
 export function previousButton() {
   return screen.getByRole('button', {
     name: 'Go to the Previous Month'

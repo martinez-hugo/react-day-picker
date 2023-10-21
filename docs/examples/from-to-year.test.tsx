@@ -1,6 +1,7 @@
 import { differenceInMonths } from 'date-fns';
 
 import {
+  app,
   axe,
   freezeTime,
   nextButton,
@@ -15,14 +16,12 @@ const toDate = new Date(2026, 11);
 const today = new Date(2025, 10, 25);
 freezeTime(today);
 
-let app: HTMLElement;
 beforeEach(() => {
-  const render = renderApp(<Example />);
-  app = render.app;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 test('the previous month button should be disabled', () => {
@@ -40,7 +39,7 @@ describe('when navigating to the last month', () => {
     }
   });
   test('should be accessible', async () => {
-    expect(await axe(app)).toHaveNoViolations();
+    expect(await axe(app())).toHaveNoViolations();
   });
   test('the previous month button should not be disabled', () => {
     expect(previousButton()).not.toBeDisabled();

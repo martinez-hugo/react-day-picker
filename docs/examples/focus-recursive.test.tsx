@@ -1,6 +1,6 @@
 import { getFocusedElement } from 'react-day-picker/test/selectors';
 
-import { axe, freezeTime, gridcell, renderApp, user } from '../../test';
+import { app, axe, freezeTime, gridcell, renderApp, user } from '../../test';
 import Example from './focus-recursive';
 
 const today = new Date(2022, 5, 10);
@@ -23,5 +23,5 @@ test('the first selected day should have focus', () => {
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });

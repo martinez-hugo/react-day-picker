@@ -5,14 +5,12 @@ import { useRouter } from 'next/router';
 import {
   DayPicker,
   DayPickerBaseProps,
+  DayPickerMultiProps,
+  DayPickerRangeProps,
+  DayPickerSingleProps,
   DaysSelectionMode
 } from 'react-day-picker';
 
-import {
-  DayPickerMultiProps,
-  DayPickerRangeProps,
-  DayPickerSingleProps
-} from '../../../dist';
 import { RenderingBox } from '../RenderingBox';
 import { Shadow } from '../Shadow';
 import { PropsForm } from './PropsForm';

@@ -93,7 +93,7 @@ export function DayGridCellWrapper(
   // };
 
   const onBlur: FocusEventHandler = (e) => {
-    blur();
+    // blur();
     onDayBlur?.(props.day.date, dayModifiers, e);
   };
 
@@ -211,8 +211,4 @@ export function DayGridCellWrapper(
       {formatDay(props.day.date, { locale })}
     </DayGridCell>
   );
-}
-
-function blur() {
-  throw new Error('Function not implemented.');
 }

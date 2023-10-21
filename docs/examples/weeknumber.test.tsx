@@ -1,17 +1,15 @@
-import { axe, freezeTime, renderApp, rowheader, user } from '../../test';
+import { app, axe, freezeTime, renderApp, rowheader, user } from '../../test';
 import Example from './weeknumber';
 
 const today = new Date(2021, 10, 25);
 freezeTime(today);
 
-let app: HTMLElement;
 beforeEach(() => {
-  const render = renderApp(<Example />);
-  app = render.app;
+  renderApp(<Example />);
 });
 
 test('should be accessible', async () => {
-  expect(await axe(app)).toHaveNoViolations();
+  expect(await axe(app())).toHaveNoViolations();
 });
 
 describe('when displaying November 2021', () => {
@@ -23,7 +21,7 @@ describe('when displaying November 2021', () => {
       await user.click(rowheader('Week 45'));
     });
     test('should update the footer', () => {
-      expect(app).toHaveTextContent('You clicked the week n. 45.');
+      expect(app()).toHaveTextContent('You clicked the week n. 45.');
     });
   });
 });

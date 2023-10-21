@@ -50,7 +50,7 @@ When importing, include the DayPicker CSS in your component.
 
 ```tsx
 import { DayPicker } from 'react-day-picker';
-import 'react-day-picker/style.css';
+import 'react-day-picker/dist/style.css';
 
 export default function Example() {
   const [selected, setSelected] = React.useState<Date>();

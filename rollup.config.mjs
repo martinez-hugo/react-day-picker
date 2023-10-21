@@ -7,22 +7,26 @@ import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
+import postcss from 'rollup-plugin-postcss';
+import postcssDts from 'postcss-typescript-d-ts';
+import fs from 'fs';
+import path from 'path';
+import copy from 'rollup-plugin-copy';
 
 import pkg from './package.json' assert { type: 'json' };
 
 const globals = {
   react: 'React',
-  'date-fns': 'dateFns'
+  'date-fns': 'dateFns',
+  'date-fns/locale': 'Locale'
 };
-
-const input = 'src/index.ts';
 
 /**
  * Rollup configuration to build the main bundles.
  * @type {import('rollup').RollupOptions}
  */
 const mainConfig = {
-  input,
+  input: pkg.source,
   output: [
     {
       file: pkg.browser,
@@ -66,7 +70,7 @@ const mainConfig = {
  * @type {import('rollup').RollupOptions}
  */
 const dtsConfig = {
-  input,
+  input: pkg.source,
   output: {
     file: pkg.types,
     format: 'es'
@@ -74,4 +78,62 @@ const dtsConfig = {
   plugins: [dts()]
 };
 
-export default [mainConfig, dtsConfig];
+/**
+ * Rollup configuration to build the type declaration file.
+ * @type {import('rollup').RollupOptions}
+ */
+const cssConfig = {
+  input: `src/style.css`,
+  output: {
+    file: 'dist/style.css.js',
+    format: 'es',
+    plugins: [terser()]
+  },
+  plugins: [
+    postcss({
+      sourceMap: true,
+      plugins: [
+        postcssDts({
+          writeFile: ({ content }) => {
+            fs.writeFileSync(`dist/style.css.d.ts`, content);
+          }
+        })
+      ]
+    }),
+    copy({
+      targets: [
+        {
+          src: 'src/style.css',
+          dest: './dist',
+          transform: (contents) => contents.toString()
+        },
+        {
+          src: 'src/style.css',
+          dest: './dist',
+          rename: 'style.module.css',
+          transform: (contents) =>
+            contents
+              .toString()
+              .replace(/\.rdp-/g, '.')
+              .replace(/\.rdp/g, '.rdp')
+        },
+        {
+          src: './dist/style.css.d.ts',
+          dest: './dist',
+          rename: 'style.module.css.d.ts',
+          transform: (contents) =>
+            contents.toString().replace(/rdp-/g, '').replace(/rdp/g, 'root')
+        },
+        {
+          src: './dist/style.css.d.ts',
+          dest: './dist',
+          rename: 'style.module.css.d.ts',
+          transform: (contents) =>
+            contents.toString().replace(/rdp-/g, '').replace(/rdp/g, 'root')
+        }
+      ]
+    })
+  ]
+};
+
+export default [mainConfig, dtsConfig, cssConfig];
