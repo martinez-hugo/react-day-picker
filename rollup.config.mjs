@@ -1,12 +1,12 @@
 // @ts-check
-
-import resolve from '@rollup/plugin-node-resolve';
+import { babel } from '@rollup/plugin-babel';
+import { dts } from 'rollup-plugin-dts';
 import commonjs from '@rollup/plugin-commonjs';
-import typescript from 'rollup-plugin-typescript2';
-import terser from '@rollup/plugin-terser';
 import filesize from 'rollup-plugin-filesize';
 import replace from '@rollup/plugin-replace';
-import { babel } from '@rollup/plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
+import terser from '@rollup/plugin-terser';
+import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json' assert { type: 'json' };
 
@@ -15,13 +15,20 @@ const globals = {
   'date-fns': 'dateFns'
 };
 
-export default {
-  input: 'src/index.ts', // Your library's entry point
+const input = 'src/index.ts';
+
+/**
+ * Rollup configuration to build the main bundles.
+ * @type {import('rollup').RollupOptions}
+ */
+const mainConfig = {
+  input,
   output: [
     {
       file: pkg.browser,
       format: 'umd',
       name: 'DatePicker',
+      plugins: [terser()],
       globals
     },
     {
@@ -38,7 +45,7 @@ export default {
   ],
   plugins: [
     resolve(),
-    typescript({ useTsconfigDeclarationDir: true }),
+    typescript(),
     babel({
       babelHelpers: 'external',
       exclude: 'node_modules/**',
@@ -46,11 +53,25 @@ export default {
     }),
     commonjs(),
     filesize(),
-    terser(),
     replace({
       preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify('production')
     })
   ],
-  external: ['react', 'date-fns', 'date-fns/locale/en-US']
+  external: ['react', /date-fns/]
 };
+
+/**
+ * Rollup configuration to build the type declaration file.
+ * @type {import('rollup').RollupOptions}
+ */
+const dtsConfig = {
+  input,
+  output: {
+    file: pkg.types,
+    format: 'es'
+  },
+  plugins: [dts()]
+};
+
+export default [mainConfig, dtsConfig];

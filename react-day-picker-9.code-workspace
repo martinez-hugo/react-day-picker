@@ -24,7 +24,7 @@
       {
         "label": "build",
         "type": "shell",
-        "command": "pnpm build",
+        "command": "pnpm prebuild && pnpm build",
         "isBackground": false,
         "problemMatcher": ["$tsc"],
         "presentation": {
