@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 
-import { isSameDay } from 'date-fns';
+import { isDate, isSameDay } from 'date-fns';
 
 import { useDayPicker } from '../../contexts/DayPickerContext';
 import { DayPickerSelectedValue, DaysSelectionMode } from '../../DayPicker';
@@ -40,17 +40,24 @@ export const multiSelectionContext = createContext<SelectionContext<'multi'>>({
 export function SelectionProvider<
   TMode extends DaysSelectionMode
 >(providerProps: { children?: ReactNode; mode: TMode }) {
-  const { required, onSelectSingle, mode } = useDayPicker();
+  const { required, onSelectSingle, mode, selected } = useDayPicker();
 
-  const initialSingleValue = undefined;
+  const initialSingleValue =
+    mode === 'single' || isDate(selected)
+      ? (selected as DayPickerSelectedValue<'single'>)
+      : undefined;
   const [singleValue, setInternalSingleValue] = useState<
     DayPickerSelectedValue<'single'> | undefined
   >(initialSingleValue);
 
-  const initialMultiValue: DayPickerSelectedValue<'multi'> = [];
+  const initialMultiValue =
+    mode === 'multi' ? (selected as DayPickerSelectedValue<'multi'>) : [];
   const [multiValue, setInternalMultiValue] = useState(initialMultiValue);
 
-  const initialRangeValue: DateRange = { from: undefined, to: undefined };
+  const initialRangeValue =
+    mode === 'multi'
+      ? (selected as DayPickerSelectedValue<'range'>)
+      : ({ from: undefined, to: undefined } as DateRange);
   const [rangeValue, setInternalRangeValue] = useState(initialRangeValue);
 
   const setSingleValue = (

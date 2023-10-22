@@ -2,16 +2,14 @@
 import { babel } from '@rollup/plugin-babel';
 import { dts } from 'rollup-plugin-dts';
 import commonjs from '@rollup/plugin-commonjs';
-import filesize from 'rollup-plugin-filesize';
+import copy from 'rollup-plugin-copy';
+import fs from 'fs';
+import postcss from 'rollup-plugin-postcss';
+import postcssDts from 'postcss-typescript-d-ts';
 import replace from '@rollup/plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
-import postcss from 'rollup-plugin-postcss';
-import postcssDts from 'postcss-typescript-d-ts';
-import fs from 'fs';
-import path from 'path';
-import copy from 'rollup-plugin-copy';
 
 import pkg from './package.json' assert { type: 'json' };
 
@@ -56,7 +54,6 @@ const mainConfig = {
       presets: ['@babel/preset-react', '@babel/preset-env']
     }),
     commonjs(),
-    filesize(),
     replace({
       preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify('production')

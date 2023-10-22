@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { DayMouseEventHandler, DayPicker } from 'react-day-picker';
 
-export default function Example() {
+export default function App() {
   const initialFooter = <p>Try clicking the today’s date.</p>;
   const [footer, setFooter] = useState(initialFooter);
 

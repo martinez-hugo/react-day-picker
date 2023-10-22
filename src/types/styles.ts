@@ -1,4 +1,5 @@
 declare const style: {
+  /** The root element. */
   rdp: string;
   'contrast_no-preference': string;
   contrast_more: string;

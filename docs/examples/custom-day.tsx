@@ -11,7 +11,7 @@ function CustomDayGridCell(props: DayGridCellProps) {
   );
 }
 
-export default function Example() {
+export default function App() {
   return (
     <DayPicker
       today={new Date(2021, 10, 25)}

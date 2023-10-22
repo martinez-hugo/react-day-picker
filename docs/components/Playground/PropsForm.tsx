@@ -286,24 +286,6 @@ export function PropsForm(props: PropsFormProps) {
       </Fieldset>
       <Fieldset legend="Modifiers">
         <Input
-          label="selected"
-          type="date"
-          value={
-            baseProps.selected && baseProps.selected instanceof Date
-              ? format(baseProps.selected, 'yyyy-MM-dd')
-              : ''
-          }
-          onChange={(e) => {
-            const parsed = parse(e.target.value, 'yyyy-MM-dd', new Date());
-            if (isValid(parsed)) {
-              onBasePropsChange({
-                ...baseProps,
-                selected: parsed
-              });
-            }
-          }}
-        />
-        <Input
           label="disabled"
           type="date"
           value={

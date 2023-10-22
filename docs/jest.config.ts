@@ -15,6 +15,9 @@ const config: Config.InitialOptions = {
       }
     ]
   },
+  moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
+  },
   roots: ['./examples'],
   testEnvironment: 'jsdom',
   coverageReporters: ['lcov', 'text', 'clover'],

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 
-export default function Example() {
+export default function App() {
   const [selectedDay, setSelectedDay] = useState<Date>();
 
   const footer = selectedDay ? (

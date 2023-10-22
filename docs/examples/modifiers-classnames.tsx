@@ -12,7 +12,7 @@ const style = `
   }
 `;
 
-export default function Example() {
+export default function App() {
   return (
     <>
       <style>{style}</style>

@@ -86,7 +86,7 @@ export interface DayPickerContext<TMode extends DaysSelectionMode | unknown> {
   pagedNavigation: boolean;
   required: boolean;
   reverseMonths: boolean;
-  selected?: DayPickerBaseProps['selected'];
+  selected?: Matcher | Matcher[] | undefined;
   showOutsideDays: boolean;
   showWeekNumber: boolean;
   style: React.CSSProperties | undefined;
@@ -167,7 +167,8 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
     captionLayout: props.captionLayout || 'buttons',
     className: props.className,
     classNames: {
-      ...defaultClassNames
+      ...defaultClassNames,
+      ...props.classNames
     },
     components: props.components,
     dataAttributes,
@@ -212,7 +213,15 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
         ? Boolean((props as DayPickerSingleProps).required)
         : false,
     reverseMonths: props.reverseMonths ?? false,
-    selected: props.selected,
+    selected:
+      mode === 'single'
+        ? (props as DayPickerSingleProps).selected
+        : mode === 'multi'
+        ? (props as DayPickerMultiProps).selected
+        : mode === 'range'
+        ? (props as DayPickerRangeProps).selected
+        : undefined,
+
     showOutsideDays: props.showOutsideDays ?? false,
     showWeekNumber: props.showWeekNumber ?? props.showWeekNumber ?? false,
     style: props.style,

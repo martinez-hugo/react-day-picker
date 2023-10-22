@@ -24,7 +24,7 @@
     --rdp-opacity: 0.8;
   }
 }
-.rdp.contrast_more {
+.contrast_more {
   --rdp-opacity: 0.8;
 }
 
@@ -33,7 +33,7 @@
     --rdp-opacity: 0.4;
   }
 }
-.rdp.contrast_less {
+.contrast_less {
   --rdp-opacity: 0.4;
 }
 
@@ -43,11 +43,11 @@
     --rdp-background-color: #02203d;
   }
 }
-.rdp.color_light {
+.color_light {
   --rdp-accent-color: #0a84ff;
   --rdp-background-color: #02203d;
 }
-.rdp.color_dark {
+.color_dark {
   --rdp-accent-color: #0a84ff;
   --rdp-background-color: #02203d;
 }
@@ -325,8 +325,8 @@
   grid-template-columns: repeat(7, 1fr);
 }
 
-.rdp.with_weeknumber .weekdays_row,
-.rdp.with_weeknumber .week_row {
+.with_weeknumber .weekdays_row,
+.with_weeknumber .week_row {
   grid-template-columns: repeat(8, 1fr);
 }
 

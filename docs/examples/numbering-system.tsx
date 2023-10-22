@@ -20,7 +20,7 @@ const formatMonthCaption: Formatters['formatMonthCaption'] = (
   return `${m} ${y}`;
 };
 
-export default function Example() {
+export default function App() {
   return (
     <DayPicker
       locale={arSA}

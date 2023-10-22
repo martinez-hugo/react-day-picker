@@ -6,7 +6,6 @@ import { DayPickerDay, useCalendar } from '../../contexts/CalendarContext';
 import { useDayPicker } from '../../contexts/DayPickerContext';
 import { useSelection } from '../../contexts/SelectionContext';
 import { InternalModifier, MatchingModifiers } from '../../types';
-
 import { dateMatchModifiers } from './utils/dateMatchModifiers';
 
 /** A record with `data-*` attributes passed to {@link DayPicker}. */

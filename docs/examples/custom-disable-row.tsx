@@ -14,7 +14,7 @@ function OnlyFutureRow(props: WeekRowProps) {
   return <WeekRow {...props} />;
 }
 
-export default function Example() {
+export default function App() {
   return (
     <DayPicker
       fromDate={new Date()}

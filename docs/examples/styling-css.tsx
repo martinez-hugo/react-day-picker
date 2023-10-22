@@ -1,6 +1,6 @@
 import { DayPicker } from 'react-day-picker';
 
-export default function Example() {
+export default function App() {
   const style = `
     .caption_aqua { 
       color: aquamarine; 

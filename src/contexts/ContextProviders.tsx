@@ -1,5 +1,4 @@
 import { DayPickerProps } from '../DayPicker';
-
 import { CalendarProvider } from './CalendarContext';
 import { DayPickerProvider } from './DayPickerContext';
 import { ModifiersProvider } from './ModifiersContext';
@@ -14,9 +13,7 @@ export interface ContextProvidersProps {
  * Provide the value for all the context providers.
  * @internal
  */
-export function ContextProviders(
-  contextProviderProps: ContextProvidersProps
-): JSX.Element {
+export function ContextProviders(contextProviderProps: ContextProvidersProps) {
   const { mode = 'none', ...dayPickerProps } =
     contextProviderProps.dayPickerProps;
   return (

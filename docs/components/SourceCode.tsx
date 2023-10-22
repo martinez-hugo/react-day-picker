@@ -6,9 +6,9 @@ import type { Highlighter, Lang, Theme } from 'shiki';
 
 type SourceCodeProps = {
   /** The name of the file in the `docs/example` directory. */
-  fileName: string;
+  source: string;
+  filename?: string;
   theme?: Theme;
-  showFileName?: boolean;
 };
 
 /**
@@ -32,15 +32,21 @@ type SourceCodeProps = {
  * @see https://github.com/shuding/nextra/discussions/2167
  */
 export function SourceCode(props: SourceCodeProps) {
-  const { fileName, theme, showFileName } = props;
+  const lang = props.source.substr(-3);
+  const { source, theme, filename = `App.${lang}` } = props;
 
   const examples = useData();
 
-  if (!examples[fileName]) {
-    return <Pre>Example not found.</Pre>;
+  if (!examples[source]) {
+    return (
+      <Pre>
+        Example {source} not found. Did you add it to{' '}
+        <code>getSourceCodeStaticProps</code>?
+      </Pre>
+    );
   }
 
-  const html = examples[fileName]
+  const html = examples[source]
     // Remove out HTML components we replace with nextra components
     .replace(/<\/?(pre|code) ?[^>]*>/gi, '')
     // For some reasons, when doing this empty lines are lost
@@ -52,14 +58,14 @@ export function SourceCode(props: SourceCodeProps) {
 
   return (
     <Pre
-      data-theme="default"
-      data-language="tsx"
+      data-theme={theme}
+      data-language={lang}
       hasCopyCode
-      filename={showFileName ? fileName : undefined}
+      filename={filename}
     >
       <Code
         data-theme={theme}
-        data-language="tsx"
+        data-language={lang}
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </Pre>
@@ -72,7 +78,7 @@ async function highlightCode(code: string, lang: Lang) {
   const theme = 'css-variables';
   if (!highlighter) {
     highlighter = await getHighlighter({
-      langs: [lang],
+      langs: ['tsx', 'css'],
       theme
     });
   }
@@ -82,15 +88,15 @@ async function highlightCode(code: string, lang: Lang) {
 }
 
 /** Creates the `getStaticProp` function to use the given file names in the SourceCode component. */
-export async function getSourceCodeStaticProps(fileNames: string[]) {
+export async function getSourceCodeStaticProps(sources: string[]) {
   const highlightedExamples: Record<string, string> = {};
 
-  for (const fileName of fileNames) {
-    const raw = await import(`!!raw-loader!../examples/${fileName}`);
+  for (const source of sources) {
+    const raw = await import(`!!raw-loader!../examples/${source}`);
     // Replace imports from the code
     const code = raw.default.replace('export default ', '').trim();
-    const html = await highlightCode(code, 'tsx');
-    highlightedExamples[fileName] = html;
+    const html = await highlightCode(code, source.substr(-3) as Lang);
+    highlightedExamples[source] = html;
   }
   return {
     props: {

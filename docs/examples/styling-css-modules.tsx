@@ -1,24 +1,8 @@
-import { useState } from 'react';
+import { DayPicker } from 'react-day-picker';
+import defaultStyles from 'react-day-picker/dist/style.module.css';
 
-import { ClassNames, DayPicker } from 'react-day-picker';
-import styles from 'react-day-picker/dist/style.css';
+import customStyles from './styling-css-modules.module.css';
 
-export default function Example() {
-  const [selectedDay, setSelectedDay] = useState<Date>();
-
-  const classNames: Partial<ClassNames> = {
-    ...styles,
-    head_row: 'custom-head'
-  };
-  return (
-    <>
-      <style>{`.custom-head { color: red }`}</style>
-      <DayPicker
-        mode="single"
-        classNames={classNames}
-        selected={selectedDay}
-        onSelect={setSelectedDay}
-      />
-    </>
-  );
+export default function App() {
+  return <DayPicker classNames={{ ...defaultStyles, ...customStyles }} />;
 }

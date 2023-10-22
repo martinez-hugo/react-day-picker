@@ -7,7 +7,7 @@ const availableStyle = {
   color: 'lightgreen'
 };
 
-export default function Example() {
+export default function App() {
   return (
     <DayPicker
       defaultMonth={availableDays[0]}

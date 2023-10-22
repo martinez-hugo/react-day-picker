@@ -1,7 +1,7 @@
 import { DayPicker } from 'react-day-picker';
 
 /** Test for the next focus day to not cause an infinite recursion. */
-export default function Example() {
+export default function App() {
   const disabledDays = [
     new Date(2022, 5, 4),
     {

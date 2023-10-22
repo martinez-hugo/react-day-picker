@@ -3,7 +3,7 @@ import { ChangeEventHandler, useState } from 'react';
 import { format, isAfter, isBefore, isValid, parse } from 'date-fns';
 import { DateRange, DayPicker, DaySelectEventHandler } from 'react-day-picker';
 
-export default function Example() {
+export default function App() {
   const [selectedRange, setSelectedRange] = useState<DateRange>();
   const [fromValue, setFromValue] = useState<string>('');
   const [toValue, setToValue] = useState<string>('');

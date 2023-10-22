@@ -7,54 +7,137 @@ import {
 } from '../../components/SourceCode';
 import { RenderingBox } from '../../components/RenderingBox';
 
+import StylingInline from 'react-day-picker/docs/examples/styling-inline.tsx';
+import StylingModifiers from 'react-day-picker/docs/examples/styling-modifiers.tsx';
+import CSSModules from 'react-day-picker/docs/examples/styling-css-modules.tsx';
+import CSSVariables from 'react-day-picker/docs/examples/css-variables.tsx';
+
 export const getStaticProps = () =>
   getSourceCodeStaticProps([
+    'css-variables.tsx',
+    'css-variables.module.css',
+    'styling-inline.tsx',
     'styling-modifiers.tsx',
     'styling-css-modules.tsx',
-    'styling-inline.tsx'
+    'styling-css-modules.module.css'
   ]);
 
 # Styling DayPicker
 
-Change the appearance of the HTML elements composing DayPicker, such as headings, cells, buttons.
+Change the appearance of the HTML elements, such as headings, grid cells and
+buttons.
 
-## Default style
+## Using the Default Styles
 
-DayPicker comes with for a minimal, lightweight style. Import it into your app's root component, or add it into your build pipeline.
+DayPicker comes with for a minimal, lightweight style. Import
+`react-day-picker/dist/style.css` in your application root component, or add it
+into your build pipeline:
 
-```tsx filename="App.tsx" {2}
-import './my-app.css';
+```tsx showLineNumbers filename="App.tsx" {2}
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css'; // Import this CSS for using the default class names
+
+function App() {
+  return (
+    <div role="application">
+      <DayPicker />
+    </div>
+  );
+}
+```
+
+### Importing as CSS module
+
+If you need to import CSS modules to generate unique class names, import from `style.module.css`
+instead. Use then the `classNames` prop to pass the new class names to DayPicker.
+
+```tsx showLineNumbers filename="App.tsx" {2,7} showLineNumbers
+import { DayPicker } from 'react-day-picker';
+import classNames from 'react-day-picker/dist/style.module.css'; // Import this for CSS modules
+
+function App() {
+  return (
+    <div role="application">
+      <DayPicker classNames={classNames} />
+    </div>
+  );
+}
+```
+
+## Changing the CSS variables
+
+You can also override the CSS variables using the `className` prop:
+
+<SourceCode
+  source="css-variables.module.css"
+  filename="css-variables.module.css"
+/>
+
+<SourceCode source="css-variables.tsx" />
+
+<RenderingBox>
+  <CSSVariables />
+</RenderingBox>
+
+TODO: css variables playground
+
+## Extending the Default Styles
+
+To further customize the styles, override the DayPicker CSS. For example, to
+change the background color of the day cells, add this style sheet:
+
+```css filename="App.css"
+.rdp-day {
+  background-color: #f0f0f0;
+}
+```
+
+```tsx filename=App.tsx {4}
+import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
-export default App() {
-  // snip
+import './App.css'; // Import your custom styles to override the default CSS
+
+function App() {
+  return <DayPicker />;
 }
 ```
 
-This will add the [DayPicker stylesheet](https://github.com/gpbl/react-day-picker/blob/main/style.css) into your app. The stylesheet includes some CSS global variables, to override colors and sizes:
+### Extending with CSS modules
 
-```css
-.rdp {
-  --rdp-cell-size: 40px;
-  --rdp-accent-color: #0000ff;
-  --rdp-background-color: #e7edff;
-  /* Switch to dark colors for dark themes */
-  --rdp-accent-color-dark: #3003e1;
-  --rdp-background-color-dark: #180270;
-  /* Outline border for focused elements */
-  --rdp-outline: 2px solid var(--rdp-accent-color);
-  /* Outline border for focused and selected elements */
-  --rdp-outline-selected: 2px solid rgba(0, 0, 0, 0.75);
-}
-```
+When using CSS modules, override the class names with your custom CSS:
+
+<SourceCode
+  source="styling-css-modules.module.css"
+  filename="styling-css-modules.module.css"
+/>
+<SourceCode source="styling-css-modules.tsx" />
+
+<RenderingBox>
+  <CSSModules />
+</RenderingBox>
+
+### Using Inline Styles
+
+To change the appearance of any DayPicker element via inline-styles use the
+`styles` prop.
+
+Using inline styles won't override the default class names. Mouse hover effects
+cannot be styled inline.
+
+<SourceCode source="styling-inline.tsx" />
+
+<RenderingBox>
+  <StylingInline />
+</RenderingBox>
 
 ## Styling Modifiers
 
-In DayPicker, change the style of [Modifiers](/basics/modifiers) with the `modifiersClassNames` or `modifiersStyles`. This will set the class name or the inline style for the days with the modifiers.
+Change the style of [Modifiers](/basics/modifiers) with the
+`modifiersClassNames` or `modifiersStyles`. This will set the class name or the
+inline style for the days with the modifiers.
 
-<SourceCode fileName="styling-modifiers.tsx" />
-
-import StylingModifiers from 'react-day-picker/docs/examples/styling-modifiers.tsx';
+<SourceCode source="styling-modifiers.tsx" />
 
 <RenderingBox>
   <StylingModifiers />
@@ -62,7 +145,7 @@ import StylingModifiers from 'react-day-picker/docs/examples/styling-modifiers.t
 
 With CSS modules, pass the generated class name instead:
 
-```tsx {7-10,1}
+```tsx {7-10,1} showLineNumbers
 import style from './your-style.module.css';
 
 function App() {
@@ -77,53 +160,3 @@ function App() {
   );
 }
 ```
-
-## Styling with CSS
-
-This approach involves just CSS and works well if you need the same style across your app.
-
-<Steps>
-### Import a new CSS file
-
-Create and import it after the default style, e.g. `my-date-picker.css`:
-
-```tsx
-import 'react-day-picker/dist/style.css';
-import './my-date-picker.css';
-```
-
-### Override the default CSS properties
-
-Use the browser's DevTools or refer to the [stylesheet source](https://github.com/gpbl/react-day-picker/blob/main/style.css) to find the right selectors to override.
-
-```css title="my-date-picker.css"
-.rdp-day_today {
-  color: red;
-}
-```
-
-</Steps>
-
-### Using CSS Modules
-
-With CSS modules, import the generated class name from the CSS and pass them to the `classNames` prop.
-
-<SourceCode fileName="styling-css-modules.tsx" />
-
-import CSSModules from 'react-day-picker/docs/examples/styling-css-modules.tsx';
-
-<RenderingBox>
-  <CSSModules />
-</RenderingBox>
-
-### Using Inline Styles
-
-To change the appearance of any DayPicker element via inline-styles use the `styles` prop.
-
-<SourceCode fileName="styling-inline.tsx" />
-
-import InlineStyling from 'react-day-picker/docs/examples/styling-inline.tsx';
-
-<RenderingBox>
-  <InlineStyling />
-</RenderingBox>

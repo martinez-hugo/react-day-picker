@@ -139,7 +139,7 @@ describe.each(['ltr', 'rtl'])('when text direction is %s', (dir: string) => {
           focusDaysGrid();
         });
         test('the today button should have focus', () => {
-          expect(gridcell(today, 2)).toHaveFocus();
+          expect(gridcell(today)).toHaveFocus();
         });
       });
     });

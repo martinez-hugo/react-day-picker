@@ -1,42 +1,25 @@
-import { useState } from 'react';
-
+import { addDays } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 
-const css = `
-  .my-selected:not([disabled]) { 
-    font-weight: bold; 
-    border: 2px solid currentColor;
-  }
-  .my-selected:hover:not([disabled]) { 
-    border-color: blue;
-    color: blue;
-  }
-  .my-today { 
-    font-weight: bold;
-    font-size: 140%; 
-    color: red;
-  }
-`;
+import customStyles from './styling-modifiers.module.css';
 
-export default function Example() {
-  const [selectedDay, setSelectedDay] = useState<Date[]>();
+const today = new Date();
+const beforeYesterday = addDays(today, -2);
+
+export default function App() {
   return (
-    <>
-      <style>{css}</style>
-      <DayPicker
-        mode="multi"
-        selected={selectedDay}
-        max={3}
-        onSelect={setSelectedDay}
-        modifiersClassNames={{
-          selected: 'my-selected',
-          today: 'my-today'
-        }}
-        modifiersStyles={{
-          disabled: { fontSize: '75%' }
-        }}
-        footer="Try to select 3+ days to see the custom class names or styles applied."
-      />
-    </>
+    <DayPicker
+      selected={[new Date()]}
+      disabled={beforeYesterday}
+      modifiersClassNames={{
+        selected: customStyles.purpleToday
+      }}
+      modifiersStyles={{
+        disabled: {
+          // Add a line-through style to the disabled days
+          textDecoration: 'line-through'
+        }
+      }}
+    />
   );
 }

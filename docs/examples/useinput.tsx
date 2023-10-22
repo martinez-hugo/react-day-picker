@@ -1,6 +1,6 @@
 import { DayPicker, useInput } from 'react-day-picker';
 
-export default function Example() {
+export default function App() {
   const { htmlAttributes, dayPickerProps } = useInput({
     defaultSelected: new Date(),
     fromYear: 2021,

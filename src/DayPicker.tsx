@@ -275,7 +275,7 @@ export interface DayPickerBaseProps {
   /**
    * Apply the `selected` modifier to the matching days.
    */
-  selected?: Matcher | Matcher[] | undefined;
+  // selected?: Matcher | Matcher[] | undefined;
 
   /**
    * The today’s date. Default is the current date. This Date will get the
@@ -339,6 +339,7 @@ export interface DayPickerSingleProps {
   mode: 'single';
   selected?: DayPickerSelectedValue<'single'> | undefined;
   onSelect?: DaySelectEventHandler<'single'>;
+  /** Make the selection required. */
   required?: boolean;
 }
 
@@ -349,7 +350,9 @@ export interface DayPickerMultiProps {
   mode: 'multi';
   selected?: DayPickerSelectedValue<'multi'> | undefined;
   onSelect?: DaySelectEventHandler<'multi'>;
+  /** The minimum amount of days that must be selected. */
   min?: number;
+  /** The minimum amount of days that can be selected. */
   max?: number;
 }
 
@@ -360,7 +363,9 @@ export interface DayPickerRangeProps {
   mode: 'range';
   selected?: DayPickerSelectedValue<'range'> | undefined;
   onSelect?: DaySelectEventHandler<'range'>;
+  /** The minimum amount of days that must be selected.  */
   min?: number;
+  /** The minimum amount of days that can be selected. */
   max?: number;
 }
 
