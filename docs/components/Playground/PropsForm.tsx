@@ -56,9 +56,6 @@ export function PropsForm(props: PropsFormProps) {
     onRangePropsChange
   } = props;
 
-  // console.log('mode', mode);
-  // console.log('baseProps', baseProps);
-  // console.log('singleProps', singleProps);
   return (
     <Form>
       <Fieldset legend="Selection mode">

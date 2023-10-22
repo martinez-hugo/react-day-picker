@@ -3,9 +3,19 @@ import {
   getSourceCodeStaticProps
 } from '../../components/SourceCode';
 import { RenderingBox } from '../../components/RenderingBox';
+
+import Single from 'react-day-picker/docs/examples/single.tsx';
+import SingleRequired from 'react-day-picker/docs/examples/single-required.tsx';
+import CustomMultiple from 'react-day-picker/docs/examples/custom-multiple.tsx';
+
 import 'react-day-picker/dist/style.css';
 
-export const getStaticProps = () => getSourceCodeStaticProps(['single.tsx']);
+export const getStaticProps = () =>
+  getSourceCodeStaticProps([
+    'single.tsx',
+    'single-required.tsx',
+    'custom-multiple.tsx'
+  ]);
 
 # Selection Modes
 
@@ -19,13 +29,9 @@ DayPicker supports **3 built-in selection modes** to display days as selected. E
 
 To enable single day selection, set `mode="single"` and use `onSelect` to get the selected day.
 
-import Single from 'react-day-picker/docs/examples/single.tsx';
-
 <SourceCode fileName="single.tsx" />
 
-<RenderingBox>
-  <Single />
-</RenderingBox>
+<RenderingBox>{/* <Single /> */}</RenderingBox>
 
 ### Making a selection required
 
@@ -33,9 +39,11 @@ To make a selection required, use `defautSelected` with `required`.
 
 For example, to set the default selected date to today:
 
-```include-example
-single-required
-```
+<SourceCode fileName="single-required.tsx" />
+
+<RenderingBox>
+  <SingleRequired />
+</RenderingBox>
 
 ## Selecting Multiple Days
 
@@ -75,15 +83,15 @@ If the built-in selection modes are not enough for your app’s requirements, yo
 
 For example, to implement the "single selection" behavior (like when `mode="single"`):
 
-```include-example
-custom-single
-```
+<SourceCode fileName="single.tsx" />
+
+<RenderingBox>{/* <Single /> */}</RenderingBox>
 
 ### Example: custom multiple select
 
 The case of a multi-days select is a bit more complex as it deals with an array. The following example replicates the `mode="multiple"`
 selection mode.
 
-```include-example
-custom-multiple
-```
+<SourceCode fileName="custom-multiple.tsx" />
+
+<RenderingBox>{/* <CustomMultiple /> */}</RenderingBox>

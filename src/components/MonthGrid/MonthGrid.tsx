@@ -1,9 +1,10 @@
 import { useId } from 'react';
+
+import { DayPickerMonth } from '../../contexts/CalendarContext';
+import { useDayPicker } from '../../contexts/DayPickerContext';
 import { MonthCaption as DefaultMonthCaption } from '../MonthCaption';
 import { WeekdaysRow as DefaultWeekdaysRow } from '../WeekdaysRow';
 import { WeekRow as DefaultWeekRow } from '../WeekRow';
-import { DayPickerMonth } from '../../contexts/CalendarContext';
-import { useDayPicker } from '../../contexts/DayPickerContext';
 
 export interface MonthGridProps
   extends Pick<React.AriaAttributes, 'aria-labelledby'> {
@@ -17,16 +18,8 @@ export interface MonthGridProps
  * Render the grid with the weekday header row and the weeks for the given month.
  */
 export function MonthGrid(props: MonthGridProps) {
-  const {
-    id,
-    mode,
-    hideWeekdayRow,
-    components,
-    classNames,
-    styles,
-    labels: { labelGrid },
-    locale
-  } = useDayPicker();
+  const { id, mode, hideWeekdayRow, components, classNames, styles } =
+    useDayPicker();
 
   const reactId = useId();
   const captionId = id ? `${id}-caption-${props.displayIndex}` : reactId;
@@ -46,7 +39,7 @@ export function MonthGrid(props: MonthGridProps) {
         id={gridId}
         role="grid"
         aria-multiselectable={mode === 'multi' || mode === 'range'}
-        aria-label={labelGrid(props.month.date, { locale })}
+        aria-labelledby={captionId}
         className={classNames.month_grid}
         style={styles?.month_grid}
       >

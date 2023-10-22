@@ -1,3 +1,18 @@
+import {
+  SourceCode,
+  getSourceCodeStaticProps
+} from '../../components/SourceCode';
+import { RenderingBox } from '../../components/RenderingBox';
+
+import Rtl from '@examples/rtl.tsx';
+import WeekIso from '@examples/week-iso.tsx';
+import NumberingSystem from '@examples/numbering-system.tsx';
+
+import 'react-day-picker/dist/style.css';
+
+export const getStaticProps = () =>
+  getSourceCodeStaticProps(['numbering-system.tsx', 'rtl.tsx', 'week-iso.tsx']);
+
 # Localization
 
 ## Changing locale
@@ -30,17 +45,21 @@ weeknumber-custom
 
 By default, week numbers and week days follow the DayPicker's locale. Use the `ISOWeek` prop to switch to [ISO week dates](https://en.wikipedia.org/wiki/ISO_week_date).
 
-```include-example
-week-iso
-```
+<SourceCode fileName="week-iso.tsx" />
+
+<RenderingBox>
+  <WeekIso />
+</RenderingBox>
 
 ## Switching to right-to-left direction
 
 To add right-to-left text direction, set the `dir` prop to `rtl`.
 
-```include-example
-rtl
-```
+<SourceCode fileName="rtl.tsx" />
+
+<RenderingBox>
+  <Rtl />
+</RenderingBox>
 
 ## Other numbering systems
 
@@ -48,9 +67,11 @@ Use [formatters](/guides/formatters) to change the numbering system used in the 
 
 For example, to switch to hindu-arabic using [toLocaleString](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString):
 
-```include-example
-numbering-system
-```
+<SourceCode fileName="numbering-system.tsx" />
+
+<RenderingBox>
+  <NumberingSystem />
+</RenderingBox>
 
 ## ARIA labels translations
 

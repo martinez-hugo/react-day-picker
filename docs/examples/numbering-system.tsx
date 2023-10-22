@@ -11,7 +11,10 @@ const formatWeekNumber: Formatters['formatWeekNumber'] = (weekNumber) => {
   return weekNumber.toLocaleString(NU_LOCALE);
 };
 
-const formatCaption: Formatters['formatCaption'] = (date, options) => {
+const formatMonthCaption: Formatters['formatMonthCaption'] = (
+  date,
+  options
+) => {
   const y = date.getFullYear().toLocaleString(NU_LOCALE);
   const m = format(date, 'LLLL', { locale: options?.locale });
   return `${m} ${y}`;
@@ -23,7 +26,7 @@ export default function Example() {
       locale={arSA}
       dir="rtl"
       showWeekNumber
-      formatters={{ formatDay, formatCaption, formatWeekNumber }}
+      formatters={{ formatDay, formatMonthCaption, formatWeekNumber }}
     />
   );
 }

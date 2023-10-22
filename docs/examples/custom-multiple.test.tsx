@@ -29,7 +29,7 @@ describe('when a day is clicked', () => {
     expect(gridcell(day1)).toHaveAttribute('aria-selected', 'true');
   });
   test('should update the footer', () => {
-    expect(grid()).toHaveTextContent('You selected 1 days.');
+    expect(app()).toHaveTextContent('You selected 1 days.');
   });
   describe('when a second day is clicked', () => {
     const day2 = new Date(2021, 10, 2);

@@ -3,6 +3,7 @@ import {
   endOfISOWeek,
   endOfMonth,
   endOfWeek,
+  getISOWeek,
   getWeek,
   startOfISOWeek,
   startOfWeek
@@ -62,11 +63,13 @@ export function getDayPickerMonths(
     }
 
     const dayPickerWeeks = monthDates.reduce<DayPickerWeek[]>((weeks, date) => {
-      const weekNumber = getWeek(date, {
-        locale,
-        weekStartsOn,
-        firstWeekContainsDate
-      });
+      const weekNumber = ISOWeek
+        ? getISOWeek(date)
+        : getWeek(date, {
+            locale,
+            weekStartsOn,
+            firstWeekContainsDate
+          });
       const week = weeks.find((week) => week.weekNumber === weekNumber);
 
       const day = new DayPickerDay(date, month);

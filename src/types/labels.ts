@@ -1,5 +1,4 @@
 import { labelDay } from '../labels/labelDay';
-import { labelGrid } from '../labels/labelGrid';
 import { labelMonthDropdown } from '../labels/labelMonthDropdown';
 import { labelNext } from '../labels/labelNext';
 import { labelPrevious } from '../labels/labelPrevious';
@@ -14,8 +13,6 @@ export type Labels = {
   labelMonthDropdown: typeof labelMonthDropdown;
   /** Return the label for the year dropdown. */
   labelYearDropdown: typeof labelYearDropdown;
-  /** Return the label for the month grid. */
-  labelGrid: typeof labelGrid;
   /** Return the label for the next month button. */
   labelNext: typeof labelNext;
   /** Return the label for the previous month button. */

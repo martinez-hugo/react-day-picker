@@ -15,7 +15,6 @@ export function MonthCaption(props: MonthCaptionProps) {
   return (
     <div
       id={props.id}
-      role="presentation"
       className={classNames.month_caption}
       style={styles?.month_caption}
     >

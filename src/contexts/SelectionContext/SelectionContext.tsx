@@ -1,9 +1,9 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 
 import { isSameDay } from 'date-fns';
-import { DayPickerSelectedValue, DaysSelectionMode } from '../../DayPicker';
 
 import { useDayPicker } from '../../contexts/DayPickerContext';
+import { DayPickerSelectedValue, DaysSelectionMode } from '../../DayPicker';
 import { DateRange, MatchingModifiers } from '../../types';
 
 export type SelectionContext<TMode extends DaysSelectionMode | unknown> = {
@@ -59,7 +59,7 @@ export function SelectionProvider<
     e: React.MouseEvent<Element, MouseEvent>
   ) => {
     let newSingleValue: DayPickerSelectedValue<'single'>;
-    if (singleValue && isSameDay(singleValue, date) && !required) {
+    if (dayModifiers.selected && !required) {
       newSingleValue = undefined;
     } else {
       newSingleValue = date;

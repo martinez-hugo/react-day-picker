@@ -1,16 +1,14 @@
 import { RenderResult } from '@testing-library/react';
 import { addDays } from 'date-fns';
 
+import { gridcell } from '../../../test';
 import { customRender } from '../../../test/render';
 import { queryMonthGrids } from '../../../test/selectors';
 import { freezeTime } from '../../../test/utils';
-
 import { defaultClassNames } from '../../contexts/DayPickerContext/defaultClassNames';
-import { ClassNames } from '../../types/styles';
-
-import { Calendar } from './Calendar';
 import { DayPickerProps } from '../../DayPicker';
-import { gridcell } from '../../../test';
+import { ClassNames } from '../../types/styles';
+import { Calendar } from './Calendar';
 
 const today = new Date(2020, 10, 4);
 freezeTime(today);
@@ -46,7 +44,6 @@ describe('when the number of months is greater than 1', () => {
 describe('when using the "classNames" prop', () => {
   const classNames: ClassNames = {
     rdp: 'foo-rdp',
-    vhidden: '',
     with_weeknumber: '',
     months_wrapper: '',
     caption: '',
@@ -64,7 +61,6 @@ describe('when using the "classNames" prop', () => {
     head_row: '',
     row: '',
     head_cell: '',
-    tbody: '',
     cell: '',
     day: '',
     day_today: '',

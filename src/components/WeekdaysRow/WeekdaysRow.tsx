@@ -1,6 +1,5 @@
-import { WeekdayColumnHeader as DefaultWeekdayColumnHeader } from '../WeekdayColumnHeader';
 import { useDayPicker } from '../../contexts/DayPickerContext';
-
+import { WeekdayColumnHeader as DefaultWeekdayColumnHeader } from '../WeekdayColumnHeader';
 import { getWeekdays } from './utils/getWeekdays';
 
 export function WeekdaysRow() {
@@ -19,16 +18,13 @@ export function WeekdaysRow() {
   const WeekdayColumnHeader =
     components?.WeekdayColumnHeader ?? DefaultWeekdayColumnHeader;
 
-  const classNamesList = [classNames.weekdays_row];
-  if (hideWeekdayRow) {
-    classNamesList.push(classNames.vhidden);
-  }
   return (
     <div
       role="row"
+      hidden={hideWeekdayRow}
       aria-rowindex={1}
       style={styles?.weekdays_row}
-      className={classNamesList.join(' ')}
+      className={classNames.weekdays_row}
       onClick={(e) => e.stopPropagation()}
     >
       {showWeekNumber && <WeekdayColumnHeader aria-colindex={1} />}

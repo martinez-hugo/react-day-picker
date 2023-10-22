@@ -1,4 +1,5 @@
 .rdp {
+  --rdp-months-gap: 2rem;
   --rdp-cell-size: 2.75rem;
   --rdp-font-small: 0.8125rem;
   --rdp-font-medium: 1rem;
@@ -8,10 +9,16 @@
   --rdp-background-color: #e0efff;
   --rdp-outline: 2px solid var(--rdp-accent-color); /* Outline border for focused elements */
   --rdp-outline-selected: 3px solid var(--rdp-accent-color); /* Outline border for focused _and_ selected elements */
+
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
 }
 
-.rdp.contrast_no-preference {
+.rdp * {
+  box-sizing: border-box;
 }
+
 @media (prefers-contrast: more) {
   .rdp {
     --rdp-opacity: 0.8;
@@ -44,46 +51,11 @@
   --rdp-accent-color: #0a84ff;
   --rdp-background-color: #02203d;
 }
-.rdp.color_auto {
-}
-
-.rdp {
-  display: inline-block;
-  position: relative;
-}
-
-.rdp,
-.rdp * {
-  box-sizing: border-box;
-}
-
-/* Hide elements for devices that are not screen readers */
-.vhidden {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  background: transparent;
-  border: 0;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  position: absolute !important;
-  inset-block-start: 0;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-  clip: rect(1px, 1px, 1px, 1px) !important;
-  border: 0 !important;
-}
-
-.with_weeknumber {
-}
 
 .months_wrapper {
   display: flex;
   flex-wrap: wrap;
-  gap: 2em;
+  gap: var(--rdp-months-gap);
 }
 
 .caption {
@@ -238,12 +210,8 @@
   justify-content: center;
 }
 
-.tbody {
-  border: 0;
-}
-
 .footer {
-  margin: 0.5em;
+  margin: 0.5em 0;
 }
 
 .cell {
@@ -342,9 +310,6 @@
   opacity: var(--rdp-opacity);
 }
 
-.weekdays_row {
-}
-
 .weekday_columnheader {
   text-align: center;
   opacity: var(--rdp-opacity);
@@ -360,28 +325,13 @@
   grid-template-columns: repeat(7, 1fr);
 }
 
-.with_weeknumber .weekdays_row,
-.with_weeknumber .week_row {
+.rdp.with_weeknumber .weekdays_row,
+.rdp.with_weeknumber .week_row {
   grid-template-columns: repeat(8, 1fr);
 }
 
-.month_grid_wrapper {
-}
-
-.month_rowgroup {
-}
-.month_grid {
-}
 .month_caption {
   margin-bottom: 0.5em;
   font-size: var(--rdp-font-large);
   font-weight: 600;
-}
-
-.caption_between {
-}
-
-.button_icon {
-}
-.footer {
 }

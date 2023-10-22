@@ -8,7 +8,6 @@ import {
 } from '../../contexts/CalendarContext';
 import { useDayPicker } from '../../contexts/DayPickerContext';
 import { useControlledValue } from '../../hooks/useControlledValue';
-
 import { getMonthsAndDates } from './getMonthsAndDates';
 import { getFirstLastMonths } from './utils/getFirstLastMonths';
 import { getNextMonth } from './utils/getNextMonth';
@@ -36,19 +35,7 @@ export function CalendarProvider(providerProps: { children?: ReactNode }) {
     dayPicker.onMonthChange?.(month);
   };
 
-  const calendar = getMonthsAndDates(
-    currentMonth,
-    lastMonth,
-    dayPicker.numberOfMonths,
-    dayPicker.reverseMonths,
-    dayPicker.ISOWeek,
-    dayPicker.fixedWeeks,
-    {
-      locale: dayPicker.locale,
-      weekStartsOn: dayPicker.weekStartsOn,
-      firstWeekContainsDate: dayPicker.firstWeekContainsDate
-    }
-  );
+  const calendar = getMonthsAndDates(currentMonth, lastMonth, dayPicker);
 
   const nextMonth = getNextMonth(currentMonth, dayPicker);
   const previousMonth = getPreviousMonth(currentMonth, dayPicker);

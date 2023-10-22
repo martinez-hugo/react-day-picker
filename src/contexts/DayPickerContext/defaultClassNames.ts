@@ -7,7 +7,6 @@ export const defaultClassNames: Required<ClassNames> = {
   rdp: 'rdp',
   multiple_months: 'multiple_months',
   with_weeknumber: 'with_weeknumber',
-  vhidden: 'vhidden',
 
   month_caption: 'month_caption',
 
@@ -56,9 +55,8 @@ export const defaultClassNames: Required<ClassNames> = {
   head_row: 'head_row',
   row: 'row',
   head_cell: 'head_cell',
-  tbody: 'tbody',
   cell: 'cell',
-  footer: '',
+  footer: 'footer',
   contrast_more: 'contrast_more',
   contrast_less: 'contrast_less',
   color_dark: 'dark',

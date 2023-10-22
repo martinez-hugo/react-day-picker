@@ -6,7 +6,6 @@ declare const style: {
   color_light: string;
   color_dark: string;
   color_auto: string;
-  vhidden: string;
   with_weeknumber: string;
   months_wrapper: string;
   caption: string;
@@ -26,7 +25,6 @@ declare const style: {
   head_row: string;
   row: string;
   head_cell: string;
-  tbody: string;
   footer: string;
   cell: string;
   day: string;
@@ -62,8 +60,6 @@ export type StyledElement<T = string | React.CSSProperties> = {
   readonly multiple_months: T;
   /** The root element when `showWeekNumber={true}`. */
   readonly with_weeknumber: T;
-  /** The style of an element visually hidden. */
-  readonly vhidden: T;
   /** The style for resetting the buttons. */
   readonly button_reset: T;
   /** The buttons. */

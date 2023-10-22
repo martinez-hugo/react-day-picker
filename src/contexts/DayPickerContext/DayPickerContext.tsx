@@ -2,6 +2,8 @@ import { createContext, ReactNode, useContext, useId } from 'react';
 
 import { Locale, startOfDay } from 'date-fns';
 import { enUS } from 'date-fns/locale';
+
+import { CaptionLayout } from '../../components/Nav';
 import {
   CustomComponents,
   DayPickerBaseProps,
@@ -15,8 +17,6 @@ import {
 } from '../../DayPicker';
 import * as formatters from '../../formatters';
 import * as labels from '../../labels';
-
-import { CaptionLayout } from '../../components/Nav';
 import {
   ClassNames,
   CustomModifier,
@@ -37,7 +37,6 @@ import {
   MonthChangeEventHandler,
   WeekNumberClickEventHandler
 } from '../../types/events';
-
 import { defaultClassNames } from './defaultClassNames';
 import { parseFromToProps } from './utils/parseFromToProps';
 
@@ -149,25 +148,21 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
     }
   });
 
+  const { mode } = providerProps;
   const props = providerProps.dayPickerProps;
+
   const { fromDate, toDate } = parseFromToProps(props);
 
   const context: DayPickerContext<TMode> = {
     colorScheme: props.colorScheme ?? 'auto',
     contrastPreference: props.contrastPreference ?? 'no-preference',
-    mode: providerProps.mode,
+    mode: mode,
     onSelectSingle:
-      providerProps.mode === 'single'
-        ? (props as DayPickerSingleProps).onSelect
-        : undefined,
+      mode === 'single' ? (props as DayPickerSingleProps).onSelect : undefined,
     onSelectMulti:
-      providerProps.mode === 'multi'
-        ? (props as DayPickerMultiProps).onSelect
-        : undefined,
+      mode === 'multi' ? (props as DayPickerMultiProps).onSelect : undefined,
     onSelectRange:
-      providerProps.mode === 'range'
-        ? (props as DayPickerRangeProps).onSelect
-        : undefined,
+      mode === 'range' ? (props as DayPickerRangeProps).onSelect : undefined,
 
     captionLayout: props.captionLayout || 'buttons',
     className: props.className,
@@ -198,9 +193,13 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
     labels: { ...labels, ...props.labels },
     locale: props.locale ?? enUS,
     max:
-      props.mode === 'multi' || props.mode === 'range' ? props.max : undefined,
+      mode === 'multi' || mode === 'range'
+        ? (props as DayPickerMultiProps).max
+        : undefined,
     min:
-      props.mode === 'multi' || props.mode === 'range' ? props.min : undefined,
+      mode === 'multi' || mode === 'range'
+        ? (props as DayPickerMultiProps).min
+        : undefined,
     modifiers: props.modifiers || undefined,
     modifiersClassNames: props.modifiersClassNames || undefined,
     modifiersStyles: props.modifiersStyles || undefined,
@@ -208,7 +207,10 @@ export function DayPickerProvider<TMode extends DaysSelectionMode>(
     month: props.month,
     numberOfMonths: props.numberOfMonths ?? 1,
     pagedNavigation: props.pagedNavigation ?? false,
-    required: props.mode === 'single' ? props.required ?? false : false,
+    required:
+      mode === 'single'
+        ? Boolean((props as DayPickerSingleProps).required)
+        : false,
     reverseMonths: props.reverseMonths ?? false,
     selected: props.selected,
     showOutsideDays: props.showOutsideDays ?? false,
