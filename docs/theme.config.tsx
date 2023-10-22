@@ -1,7 +1,7 @@
 import { DocsThemeConfig } from 'nextra-theme-docs';
 
 const config: DocsThemeConfig = {
-  logo: <strong>React DayPicker</strong>,
+  logo: <strong>🗓️ React DayPicker</strong>,
   docsRepositoryBase: `https://github.com/gpbl/react-day-picker/tree/${process.env.GIT_BRANCH}/docs`,
   // primaryHue: 43,
   useNextSeoProps() {

@@ -6,9 +6,8 @@ import Example from './focus-recursive';
 const today = new Date(2022, 5, 10);
 freezeTime(today);
 
-let app: HTMLElement;
 beforeEach(async () => {
-  app = renderApp(<Example />).app;
+  renderApp(<Example />);
   await user.tab();
   await user.tab();
   await user.tab();
