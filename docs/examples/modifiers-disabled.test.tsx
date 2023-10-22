@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-
 import { freezeTime, gridcell } from '../../test';
 import Example from './modifiers-disabled';
 

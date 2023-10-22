@@ -1,6 +1,6 @@
-import { ChangeEventHandler, useState } from 'react';
-
 import { DayPicker } from 'react-day-picker';
+
+import { ChangeEventHandler, useState } from 'react';
 
 export default function App() {
   const [selected, setSelected] = useState<Date>();
@@ -45,7 +45,6 @@ export default function App() {
   return (
     <>
       <DayPicker
-        mode="single"
         selected={selected}
         onSelect={handleDaySelect}
         footer={

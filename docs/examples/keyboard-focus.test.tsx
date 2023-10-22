@@ -1,7 +1,7 @@
-import { addDays, addMonths, startOfMonth } from 'date-fns';
 import { DayPickerProps } from 'react-day-picker';
 import { getFocusedElement } from 'react-day-picker/test/selectors';
 
+import { addDays, addMonths, startOfMonth } from 'date-fns';
 import {
   app,
   axe,

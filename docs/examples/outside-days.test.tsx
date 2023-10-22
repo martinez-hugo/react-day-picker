@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-
 import { app, axe, freezeTime, renderApp } from '../../test';
 import Example from './outside-days';
 

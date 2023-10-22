@@ -1,8 +1,8 @@
-import { ChangeEventHandler, createRef, useState } from 'react';
+import { DayPicker, DaySelectEventHandler } from 'react-day-picker';
 
 import { format, isValid, parse } from 'date-fns';
 import FocusTrap from 'focus-trap-react';
-import { DayPicker, DaySelectEventHandler } from 'react-day-picker';
+import { ChangeEventHandler, createRef, useState } from 'react';
 import { usePopper } from 'react-popper';
 
 export default function DatePickerDialog() {
@@ -90,7 +90,6 @@ export default function DatePickerDialog() {
           >
             <DayPicker
               initialFocus={isPopperOpen}
-              mode="single"
               defaultMonth={selected}
               selected={selected}
               onSelect={handleDaySelect}

@@ -1,6 +1,6 @@
-import { useState } from 'react';
-
 import { DayPicker } from 'react-day-picker';
+
+import { useState } from 'react';
 
 export default function App() {
   const [weekNumber, setWeekNumber] = useState<number>();

@@ -1,5 +1,4 @@
 import { DayPickerSelectedValue, DaysSelectionMode } from '../DayPicker';
-
 import { MatchingModifiers } from './modifiers';
 
 export type DaySelectEventHandler<TMode extends DaysSelectionMode> = (

@@ -1,5 +1,6 @@
-import { startOfYear } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
+
+import { startOfYear } from 'date-fns';
 
 export default function App() {
   return (

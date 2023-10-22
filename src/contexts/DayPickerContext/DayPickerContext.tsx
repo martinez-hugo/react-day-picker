@@ -1,8 +1,6 @@
-import { createContext, ReactNode, useContext, useId } from 'react';
-
 import { Locale, startOfDay } from 'date-fns';
 import { enUS } from 'date-fns/locale';
-
+import { createContext, ReactNode, useContext, useId } from 'react';
 import { CaptionLayout } from '../../components/Nav';
 import {
   CustomComponents,
@@ -48,7 +46,7 @@ export type DataAttributes = Record<string, unknown>;
  * internal components to use safe props and avoid all conditionals.
  */
 export interface DayPickerContext<TMode extends DaysSelectionMode | unknown> {
-  mode: TMode | unknown;
+  mode: TMode;
 
   captionLayout: CaptionLayout;
   className: string | undefined;
@@ -126,10 +124,12 @@ export const dayPickerContext = createContext<
 >(undefined);
 
 /** The props for the {@link DayPickerProvider}. */
-export interface DayPickerProviderProps<TMode extends DaysSelectionMode> {
+export interface DayPickerProviderProps<
+  TMode extends DaysSelectionMode = 'single'
+> {
   mode: TMode;
   /** The initial props from the DayPicker component. */
-  dayPickerProps: DayPickerProps;
+  dayPickerProps: Omit<DayPickerProps, 'mode'>;
   children: ReactNode;
 }
 /**
@@ -137,126 +137,132 @@ export interface DayPickerProviderProps<TMode extends DaysSelectionMode> {
  * Must be the root of all the providers.
  */
 export function DayPickerProvider<TMode extends DaysSelectionMode>(
-  providerProps: DayPickerProviderProps<TMode>
+  props: DayPickerProviderProps<TMode>
 ) {
   const dataAttributes: DataAttributes = {};
   const id = useId();
 
-  Object.entries(providerProps.dayPickerProps).forEach(([key, val]) => {
+  Object.entries(props.dayPickerProps).forEach(([key, val]) => {
     if (key.startsWith('data-')) {
       dataAttributes[key] = val;
     }
   });
 
-  const { mode } = providerProps;
-  const props = providerProps.dayPickerProps;
+  const { mode, dayPickerProps } = props;
 
-  const { fromDate, toDate } = parseFromToProps(props);
+  const { fromDate, toDate } = parseFromToProps(dayPickerProps);
 
   const context: DayPickerContext<TMode> = {
-    colorScheme: props.colorScheme ?? 'auto',
-    contrastPreference: props.contrastPreference ?? 'no-preference',
-    mode: mode,
+    colorScheme: dayPickerProps.colorScheme ?? 'auto',
+    contrastPreference: dayPickerProps.contrastPreference ?? 'no-preference',
+    mode,
     onSelectSingle:
-      mode === 'single' ? (props as DayPickerSingleProps).onSelect : undefined,
+      mode === 'single'
+        ? (dayPickerProps as DayPickerSingleProps).onSelect
+        : undefined,
     onSelectMulti:
-      mode === 'multi' ? (props as DayPickerMultiProps).onSelect : undefined,
+      mode === 'multi'
+        ? (dayPickerProps as DayPickerMultiProps).onSelect
+        : undefined,
     onSelectRange:
-      mode === 'range' ? (props as DayPickerRangeProps).onSelect : undefined,
+      mode === 'range'
+        ? (dayPickerProps as DayPickerRangeProps).onSelect
+        : undefined,
 
-    captionLayout: props.captionLayout || 'buttons',
-    className: props.className,
+    captionLayout: dayPickerProps.captionLayout || 'buttons',
+    className: dayPickerProps.className,
     classNames: {
       ...defaultClassNames,
-      ...props.classNames
+      ...dayPickerProps.classNames
     },
-    components: props.components,
+    components: dayPickerProps.components,
     dataAttributes,
-    defaultMonth: props.defaultMonth,
-    dir: props.dir,
-    disabled: props.disabled,
-    disableNavigation: props.disableNavigation || false,
-    firstWeekContainsDate: props.firstWeekContainsDate,
-    fixedWeeks: props.fixedWeeks || false,
-    footer: props.footer,
+    defaultMonth: dayPickerProps.defaultMonth,
+    dir: dayPickerProps.dir,
+    disabled: dayPickerProps.disabled,
+    disableNavigation: dayPickerProps.disableNavigation || false,
+    firstWeekContainsDate: dayPickerProps.firstWeekContainsDate,
+    fixedWeeks: dayPickerProps.fixedWeeks || false,
+    footer: dayPickerProps.footer,
     formatters: {
       ...formatters,
-      ...props.formatters
+      ...dayPickerProps.formatters
     },
     fromDate,
-    fromMonth: props.fromMonth,
-    fromYear: props.fromYear,
-    hidden: props.hidden,
-    hideWeekdayRow: props.hideWeekdayRow ?? false,
-    id: props.id ?? id,
-    initialFocus: props.initialFocus ?? false,
-    ISOWeek: props.ISOWeek ?? false,
-    labels: { ...labels, ...props.labels },
-    locale: props.locale ?? enUS,
+    fromMonth: dayPickerProps.fromMonth,
+    fromYear: dayPickerProps.fromYear,
+    hidden: dayPickerProps.hidden,
+    hideWeekdayRow: dayPickerProps.hideWeekdayRow ?? false,
+    id: dayPickerProps.id ?? id,
+    initialFocus: dayPickerProps.initialFocus ?? false,
+    ISOWeek: dayPickerProps.ISOWeek ?? false,
+    labels: { ...labels, ...dayPickerProps.labels },
+    locale: dayPickerProps.locale ?? enUS,
     max:
       mode === 'multi' || mode === 'range'
-        ? (props as DayPickerMultiProps).max
+        ? (dayPickerProps as DayPickerMultiProps).max
         : undefined,
     min:
       mode === 'multi' || mode === 'range'
-        ? (props as DayPickerMultiProps).min
+        ? (dayPickerProps as DayPickerMultiProps).min
         : undefined,
-    modifiers: props.modifiers || undefined,
-    modifiersClassNames: props.modifiersClassNames || undefined,
-    modifiersStyles: props.modifiersStyles || undefined,
-    styles: props.styles,
-    month: props.month,
-    numberOfMonths: props.numberOfMonths ?? 1,
-    pagedNavigation: props.pagedNavigation ?? false,
+    modifiers: dayPickerProps.modifiers || undefined,
+    modifiersClassNames: dayPickerProps.modifiersClassNames || undefined,
+    modifiersStyles: dayPickerProps.modifiersStyles || undefined,
+    styles: dayPickerProps.styles,
+    month: dayPickerProps.month,
+    numberOfMonths: dayPickerProps.numberOfMonths ?? 1,
+    pagedNavigation: dayPickerProps.pagedNavigation ?? false,
     required:
       mode === 'single'
-        ? Boolean((props as DayPickerSingleProps).required)
+        ? Boolean((dayPickerProps as DayPickerSingleProps).required)
         : false,
-    reverseMonths: props.reverseMonths ?? false,
+    reverseMonths: dayPickerProps.reverseMonths ?? false,
     selected:
       mode === 'single'
-        ? (props as DayPickerSingleProps).selected
+        ? (dayPickerProps as DayPickerSingleProps).selected
         : mode === 'multi'
-        ? (props as DayPickerMultiProps).selected
+        ? (dayPickerProps as DayPickerMultiProps).selected
         : mode === 'range'
-        ? (props as DayPickerRangeProps).selected
+        ? (dayPickerProps as DayPickerRangeProps).selected
         : undefined,
 
-    showOutsideDays: props.showOutsideDays ?? false,
-    showWeekNumber: props.showWeekNumber ?? props.showWeekNumber ?? false,
-    style: props.style,
+    showOutsideDays: dayPickerProps.showOutsideDays ?? false,
+    showWeekNumber:
+      dayPickerProps.showWeekNumber ?? dayPickerProps.showWeekNumber ?? false,
+    style: dayPickerProps.style,
     toDate,
-    today: props.today ?? startOfDay(new Date()),
+    today: dayPickerProps.today ?? startOfDay(new Date()),
     toMonth: undefined,
     toYear: undefined,
-    weekStartsOn: props.weekStartsOn,
-    useAdditionalWeekYearTokens: props.useAdditionalWeekYearTokens,
-    useAdditionalDayOfYearTokens: props.useAdditionalWeekYearTokens,
+    weekStartsOn: dayPickerProps.weekStartsOn,
+    useAdditionalWeekYearTokens: dayPickerProps.useAdditionalWeekYearTokens,
+    useAdditionalDayOfYearTokens: dayPickerProps.useAdditionalWeekYearTokens,
 
     // Events
-    onDayBlur: props.onDayBlur,
-    onDayClick: props.onDayClick,
-    onDayFocus: props.onDayFocus,
-    onDayKeyDown: props.onDayKeyDown,
-    onDayKeyPress: props.onDayKeyPress,
-    onDayKeyUp: props.onDayKeyUp,
-    onDayMouseEnter: props.onDayMouseEnter,
-    onDayMouseLeave: props.onDayMouseLeave,
-    onDayPointerEnter: props.onDayPointerEnter,
-    onDayPointerLeave: props.onDayPointerLeave,
-    onDayTouchCancel: props.onDayTouchCancel,
-    onDayTouchEnd: props.onDayTouchEnd,
-    onDayTouchMove: props.onDayTouchMove,
-    onDayTouchStart: props.onDayTouchStart,
-    onMonthChange: props.onMonthChange,
-    onNextClick: props.onNextClick,
-    onPrevClick: props.onPrevClick,
-    onWeekNumberClick: props.onWeekNumberClick
+    onDayBlur: dayPickerProps.onDayBlur,
+    onDayClick: dayPickerProps.onDayClick,
+    onDayFocus: dayPickerProps.onDayFocus,
+    onDayKeyDown: dayPickerProps.onDayKeyDown,
+    onDayKeyPress: dayPickerProps.onDayKeyPress,
+    onDayKeyUp: dayPickerProps.onDayKeyUp,
+    onDayMouseEnter: dayPickerProps.onDayMouseEnter,
+    onDayMouseLeave: dayPickerProps.onDayMouseLeave,
+    onDayPointerEnter: dayPickerProps.onDayPointerEnter,
+    onDayPointerLeave: dayPickerProps.onDayPointerLeave,
+    onDayTouchCancel: dayPickerProps.onDayTouchCancel,
+    onDayTouchEnd: dayPickerProps.onDayTouchEnd,
+    onDayTouchMove: dayPickerProps.onDayTouchMove,
+    onDayTouchStart: dayPickerProps.onDayTouchStart,
+    onMonthChange: dayPickerProps.onMonthChange,
+    onNextClick: dayPickerProps.onNextClick,
+    onPrevClick: dayPickerProps.onPrevClick,
+    onWeekNumberClick: dayPickerProps.onWeekNumberClick
   };
 
   return (
     <dayPickerContext.Provider value={context}>
-      {providerProps.children}
+      {props.children}
     </dayPickerContext.Provider>
   );
 }

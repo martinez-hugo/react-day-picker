@@ -41,11 +41,7 @@
     "importSorter.sortConfiguration.customOrderingRules.rules": [
       {
         "orderLevel": 1,
-        "regex": "^react$"
-      },
-      {
-        "orderLevel": 40,
-        "regex": "^[.]"
+        "regex": "react-day-picker"
       }
     ],
     "npm.packageManager": "pnpm",

@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 import { format } from 'date-fns';
 import { act } from 'react-dom/test-utils';
-
 import { app, axe, freezeTime, gridcell, renderApp, user } from '../../test';
 import Example from './date-picker-dialog';
 

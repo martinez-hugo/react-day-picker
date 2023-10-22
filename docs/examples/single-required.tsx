@@ -1,26 +1,17 @@
-import { useState } from 'react';
-
-import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 
-export default function App() {
-  const today = new Date();
-  const [selectedDay, setSelectedDay] = useState<Date | undefined>(today);
+import { format } from 'date-fns';
+import { useState } from 'react';
 
-  const footer = selectedDay ? (
-    <p>You selected {format(selectedDay, 'PPP')}.</p>
-  ) : (
-    <p>Please pick a day.</p>
-  );
+export default function App() {
+  const [selectedDay, setSelectedDay] = useState<Date>();
+
   return (
     <DayPicker
-      mode="single"
-      required
       selected={selectedDay}
-      onSelect={(date) => {
-        setSelectedDay(date);
-      }}
-      footer={footer}
+      required
+      onSelect={setSelectedDay}
+      footer={selectedDay ? `You selected ${format(selectedDay, 'PPP')}` : ''}
     />
   );
 }

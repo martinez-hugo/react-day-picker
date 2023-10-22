@@ -1,7 +1,5 @@
 type LocaleString = keyof typeof locales;
 
-import { format, isValid, Locale, parse, startOfMonth } from 'date-fns';
-import * as locales from 'date-fns/locale';
 import {
   DayPickerBaseProps,
   DayPickerColorScheme,
@@ -12,6 +10,8 @@ import {
   DaysSelectionMode
 } from 'react-day-picker';
 
+import { format, isValid, Locale, parse, startOfMonth } from 'date-fns';
+import * as locales from 'date-fns/locale';
 import { Fieldset } from '../Fieldset';
 import { Form } from '../Form';
 import { Input } from '../Input';
@@ -19,7 +19,7 @@ import { Select } from '../Select';
 
 export interface PropsFormProps {
   mode: DaysSelectionMode | undefined;
-  onModeChange: (mode: DaysSelectionMode | 'none') => void;
+  onModeChange: (mode: DaysSelectionMode) => void;
   locale: Locale | undefined;
   onLocaleChange: (locale: Locale) => void;
   baseProps: DayPickerBaseProps;
@@ -33,16 +33,11 @@ export interface PropsFormProps {
   onReset: () => void;
 }
 
-const selectionModes: (DaysSelectionMode | 'none')[] = [
-  'none',
-  'single',
-  'multi',
-  'range'
-];
+const selectionModes: DaysSelectionMode[] = ['single', 'multi', 'range'];
 
 export function PropsForm(props: PropsFormProps) {
   const {
-    mode = 'none',
+    mode = 'single',
     onModeChange,
     locale,
     onLocaleChange,
@@ -62,7 +57,7 @@ export function PropsForm(props: PropsFormProps) {
         {selectionModes.map((selectionMode) => (
           <Input
             key={selectionMode}
-            label={selectionMode || 'none'}
+            label={selectionMode}
             type="radio"
             name="mode"
             value={selectionMode}

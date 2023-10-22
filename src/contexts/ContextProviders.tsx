@@ -13,14 +13,13 @@ export interface ContextProvidersProps {
  * Provide the value for all the context providers.
  * @internal
  */
-export function ContextProviders(contextProviderProps: ContextProvidersProps) {
-  const { mode = 'none', ...dayPickerProps } =
-    contextProviderProps.dayPickerProps;
+export function ContextProviders(props: ContextProvidersProps) {
+  const { mode = 'single', ...dayPickerProps } = props.dayPickerProps;
   return (
     <DayPickerProvider mode={mode} dayPickerProps={dayPickerProps}>
       <CalendarProvider>
         <SelectionProvider mode={mode}>
-          <ModifiersProvider>{contextProviderProps.children}</ModifiersProvider>
+          <ModifiersProvider>{props.children}</ModifiersProvider>
         </SelectionProvider>
       </CalendarProvider>
     </DayPickerProvider>

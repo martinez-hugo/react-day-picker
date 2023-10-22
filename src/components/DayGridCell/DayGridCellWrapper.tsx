@@ -5,7 +5,6 @@ import {
   PointerEventHandler,
   TouchEventHandler
 } from 'react';
-
 import { DayPickerDay } from '../../contexts/CalendarContext';
 import { useDayPicker } from '../../contexts/DayPickerContext';
 import { useModifiers } from '../../contexts/ModifiersContext';
@@ -35,8 +34,8 @@ export function DayGridCellWrapper(
     modifiersClassNames = {},
     modifiersStyles = {},
     onSelectSingle,
-    // onSelectMulti,
-    // onSelectRange,
+    onSelectMulti,
+    onSelectRange,
     onDayBlur,
     onDayClick,
     onDayKeyDown,
@@ -53,8 +52,12 @@ export function DayGridCellWrapper(
     styles = {}
   } = useDayPicker();
 
+  const isInteractive =
+    onSelectSingle || onSelectMulti || onSelectRange || onDayClick;
+
   const selection = useSelection();
   const dayModifiers = useModifiers().getDayModifiers(props.day);
+
   const style = getStyleFromMatchingModifiers(
     dayModifiers,
     modifiersStyles,
@@ -70,17 +73,14 @@ export function DayGridCellWrapper(
     switch (mode) {
       case 'single': {
         selection?.setValue(props.day.date, dayModifiers, e);
-        onSelectSingle?.(props.day.date, props.day.date, dayModifiers, e);
         break;
       }
       case 'multi': {
         // const newValue = selection.setValue(props.day.date);
-        // onSelectMulti?.(newValue, props.day.date, dayModifiers, e);
         break;
       }
       case 'range': {
         // const newValue = selection.setValue(props.day.date);
-        // onSelectRange?.(newValue, props.day.date, dayModifiers, e);
         break;
       }
     }
@@ -182,11 +182,11 @@ export function DayGridCellWrapper(
     ['aria-disabled']: dayModifiers.disabled || undefined,
     ['aria-hidden']: dayModifiers.hidden || undefined,
     ['aria-selected']: dayModifiers.selected || undefined,
-    className: className,
-    style: style,
-    tabIndex: dayModifiers.disabled || mode === 'none' ? -1 : 0,
+    className,
+    style,
+    tabIndex: isInteractive ? 0 : -1,
     onBlur,
-    onClick,
+    onClick: isInteractive ? onClick : undefined,
     onKeyDown,
     onKeyPress,
     onKeyUp,

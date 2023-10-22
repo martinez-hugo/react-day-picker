@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { DayPicker } from 'react-day-picker';
 
 import { addMonths, isSameMonth } from 'date-fns';
-import { DayPicker } from 'react-day-picker';
+import { useState } from 'react';
 
 export default function App() {
   const today = new Date();

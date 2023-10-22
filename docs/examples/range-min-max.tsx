@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { DateRange, DayPicker } from 'react-day-picker';
 
 import { format } from 'date-fns';
-import { DateRange, DayPicker } from 'react-day-picker';
+import { useState } from 'react';
 
 export default function App() {
   const [range, setRange] = useState<DateRange | undefined>();

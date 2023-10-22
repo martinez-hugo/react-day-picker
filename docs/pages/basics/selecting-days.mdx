@@ -19,25 +19,27 @@ export const getStaticProps = () =>
 
 # Selection Modes
 
-DayPicker supports **3 built-in selection modes** to display days as selected. Enable a selection mode by setting the `mode` prop.
+DayPicker supports 3 built-in selection modes to display days as selected:
 
-- **Single mode** `mode="single"`: only a single day can be selected
-- **Multiple mode** `mode="multiple"`: allow selection of multiple days
-- **Range mode** `mode="range"`: allow the selection of range of days
+- **Single mode**: only a single day can be selected. This is the default selection mode.
+- **Multi mode**: allow selection of multiple days. Set `mode="multi"` to toggle multi mode.
+- **Range mode** `mode="range"`: allow the selection of range of days. Set `mode="range"` to toggle range mode.
+
+You can also implement a custom selection mode using the `onDayClick` props.
+
+To enable the built-in selections, you must use the `onSelect` prop and pass the selected days to the `selected` prop.
 
 ## Single Selections
 
-To enable single day selection, set `mode="single"` and use `onSelect` to get the selected day.
-
 <SourceCode source="single.tsx" />
 
-<RenderingBox>{/* <Single /> */}</RenderingBox>
+<RenderingBox>
+  <Single />
+</RenderingBox>
 
 ### Making a selection required
 
-To make a selection required, use `defautSelected` with `required`.
-
-For example, to set the default selected date to today:
+To make a selection required, use `selected` with `required`. For example, to set the default selected date to today:
 
 <SourceCode source="single-required.tsx" />
 
@@ -81,7 +83,7 @@ range-min-max
 
 If the built-in selection modes are not enough for your app’s requirements, you can control the selection behavior using `onDayClick`.
 
-For example, to implement the "single selection" behavior (like when `mode="single"`):
+For example, to implement the "single selection" behavior (like when ``):
 
 <SourceCode source="single.tsx" />
 

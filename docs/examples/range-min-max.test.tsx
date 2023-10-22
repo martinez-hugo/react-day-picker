@@ -1,5 +1,4 @@
 import { setDate } from 'date-fns';
-
 import { app, axe, freezeTime, gridcell, renderApp, user } from '../../test';
 import Example from './range-min-max';
 

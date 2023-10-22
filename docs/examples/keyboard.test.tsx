@@ -1,3 +1,10 @@
+import { DayPickerProps } from 'react-day-picker';
+import {
+  getDayButton,
+  getFocusedElement,
+  getMonthCaption
+} from 'react-day-picker/test/selectors';
+
 import { act, render } from '@testing-library/react';
 import {
   addDays,
@@ -9,13 +16,6 @@ import {
   setDate,
   startOfWeek
 } from 'date-fns';
-import { DayPickerProps } from 'react-day-picker';
-import {
-  getDayButton,
-  getFocusedElement,
-  getMonthCaption
-} from 'react-day-picker/test/selectors';
-
 import {
   app,
   axe,

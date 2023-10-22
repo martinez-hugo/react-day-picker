@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { DayMouseEventHandler, DayPicker } from 'react-day-picker';
 
 import { isSameDay } from 'date-fns';
-import { DayMouseEventHandler, DayPicker } from 'react-day-picker';
+import { useState } from 'react';
 
 export default function App() {
   const [selectedDays, setSelectedDays] = useState<Date[]>([]);

@@ -1,7 +1,5 @@
+import { isSameDay } from 'date-fns';
 import { createContext, ReactNode, useContext, useState } from 'react';
-
-import { isDate, isSameDay } from 'date-fns';
-
 import { useDayPicker } from '../../contexts/DayPickerContext';
 import { DayPickerSelectedValue, DaysSelectionMode } from '../../DayPicker';
 import { DateRange, MatchingModifiers } from '../../types';
@@ -34,6 +32,8 @@ export const multiSelectionContext = createContext<SelectionContext<'multi'>>({
   isSelected: () => false
 });
 
+type SingleValue = DayPickerSelectedValue<'single'>;
+
 /**
  * The provider for the {@link selectionContext}, storing the calendar state.
  */
@@ -43,11 +43,9 @@ export function SelectionProvider<
   const { required, onSelectSingle, mode, selected } = useDayPicker();
 
   const initialSingleValue =
-    mode === 'single' || isDate(selected)
-      ? (selected as DayPickerSelectedValue<'single'>)
-      : undefined;
+    mode === 'single' ? (selected as SingleValue) : undefined;
   const [singleValue, setInternalSingleValue] = useState<
-    DayPickerSelectedValue<'single'> | undefined
+    SingleValue | undefined
   >(initialSingleValue);
 
   const initialMultiValue =
@@ -65,7 +63,7 @@ export function SelectionProvider<
     dayModifiers: MatchingModifiers,
     e: React.MouseEvent<Element, MouseEvent>
   ) => {
-    let newSingleValue: DayPickerSelectedValue<'single'>;
+    let newSingleValue: SingleValue;
     if (dayModifiers.selected && !required) {
       newSingleValue = undefined;
     } else {

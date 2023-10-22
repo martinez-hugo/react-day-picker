@@ -1,5 +1,6 @@
-import { differenceInCalendarDays } from 'date-fns';
 import { DayPicker, WeekRow, WeekRowProps } from 'react-day-picker';
+
+import { differenceInCalendarDays } from 'date-fns';
 
 function isPastDate(date: Date) {
   return differenceInCalendarDays(date, new Date()) < 0;

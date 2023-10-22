@@ -1,6 +1,7 @@
+import { DayPicker, Formatters } from 'react-day-picker';
+
 import { format } from 'date-fns';
 import { arSA } from 'date-fns/locale';
-import { DayPicker, Formatters } from 'react-day-picker';
 
 const NU_LOCALE = 'ar-u-nu-arab';
 

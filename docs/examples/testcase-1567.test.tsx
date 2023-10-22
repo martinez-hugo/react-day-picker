@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-
 import { renderApp, user } from '../../test';
 import Example from './testcase-1567';
 

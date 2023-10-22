@@ -1,5 +1,4 @@
 import { addDays } from 'date-fns';
-
 import { app, freezeTime, gridcell, renderApp, user } from '../../test';
 import Example from './modifiers-today';
 

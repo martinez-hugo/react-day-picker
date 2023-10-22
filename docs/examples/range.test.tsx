@@ -1,6 +1,6 @@
-import { addDays } from 'date-fns';
 import { getAllSelectedDays } from 'react-day-picker/test/selectors';
 
+import { addDays } from 'date-fns';
 import { app, axe, gridcell, renderApp, user } from '../../test';
 import Example from './range';
 

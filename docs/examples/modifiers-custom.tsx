@@ -1,6 +1,6 @@
-import { useState } from 'react';
-
 import { DayMouseEventHandler, DayPicker } from 'react-day-picker';
+
+import { useState } from 'react';
 
 const bookedDays = [new Date(2021, 5, 8), new Date(2021, 5, 9)];
 const bookedStyle = { border: '2px solid currentColor' };

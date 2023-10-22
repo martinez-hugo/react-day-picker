@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-
 import { app, axe, freezeTime, grid, renderApp } from '../../test';
 import Example from './numbering-system';
 
