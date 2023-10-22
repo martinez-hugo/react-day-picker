@@ -275,11 +275,6 @@ export interface DayPickerBaseProps {
   hidden?: Matcher | Matcher[] | undefined;
 
   /**
-   * Apply the `selected` modifier to the matching days.
-   */
-  // selected?: Matcher | Matcher[] | undefined;
-
-  /**
    * The today’s date. Default is the current date. This Date will get the
    * `today` modifier to style the day.
    */
@@ -331,7 +326,7 @@ export interface DayPickerBaseProps {
  * The props for the {@link DayPicker} component when `mode="single"`.
  */
 export interface DayPickerSingleProps extends DayPickerBaseProps {
-  mode?: 'single' | undefined;
+  mode: 'single';
   selected?: DayPickerSelectedValue<'single'> | undefined;
   onSelect?: DaySelectEventHandler<'single'>;
   /** Make the selection required. */

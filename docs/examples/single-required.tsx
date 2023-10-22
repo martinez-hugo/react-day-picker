@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { useState } from 'react';
 
 export default function App() {
-  const [selectedDay, setSelectedDay] = useState<Date>();
+  const [selectedDay, setSelectedDay] = useState<Date>(new Date());
 
   return (
     <DayPicker
