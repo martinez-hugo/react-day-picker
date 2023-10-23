@@ -1,11 +1,22 @@
+import type { ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useState
+} from 'react';
+
 import { isSameDay } from 'date-fns';
-import { createContext, useContext, useState } from 'react';
 
 import { useDayPicker } from '../../contexts/DayPickerContext';
-
-import type { ReactNode } from 'react';
-import type { Mode, Selected, SelectHandler } from '../../DayPicker';
-import type { DateRange, Modifiers } from '../../types';
+import type {
+  Mode,
+  Selected,
+  SelectHandler
+} from '../../DayPicker';
+import type {
+  DateRange,
+  Modifiers
+} from '../../types';
 
 export type SelectionContext<T extends Mode> = {
   selected: Selected<T>;
@@ -77,7 +88,6 @@ export function SelectionProvider(providerProps: { children?: ReactNode }) {
     modifiers: Modifiers,
     e: React.MouseEvent<Element, MouseEvent>
   ) {
-    debugger;
     let newMultiValue: Selected<'multi'> = [];
     if (modifiers.selected && !required) {
       newMultiValue = multiValue?.filter((day) => !isSameDay(day, date));
