@@ -30,12 +30,9 @@ export function DayGridCellWrapper(
     components,
     formatters: { formatDay },
     locale,
-    mode,
     modifiersClassNames = {},
     modifiersStyles = {},
-    onSelectSingle,
-    onSelectMulti,
-    onSelectRange,
+    onSelect,
     onDayBlur,
     onDayClick,
     onDayKeyDown,
@@ -52,8 +49,7 @@ export function DayGridCellWrapper(
     styles = {}
   } = useDayPicker();
 
-  const isInteractive =
-    onSelectSingle || onSelectMulti || onSelectRange || onDayClick;
+  const isInteractive = Boolean(onSelect) || Boolean(onDayClick);
 
   const selection = useSelection();
   const dayModifiers = useModifiers().getDayModifiers(props.day);
@@ -70,20 +66,7 @@ export function DayGridCellWrapper(
   );
 
   const onClick: MouseEventHandler = (e) => {
-    switch (mode) {
-      case 'single': {
-        selection?.setValue(props.day.date, dayModifiers, e);
-        break;
-      }
-      case 'multi': {
-        // const newValue = selection.setValue(props.day.date);
-        break;
-      }
-      case 'range': {
-        // const newValue = selection.setValue(props.day.date);
-        break;
-      }
-    }
+    selection?.setSelected(props.day.date, dayModifiers, e);
     onDayClick?.(props.day.date, dayModifiers, e);
   };
 
@@ -178,15 +161,15 @@ export function DayGridCellWrapper(
 
   const htmlAttributes: React.HTMLAttributes<HTMLDivElement> = {
     role: 'gridcell',
+    className,
+    style,
+    tabIndex: isInteractive ? 0 : -1,
     ['aria-colindex']: props['aria-colindex'],
     ['aria-disabled']: dayModifiers.disabled || undefined,
     ['aria-hidden']: dayModifiers.hidden || undefined,
     ['aria-selected']: dayModifiers.selected || undefined,
-    className,
-    style,
-    tabIndex: isInteractive ? 0 : -1,
-    onBlur,
     onClick: isInteractive ? onClick : undefined,
+    onBlur,
     onKeyDown,
     onKeyPress,
     onKeyUp,

@@ -1,4 +1,4 @@
-import type { DaySelectEventHandler } from '../types/events';
+import type { SelectHandler } from '../DayPicker';
 
 import { DayGridCell, DayGridCellProps } from './DayGridCell';
 import { MonthCaption, MonthCaptionProps } from './MonthCaption';
@@ -30,9 +30,9 @@ export const Row = WeekRow;
  */
 export type RowProps = WeekRowProps;
 
-/** @deprecated Use {@link DaySelectEventHandler} instead. */
-export type SelectRangeEventHandler = DaySelectEventHandler<'range'>;
-/** @deprecated Use {@link DaySelectEventHandler} instead. */
-export type SelectSingleEventHandler = DaySelectEventHandler<'single'>;
-/** @deprecated Use {@link DaySelectEventHandler} instead. */
-export type SelectMultipleEventHandler = DaySelectEventHandler<'multi'>;
+/** @deprecated Use {@link SelectHandler} instead. */
+export type SelectRangeEventHandler = SelectHandler<'range'>;
+/** @deprecated Use {@link SelectHandler} instead. */
+export type SelectSingleEventHandler = SelectHandler<'single'>;
+/** @deprecated Use {@link SelectHandler} instead. */
+export type SelectMultipleEventHandler = SelectHandler<'multi'>;

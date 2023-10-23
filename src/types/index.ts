@@ -5,3 +5,4 @@ export * from './labels';
 export * from './matchers';
 export * from './modifiers';
 export * from './styles';
+export * from './DayPickerBase';

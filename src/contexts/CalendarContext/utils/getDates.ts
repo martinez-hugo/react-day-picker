@@ -19,10 +19,10 @@ export function getDates(
   lastMonth: Date,
   toDate: Date | undefined,
   options: {
-    ISOWeek: boolean;
-    fixedWeeks: boolean;
+    ISOWeek?: boolean;
+    fixedWeeks?: boolean;
     locale: FormatOptions['locale'];
-    weekStartsOn: FormatOptions['weekStartsOn'];
+    weekStartsOn?: FormatOptions['weekStartsOn'];
   }
 ): Date[] {
   const { ISOWeek, fixedWeeks, locale, weekStartsOn } = options;

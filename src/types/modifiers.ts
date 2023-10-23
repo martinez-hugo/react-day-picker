@@ -1,11 +1,5 @@
-import { Matcher } from './matchers';
-
 /** A _modifier_ represents different styles or states of a day displayed in the calendar. */
 export type CustomModifier = string;
-
-/** The modifiers used by DayPicker. */
-export type Modifiers = Record<CustomModifier, Matcher[]> &
-  Record<InternalModifier, Matcher[]>;
 
 /** The name of the modifiers that are used internally by DayPicker. */
 export type InternalModifier =

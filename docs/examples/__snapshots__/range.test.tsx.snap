@@ -51,13 +51,12 @@ exports[`should match the snapshot 1`] = `
         <div
           class="month_caption"
           id="test-caption-0"
-          role="presentation"
         >
           November 2020
            
         </div>
         <div
-          aria-label="November 2020"
+          aria-labelledby="test-caption-0"
           aria-multiselectable="true"
           class="month_grid"
           id="test-grid-0"
@@ -484,7 +483,7 @@ exports[`should match the snapshot 1`] = `
       </div>
     </div>
     <div
-      class=""
+      class="footer"
     >
       <p>
         November 15th, 2020

@@ -1,9 +1,7 @@
-import { useState } from 'react';
-
 import { differenceInCalendarDays, format as _format, parse } from 'date-fns';
-
+import { useState } from 'react';
 import { parseFromToProps } from '../../contexts/DayPickerContext/utils/parseFromToProps';
-import { DayPickerBaseProps, DayPickerSingleProps } from '../../DayPicker';
+import { DayPickerProps } from '../../DayPicker';
 import {
   DayClickEventHandler,
   MonthChangeEventHandler
@@ -17,9 +15,9 @@ export type InputHTMLAttributes = Pick<
 >;
 
 /** The props to attach to the DayPicker component when using {@link useInput}. */
-export type InputDayPickerProps = Pick<DayPickerSingleProps, 'selected'> &
+export type InputDayPickerProps = Pick<DayPickerProps<'single'>, 'selected'> &
   Pick<
-    DayPickerBaseProps,
+    DayPickerProps<'single'>,
     | 'fromDate'
     | 'toDate'
     | 'locale'
@@ -31,7 +29,7 @@ export type InputDayPickerProps = Pick<DayPickerSingleProps, 'selected'> &
 
 export interface UseInputOptions
   extends Pick<
-    DayPickerBaseProps,
+    DayPickerProps<'single'>,
     | 'locale'
     | 'fromDate'
     | 'toDate'

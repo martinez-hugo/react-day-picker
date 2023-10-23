@@ -1,5 +1,4 @@
 import { startOfDay, startOfMonth } from 'date-fns';
-
 import { FormatOptions } from '../../types/FormatOptions';
 import { getDates } from './utils/getDates';
 import { getDayPickerMonths } from './utils/getDayPickerMonths';
@@ -10,12 +9,12 @@ export function getMonthsAndDates(
   toDate: Date | undefined,
   options: {
     numberOfMonths: number;
-    reverseMonths: boolean;
-    ISOWeek: boolean;
-    fixedWeeks: boolean;
+    reverseMonths?: boolean;
+    ISOWeek?: boolean;
+    fixedWeeks?: boolean;
     locale: FormatOptions['locale'];
-    weekStartsOn: FormatOptions['weekStartsOn'];
-    firstWeekContainsDate: FormatOptions['firstWeekContainsDate'];
+    weekStartsOn?: FormatOptions['weekStartsOn'];
+    firstWeekContainsDate?: FormatOptions['firstWeekContainsDate'];
   }
 ) {
   const { numberOfMonths, reverseMonths, ISOWeek, fixedWeeks } = options;
