@@ -21,7 +21,7 @@ const config: Config.InitialOptions = {
   roots: ['./examples'],
   testEnvironment: 'jsdom',
   coverageReporters: ['lcov', 'text', 'clover'],
-  setupFilesAfterEnv: ['../test/setup.ts']
+  setupFilesAfterEnv: ['./test/setup.ts']
 };
 
 export default config;

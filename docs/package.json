@@ -11,8 +11,8 @@
     "lint": "next lint",
     "test": "jest",
     "test-watch": "jest --watch",
-    "typecheck": "tsc --project ./tsconfig.json --noEmit",
-    "typecheck-watch": "tsc --project ./tsconfig.json --noEmit --watch"
+    "typecheck": "tsc --noEmit",
+    "typecheck-watch": "tsc --noEmit --watch"
   },
   "author": "",
   "license": "ISC",

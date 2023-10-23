@@ -16,8 +16,8 @@ export default function App() {
   return (
     <div className="App">
       <DayPicker
+        required
         mode="range"
-        defaultMonth={new Date(2022, 8)}
         onSelect={setSelected}
         numberOfMonths={2}
         showOutsideDays

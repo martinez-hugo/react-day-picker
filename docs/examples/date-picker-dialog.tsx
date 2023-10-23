@@ -1,4 +1,4 @@
-import { DayEventHandler, DayPicker } from 'react-day-picker';
+import { DayPicker, SelectHandler } from 'react-day-picker';
 
 import { format, isValid, parse } from 'date-fns';
 import FocusTrap from 'focus-trap-react';
@@ -39,7 +39,7 @@ export default function DatePickerDialog() {
     setIsPopperOpen(true);
   };
 
-  const handleDaySelect: DayEventHandler<'single'> = (date) => {
+  const handleDaySelect: SelectHandler<'single'> = (date) => {
     setSelected(date);
     if (date) {
       setInputValue(format(date, 'y-MM-dd'));
@@ -88,12 +88,7 @@ export default function DatePickerDialog() {
             role="dialog"
             aria-label="DayPicker calendar"
           >
-            <DayPicker
-              initialFocus={isPopperOpen}
-              defaultMonth={selected}
-              selected={selected}
-              onSelect={handleDaySelect}
-            />
+            <DayPicker onSelect={handleDaySelect} />
           </div>
         </FocusTrap>
       )}

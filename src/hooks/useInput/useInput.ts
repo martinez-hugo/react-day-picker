@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { parseFromToProps } from '../../contexts/DayPickerContext/utils/parseFromToProps';
 import { DayPickerProps } from '../../DayPicker';
 import {
-  DayClickEventHandler,
+  DayMouseEventHandler,
   MonthChangeEventHandler
 } from '../../types/events';
 
@@ -100,7 +100,7 @@ export function useInput(options: UseInputOptions = {}): UseInputValue {
     setInputValue(date ? _format(date, format, { locale }) : '');
   };
 
-  const handleDayClick: DayClickEventHandler = (day, { selected }) => {
+  const handleDayClick: DayMouseEventHandler = (day, { selected }) => {
     if (!required && selected) {
       setSelectedDay(undefined);
       setInputValue('');

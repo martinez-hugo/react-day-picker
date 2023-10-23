@@ -5,10 +5,9 @@ import { MouseEventHandler, useRef, useState } from 'react';
 
 function DayWithShiftKey(props: DayGridCellProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const { state } = props;
 
   const handleClick: MouseEventHandler<HTMLDivElement> = (e) => {
-    if (!state.selected || e.shiftKey) {
+    if (!props.modifiers.selected || e.shiftKey) {
       props.htmlAttributes.onClick?.(e);
     }
   };

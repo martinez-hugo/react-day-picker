@@ -50,7 +50,7 @@ export interface PropsMode<T extends Mode> extends DayPickerBase {
   mode: T;
   selected?: Selected<T>;
   onSelect?: SelectHandler<T>;
-  required?: false;
+  required?: false | undefined;
 }
 
 export interface PropsModeRequired<T extends Mode> extends DayPickerBase {
@@ -62,7 +62,7 @@ export interface PropsModeRequired<T extends Mode> extends DayPickerBase {
 
 export interface PropsDefault extends Omit<PropsMode<'single'>, 'mode'> {
   mode?: undefined;
-  required?: false;
+  required?: false | undefined;
 }
 
 export interface PropsDefaultRequired

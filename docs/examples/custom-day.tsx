@@ -2,7 +2,7 @@ import { DayGridCellProps, DayPicker } from 'react-day-picker';
 
 function CustomDayGridCell(props: DayGridCellProps) {
   const isFirstDay =
-    props.day.date.getDate() === 1 && props.state.outside === false;
+    props.day.date.getDate() === 1 && props.modifiers.outside === false;
   return (
     <time {...props.htmlAttributes}>
       {props.children}
