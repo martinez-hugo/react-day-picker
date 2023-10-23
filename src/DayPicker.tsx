@@ -89,14 +89,3 @@ export function DayPicker<T extends Mode | undefined = undefined>(
     </ContextProviders>
   );
 }
-
-// function App() {
-//   return (
-//     <>
-//       <DayPicker />
-//       <DayPicker selected={new Date()} onSelect={(day) => console.log(day)} />
-//       <DayPicker mode="multi" required selected={[]} onSelect={undefined} />
-//       <DayPicker mode="range" required selected={undefined} />
-//     </>
-//   );
-// }
