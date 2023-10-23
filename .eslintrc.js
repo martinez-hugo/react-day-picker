@@ -27,7 +27,8 @@ const config = {
     'import/no-unresolved': 'off',
     'prettier/prettier': 'warn',
     'no-console': 'warn',
-    'typescript-eslint/no-empty-interface': 'off'
+    '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/no-empty-interface': 'warn'
   },
   overrides: [
     {
@@ -39,7 +40,8 @@ const config = {
       rules: {
         'testing-library/no-render-in-setup': 'off',
         'testing-library/no-node-access': 'off',
-        'testing-library/render-result-naming-convention': 'off'
+        'testing-library/render-result-naming-convention': 'off',
+        'testing-library/no-render-in-lifecycle': 'off'
       }
     }
   ]

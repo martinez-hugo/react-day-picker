@@ -33,29 +33,6 @@
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
     "editor.tabSize": 2,
-    "importSorter.generalConfiguration.sortOnBeforeSave": true,
-    "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.count": 80,
-    "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.type": "newLineEachExpressionAfterCountLimitExceptIfOnlyOne",
-    "importSorter.importStringConfiguration.quoteMark": "single",
-    "importSorter.importStringConfiguration.tabSize": 2,
-    "importSorter.sortConfiguration.customOrderingRules.rules": [
-      {
-        "orderLevel": 1,
-        "regex": "react-day-picker"
-      },
-      {
-        "orderLevel": 40,
-        "regex": "^../"
-      },
-      {
-        "orderLevel": 80,
-        "regex": "^./"
-      },
-      {
-        "orderLevel": 90,
-        "regex": "types$"
-      }
-    ],
     "npm.packageManager": "pnpm",
     "github-actions.workflows.pinned.workflows": [
       "react-day-picker/.github/workflows/package.yml",

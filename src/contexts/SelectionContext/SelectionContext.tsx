@@ -1,22 +1,11 @@
 import type { ReactNode } from 'react';
-import {
-  createContext,
-  useContext,
-  useState
-} from 'react';
+import { createContext, useContext, useState } from 'react';
 
 import { isSameDay } from 'date-fns';
 
 import { useDayPicker } from '../../contexts/DayPickerContext';
-import type {
-  Mode,
-  Selected,
-  SelectHandler
-} from '../../DayPicker';
-import type {
-  DateRange,
-  Modifiers
-} from '../../types';
+import type { Mode, Selected, SelectHandler } from '../../DayPicker';
+import type { DateRange, Modifiers } from '../../types';
 
 export type SelectionContext<T extends Mode> = {
   selected: Selected<T>;
@@ -104,11 +93,10 @@ export function SelectionProvider(providerProps: { children?: ReactNode }) {
     );
   }
 
-  function setSelectedRange(
-    date: Date,
-    modifiers: Modifiers,
-    e: React.MouseEvent<Element, MouseEvent>
-  ) {
+  function setSelectedRange() {
+    // date: Date,
+    // modifiers: Modifiers,
+    // e: React.MouseEvent<Element, MouseEvent>
     // TODO
     setInternalRangeValue(rangeValue);
     return rangeValue;
