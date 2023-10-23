@@ -1,11 +1,13 @@
-import { createContext, ReactNode, useContext } from 'react';
+import type { ReactNode } from 'react';
+import { createContext, useContext } from 'react';
 
 import { isSameDay, isSameMonth } from 'date-fns';
 
-import { DayPickerDay, useCalendar } from '../../contexts/CalendarContext';
+import type { DayPickerDay } from '../../contexts/CalendarContext';
+import { useCalendar } from '../../contexts/CalendarContext';
 import { useDayPicker } from '../../contexts/DayPickerContext';
 import { useSelection } from '../../contexts/SelectionContext';
-import { InternalModifier, MatchingModifiers } from '../../types';
+import type { InternalModifier, Modifiers } from '../../types';
 import { dateMatchModifiers } from './utils/dateMatchModifiers';
 
 /** A record with `data-*` attributes passed to {@link DayPicker}. */
@@ -16,7 +18,7 @@ export type DataAttributes = Record<string, unknown>;
  * internal components to use safe props and avoid all conditionals.
  */
 export interface ModifiersContext {
-  getDayModifiers: (day: DayPickerDay) => MatchingModifiers;
+  getDayModifiers: (day: DayPickerDay) => Modifiers;
   days: Record<InternalModifier, DayPickerDay[]>;
 }
 
@@ -79,7 +81,7 @@ export function ModifiersProvider({ children }: { children: ReactNode }) {
   }
 
   const getDayModifiers = (day: DayPickerDay) => {
-    const matchingModifiers: MatchingModifiers = {
+    const matchingModifiers: Modifiers = {
       outside: false,
       disabled: false,
       hidden: false,

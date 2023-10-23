@@ -2,7 +2,7 @@ import { Calendar } from './components/Calendar';
 import { ContextProviders } from './contexts/ContextProviders';
 import { DayPickerBase } from './types/DayPickerBase';
 import { DateRange } from './types/matchers';
-import { MatchingModifiers } from './types/modifiers';
+import { Modifiers } from './types/modifiers';
 
 export type Mode = 'range' | 'single' | 'multi';
 
@@ -30,9 +30,9 @@ export type SelectHandler<T extends Mode | undefined> = (
   /** The current selected value. */
   selected: Selected<T>,
   /** The date that triggered the event. */
-  date: Date,
-  /** The matching modifiers for `date`. */
-  matchingModifiers: MatchingModifiers,
+  day: Date,
+  /** The modifiers for `date`. */
+  modifiers: Modifiers,
   e: React.MouseEvent
 ) => void;
 
@@ -40,9 +40,9 @@ export type SelectHandlerRequired<T extends Mode | undefined> = (
   /** The current selected value. */
   selected: SelectedRequired<T>,
   /** The date that triggered the event. */
-  date: Date,
-  /** The matching modifiers for `date`. */
-  matchingModifiers: MatchingModifiers,
+  day: Date,
+  /** The modifiers for `day`. */
+  modifiers: Modifiers,
   e: React.MouseEvent
 ) => void;
 

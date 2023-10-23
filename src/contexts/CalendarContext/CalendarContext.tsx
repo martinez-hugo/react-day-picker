@@ -1,6 +1,5 @@
-import { createContext, ReactNode, useContext } from 'react';
-
 import { addMonths, isBefore, isSameMonth, startOfMonth } from 'date-fns';
+import { createContext, ReactNode, useContext } from 'react';
 
 import {
   DayPickerCalendar,
@@ -8,6 +7,7 @@ import {
 } from '../../contexts/CalendarContext';
 import { useDayPicker } from '../../contexts/DayPickerContext';
 import { useControlledValue } from '../../hooks/useControlledValue';
+
 import { getMonthsAndDates } from './getMonthsAndDates';
 import { getFirstLastMonths } from './utils/getFirstLastMonths';
 import { getNextMonth } from './utils/getNextMonth';

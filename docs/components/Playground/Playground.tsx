@@ -1,16 +1,8 @@
-import { useState } from 'react';
+import { DayPicker, DayPickerBase, Mode, PropsMode } from 'react-day-picker';
 
 import { Locale } from 'date-fns';
 import { useRouter } from 'next/router';
-import {
-  DayPicker,
-  DayPickerBaseProps,
-  DayPickerMultiProps,
-  DayPickerRangeProps,
-  DayPickerSingleProps,
-  DaysSelectionMode
-} from 'react-day-picker';
-
+import { useState } from 'react';
 import { RenderingBox } from '../RenderingBox';
 import { Shadow } from '../Shadow';
 import { PropsForm } from './PropsForm';
@@ -18,17 +10,17 @@ import { PropsForm } from './PropsForm';
 export function Playground() {
   const router = useRouter();
 
-  const [mode, setMode] = useState<DaysSelectionMode>();
+  const [mode, setMode] = useState<Mode>();
   const [locale, setLocale] = useState<Locale>();
 
-  const [baseProps, setBaseProps] = useState<DayPickerBaseProps>({});
-  const [singleProps, setSingleProps] = useState<DayPickerSingleProps>({
+  const [baseProps, setBaseProps] = useState<DayPickerBase>({});
+  const [singleProps, setSingleProps] = useState<PropsMode<'single'>>({
     mode: 'single'
   });
-  const [multiProps, setMultiProps] = useState<DayPickerMultiProps>({
+  const [multiProps, setMultiProps] = useState<PropsMode<'multi'>>({
     mode: 'multi'
   });
-  const [rangeProps, setRangeProps] = useState<DayPickerRangeProps>({
+  const [rangeProps, setRangeProps] = useState<PropsMode<'range'>>({
     mode: 'range'
   });
 

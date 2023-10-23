@@ -9,7 +9,7 @@ const beforeYesterday = addDays(today, -2);
 export default function App() {
   return (
     <DayPicker
-      selected={[new Date()]}
+      selected={new Date()}
       disabled={beforeYesterday}
       modifiersClassNames={{
         selected: customStyles.purpleToday

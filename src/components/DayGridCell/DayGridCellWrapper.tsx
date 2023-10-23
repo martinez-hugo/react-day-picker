@@ -5,13 +5,15 @@ import {
   PointerEventHandler,
   TouchEventHandler
 } from 'react';
+
 import { DayPickerDay } from '../../contexts/CalendarContext';
 import { useDayPicker } from '../../contexts/DayPickerContext';
 import { useModifiers } from '../../contexts/ModifiersContext';
 import { useSelection } from '../../contexts/SelectionContext';
+
 import { DayGridCell as _DayGridCell } from './DayGridCell';
-import { getClassNameByMatchingModifiers } from './getClassNameByMatchingModifiers';
-import { getStyleFromMatchingModifiers } from './getStyleFromMatchingModifiers';
+import { getClassNamesForModifiers } from './getClassNamesForModifiers';
+import { getStyleForModifiers } from './getStyleForModifiers';
 
 export interface DayGridCellWrapperProps
   extends Pick<React.AriaAttributes, 'aria-colindex'> {
@@ -54,12 +56,8 @@ export function DayGridCellWrapper(
   const selection = useSelection();
   const dayModifiers = useModifiers().getDayModifiers(props.day);
 
-  const style = getStyleFromMatchingModifiers(
-    dayModifiers,
-    modifiersStyles,
-    styles
-  );
-  const className = getClassNameByMatchingModifiers(
+  const style = getStyleForModifiers(dayModifiers, modifiersStyles, styles);
+  const className = getClassNamesForModifiers(
     dayModifiers,
     modifiersClassNames,
     classNames
@@ -188,7 +186,7 @@ export function DayGridCellWrapper(
   return (
     <DayGridCell
       day={props.day}
-      state={dayModifiers}
+      modifiers={dayModifiers}
       htmlAttributes={htmlAttributes}
     >
       {formatDay(props.day.date, { locale })}

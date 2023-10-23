@@ -1,5 +1,7 @@
 import { startOfDay, startOfMonth } from 'date-fns';
+
 import { FormatOptions } from '../../types/FormatOptions';
+
 import { getDates } from './utils/getDates';
 import { getDayPickerMonths } from './utils/getDayPickerMonths';
 import { getDisplayMonths } from './utils/getDisplayMonths';

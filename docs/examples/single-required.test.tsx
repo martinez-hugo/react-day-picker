@@ -1,4 +1,5 @@
 import { app, axe, freezeTime, gridcell, renderApp, user } from '../../test';
+
 import Example from './single-required';
 
 const today = new Date(2021, 10, 25);
@@ -21,7 +22,7 @@ describe('when a day is clicked', () => {
     expect(gridcell(day)).toHaveAttribute('aria-selected', 'true');
   });
   test('should update the footer', () => {
-    expect(app()).toHaveTextContent('You selected November 1st, 2021.');
+    expect(app()).toHaveTextContent('You selected November 1st, 2021');
   });
   describe('when the day is clicked again', () => {
     beforeEach(async () => {

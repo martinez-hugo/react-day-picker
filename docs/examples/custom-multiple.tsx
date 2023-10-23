@@ -33,6 +33,7 @@ export default function App() {
 
   return (
     <DayPicker
+      mode="custom"
       onDayClick={handleDayClick}
       selected={selectedDays}
       footer={footer}

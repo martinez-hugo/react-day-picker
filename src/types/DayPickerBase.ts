@@ -1,5 +1,6 @@
 import * as components from '../components';
 import { CaptionLayout } from '../components/Nav';
+
 import {
   DayFocusEventHandler,
   DayKeyboardEventHandler,
@@ -13,11 +14,7 @@ import { FormatOptions } from './FormatOptions';
 import { Formatters } from './formatters';
 import { Labels } from './labels';
 import { Matcher } from './matchers';
-import {
-  CustomModifier,
-  ModifiersClassNames,
-  ModifiersStyles
-} from './modifiers';
+import { ModifiersClassNames, ModifiersStyles } from './modifiers';
 import { ClassNames, Styles } from './styles';
 
 export type CustomComponents = {
@@ -229,7 +226,7 @@ export interface DayPickerBase extends FormatOptions {
   /**
    * Add modifiers to the matching days.
    */
-  modifiers?: Record<CustomModifier, Matcher | Matcher[]> | undefined;
+  modifiers?: Record<string, Matcher | Matcher[]> | undefined;
 
   /**
    * Labels creators to override the defaults. Use this prop to customize the

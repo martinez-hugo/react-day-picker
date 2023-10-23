@@ -1,4 +1,5 @@
 import { DayPickerProps, Mode } from '../DayPicker';
+
 import { CalendarProvider } from './CalendarContext';
 import { DayPickerProvider } from './DayPickerContext';
 import { ModifiersProvider } from './ModifiersContext';
@@ -19,7 +20,7 @@ export function ContextProviders<T extends Mode | undefined = undefined>(
   return (
     <DayPickerProvider dayPickerProps={props.dayPickerProps}>
       <CalendarProvider>
-        <SelectionProvider mode={props.dayPickerProps.mode || 'single'}>
+        <SelectionProvider>
           <ModifiersProvider>{props.children}</ModifiersProvider>
         </SelectionProvider>
       </CalendarProvider>

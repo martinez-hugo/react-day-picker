@@ -1,9 +1,9 @@
-import { MonthGrid as DefaultMonthGrid } from '../MonthGrid';
-import { Months as DefaultMonths } from '../Months';
-import { Footer as DefaultFooter } from '../Footer';
-import { Nav as DefaultNav } from '../Nav';
 import { useCalendar } from '../../contexts/CalendarContext';
 import { useDayPicker } from '../../contexts/DayPickerContext';
+import { Footer as DefaultFooter } from '../Footer';
+import { MonthGrid as DefaultMonthGrid } from '../MonthGrid';
+import { Months as DefaultMonths } from '../Months';
+import { Nav as DefaultNav } from '../Nav';
 
 /**
  * Render the container with navigation and the month grids.

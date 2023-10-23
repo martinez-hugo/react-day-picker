@@ -7,6 +7,8 @@ import { RenderingBox } from '../../components/RenderingBox';
 import Single from 'react-day-picker/docs/examples/single.tsx';
 import SingleRequired from 'react-day-picker/docs/examples/single-required.tsx';
 import CustomMultiple from 'react-day-picker/docs/examples/custom-multiple.tsx';
+import Multiple from 'react-day-picker/docs/examples/multiple.tsx';
+import MultipleMinMax from 'react-day-picker/docs/examples/multiple-min-max.tsx';
 
 import 'react-day-picker/dist/style.css';
 
@@ -14,6 +16,8 @@ export const getStaticProps = () =>
   getSourceCodeStaticProps([
     'single.tsx',
     'single-required.tsx',
+    'multiple.tsx',
+    'multiple-min-max.tsx',
     'custom-multiple.tsx'
   ]);
 
@@ -51,17 +55,21 @@ To make a selection required, use `selected` with `required`. For example, to se
 
 Use `mode="multiple"` to allow the selection of multiple days:
 
-```include-example
-multiple
-```
+<SourceCode source="multiple.tsx" />
+
+<RenderingBox>
+  <Multiple />
+</RenderingBox>
 
 ### Limiting the selectable days
 
 Use the `min` and `max` props to limit the amount of days that can be selected.
 
-```include-example
-multiple-min-max
-```
+<SourceCode source="multiple-min-max.tsx" />
+
+<RenderingBox>
+  <MultipleMinMax />
+</RenderingBox>
 
 ## Selecting a Range of days
 
@@ -87,7 +95,9 @@ For example, to implement the "single selection" behavior (like when ``):
 
 <SourceCode source="single.tsx" />
 
-<RenderingBox>{/* <Single /> */}</RenderingBox>
+<RenderingBox>
+  <Single />
+</RenderingBox>
 
 ### Example: custom multiple select
 
@@ -96,4 +106,6 @@ selection mode.
 
 <SourceCode source="custom-multiple.tsx" />
 
-<RenderingBox>{/* <CustomMultiple /> */}</RenderingBox>
+<RenderingBox>
+  <CustomMultiple />
+</RenderingBox>

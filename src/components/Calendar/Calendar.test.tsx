@@ -1,13 +1,15 @@
 import { RenderResult } from '@testing-library/react';
 import { addDays } from 'date-fns';
+import React from 'react';
 
 import { gridcell } from '../../../test';
 import { customRender } from '../../../test/render';
 import { queryMonthGrids } from '../../../test/selectors';
 import { freezeTime } from '../../../test/utils';
 import { defaultClassNames } from '../../contexts/DayPickerContext/defaultClassNames';
-import { DayPickerProps } from '../../DayPicker';
+import { DayPickerProps, PropsDefault } from '../../DayPicker';
 import { ClassNames } from '../../types/styles';
+
 import { Calendar } from './Calendar';
 
 const today = new Date(2020, 10, 4);
@@ -140,13 +142,12 @@ describe('when showing the week numbers', () => {
 });
 
 describe('when "initialFocus" is set', () => {
-  const baseProps: DayPickerProps = {
-    initialFocus: true,
-    mode: 'single'
+  const defaultProps: PropsDefault = {
+    initialFocus: true
   };
   describe('when a day is not selected', () => {
     beforeEach(() => {
-      setup(baseProps);
+      setup(defaultProps);
     });
     test('should focus today', () => {
       expect(gridcell(today)).toHaveFocus();
@@ -162,7 +163,7 @@ describe('when "initialFocus" is set', () => {
   });
   describe('when a day is selected', () => {
     const selected = addDays(today, 1);
-    const props: DayPickerProps = { ...baseProps, selected };
+    const props: DayPickerProps = { ...defaultProps, selected };
     beforeEach(() => {
       setup(props);
     });

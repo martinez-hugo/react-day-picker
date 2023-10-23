@@ -1,9 +1,9 @@
-import { MatchingModifiers } from './modifiers';
+import { Modifiers } from './modifiers';
 
-export type DayEventHandler<TEvent> = (
+export type DayEventHandler<T> = (
   day: Date,
-  state: MatchingModifiers,
-  e: TEvent
+  modifiers: Modifiers,
+  e: T
 ) => void;
 
 /**

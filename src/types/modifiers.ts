@@ -1,5 +1,4 @@
-/** A _modifier_ represents different styles or states of a day displayed in the calendar. */
-export type CustomModifier = string;
+import { CSSProperties } from 'react';
 
 /** The name of the modifiers that are used internally by DayPicker. */
 export type InternalModifier =
@@ -12,24 +11,14 @@ export type InternalModifier =
   | 'range_end'
   | 'range_middle';
 
-/**
- * The modifiers that are matching a day in the calendar. Use the {@link useActiveModifiers} hook to get the modifiers for a day.
- *
- * ```
- * const matchingModifiers: MatchingModifiers = {
- *  selected: true,
- *  customModifier: true
- * }
- * ```
- *
- * */
-export type MatchingModifiers = Record<CustomModifier, boolean> &
+/** The modifiers that are matching a day in the calendar. */
+export type Modifiers = Record<string, boolean> &
   Record<InternalModifier, boolean>;
 
 /** The style to apply to each day element matching a modifier. */
-export type ModifiersStyles = Record<CustomModifier, React.CSSProperties> &
-  Partial<Record<InternalModifier, React.CSSProperties>>;
+export type ModifiersStyles = Record<string, CSSProperties> &
+  Partial<Record<InternalModifier, CSSProperties>>;
 
 /** The classnames to assign to each day element matching a modifier. */
-export type ModifiersClassNames = Record<CustomModifier, string> &
+export type ModifiersClassNames = Record<string, string> &
   Partial<Record<InternalModifier, string>>;

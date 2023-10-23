@@ -1,12 +1,12 @@
 import { format } from 'date-fns';
 
 import { FormatOptions } from '../types/FormatOptions';
-import { MatchingModifiers } from '../types/modifiers';
+import { Modifiers } from '../types/modifiers';
 
 /** Return the default ARIA label for the day button. */
 export function labelDay(
   day: Date,
-  matchingModifiers: MatchingModifiers,
+  modifiers: Modifiers,
   options?: FormatOptions
 ) {
   return format(day, 'do MMMM (EEEE)', options);

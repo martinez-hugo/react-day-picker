@@ -1,4 +1,5 @@
 import { endOfMonth, startOfDay, startOfMonth } from 'date-fns';
+
 import { DayPickerProps } from '../../../DayPicker';
 
 /** Return the `fromDate` and `toDate` prop values values parsing the DayPicker props. */

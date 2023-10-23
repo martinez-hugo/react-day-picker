@@ -42,6 +42,18 @@
       {
         "orderLevel": 1,
         "regex": "react-day-picker"
+      },
+      {
+        "orderLevel": 40,
+        "regex": "^../"
+      },
+      {
+        "orderLevel": 80,
+        "regex": "^./"
+      },
+      {
+        "orderLevel": 90,
+        "regex": "types$"
       }
     ],
     "npm.packageManager": "pnpm",

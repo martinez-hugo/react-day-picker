@@ -1,7 +1,6 @@
-import { startOfDay } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import { createContext, ReactNode, useContext, useId } from 'react';
-import {} from 'types/DayPickerBase';
+
 import { CaptionLayout } from '../../components/Nav';
 import { DayPickerProps, Mode } from '../../DayPicker';
 import * as formatters from '../../formatters';
@@ -13,6 +12,7 @@ import {
   Formatters,
   Labels
 } from '../../types';
+
 import { defaultClassNames } from './defaultClassNames';
 import { parseFromToProps } from './utils/parseFromToProps';
 
@@ -75,33 +75,37 @@ export function DayPickerProvider<T extends Mode | undefined = undefined>(
   const { fromDate, toDate } = parseFromToProps(dayPickerProps);
 
   const defaultProps: DefaultProps = {
-    mode: dayPickerProps.mode ?? 'single',
+    mode: 'single',
     fromDate,
     toDate,
-    captionLayout: dayPickerProps.captionLayout ?? 'buttons',
-    classNames: {
-      ...defaultClassNames,
-      ...dayPickerProps.classNames
-    },
-    colorScheme: dayPickerProps.colorScheme ?? 'auto',
-    contrastPreference: dayPickerProps.contrastPreference ?? 'no-preference',
-    formatters: {
-      ...formatters,
-      ...dayPickerProps.formatters
-    },
-    id: dayPickerProps.id ?? id,
-    labels: {
-      ...labels,
-      ...dayPickerProps.labels
-    },
-    locale: dayPickerProps.locale ?? enUS,
-    numberOfMonths: dayPickerProps.numberOfMonths ?? 1,
-    today: startOfDay(dayPickerProps.today ?? new Date())
+    captionLayout: 'buttons',
+    classNames: defaultClassNames,
+    colorScheme: 'auto',
+    contrastPreference: 'no-preference',
+    formatters,
+    id,
+    labels,
+    locale: enUS,
+    numberOfMonths: 1,
+    today: new Date()
   };
 
-  const context: DayPickerContext<T> = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const context: DayPickerContext<any> = {
     ...defaultProps,
     ...dayPickerProps,
+    classNames: {
+      ...defaultProps.classNames,
+      ...dayPickerProps.classNames
+    },
+    labels: {
+      ...defaultProps.labels,
+      ...dayPickerProps.labels
+    },
+    formatters: {
+      ...defaultProps.formatters,
+      ...dayPickerProps.formatters
+    },
     dataAttributes
   };
 

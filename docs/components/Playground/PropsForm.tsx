@@ -1,13 +1,11 @@
 type LocaleString = keyof typeof locales;
 
 import {
-  DayPickerBaseProps,
+  DayPickerBase,
   DayPickerColorScheme,
-  DayPickerContrastPreference,
-  DayPickerMultiProps,
-  DayPickerRangeProps,
-  DayPickerSingleProps,
-  DaysSelectionMode
+  DayPickerContrast,
+  Mode,
+  PropsMode
 } from 'react-day-picker';
 
 import { format, isValid, Locale, parse, startOfMonth } from 'date-fns';
@@ -18,22 +16,22 @@ import { Input } from '../Input';
 import { Select } from '../Select';
 
 export interface PropsFormProps {
-  mode: DaysSelectionMode | undefined;
-  onModeChange: (mode: DaysSelectionMode) => void;
+  mode: Mode | undefined;
+  onModeChange: (mode: Mode) => void;
   locale: Locale | undefined;
   onLocaleChange: (locale: Locale) => void;
-  baseProps: DayPickerBaseProps;
-  onBasePropsChange: (baseProps: DayPickerBaseProps) => void;
-  singleProps: DayPickerSingleProps;
-  onSinglePropsChange: (singleProps: DayPickerSingleProps) => void;
-  multiProps: DayPickerMultiProps;
-  onMultiPropsChange: (multiProps: DayPickerMultiProps) => void;
-  rangeProps: DayPickerRangeProps;
-  onRangePropsChange: (rangeProps: DayPickerRangeProps) => void;
+  baseProps: DayPickerBase;
+  onBasePropsChange: (baseProps: DayPickerBase) => void;
+  singleProps: PropsMode<'single'>;
+  onSinglePropsChange: (singleProps: PropsMode<'single'>) => void;
+  multiProps: PropsMode<'multi'>;
+  onMultiPropsChange: (multiProps: PropsMode<'multi'>) => void;
+  rangeProps: PropsMode<'range'>;
+  onRangePropsChange: (rangeProps: PropsMode<'range'>) => void;
   onReset: () => void;
 }
 
-const selectionModes: DaysSelectionMode[] = ['single', 'multi', 'range'];
+const selectionModes: Mode[] = ['single', 'multi', 'range'];
 
 export function PropsForm(props: PropsFormProps) {
   const {
@@ -63,7 +61,7 @@ export function PropsForm(props: PropsFormProps) {
             value={selectionMode}
             checked={mode === selectionMode}
             onChange={(e) => {
-              onModeChange(e.target.value as DaysSelectionMode);
+              onModeChange(e.target.value as Mode);
             }}
           />
         ))}
@@ -367,7 +365,7 @@ export function PropsForm(props: PropsFormProps) {
               ...baseProps,
               weekStartsOn: Number(
                 e.target.value
-              ) as DayPickerBaseProps['weekStartsOn']
+              ) as DayPickerBase['weekStartsOn']
             })
           }
         >
@@ -388,7 +386,7 @@ export function PropsForm(props: PropsFormProps) {
               ...baseProps,
               firstWeekContainsDate: Number(
                 e.target.value
-              ) as DayPickerBaseProps['firstWeekContainsDate']
+              ) as DayPickerBase['firstWeekContainsDate']
             })
           }
         >
@@ -436,7 +434,7 @@ export function PropsForm(props: PropsFormProps) {
           onChange={(e) =>
             onBasePropsChange({
               ...baseProps,
-              contrastPreference: e.target.value as DayPickerContrastPreference
+              contrastPreference: e.target.value as DayPickerContrast
             })
           }
         >
