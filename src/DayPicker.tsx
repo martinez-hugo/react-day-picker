@@ -1,10 +1,8 @@
 import { Calendar } from './components/Calendar';
 import { ContextProviders } from './contexts/ContextProviders';
-import { DayPickerBase } from './types/DayPickerBase';
+import { DayPickerBase, Mode } from './types/DayPickerBase';
 import { DateRange } from './types/matchers';
 import { Modifiers } from './types/modifiers';
-
-export type Mode = 'range' | 'single' | 'multi';
 
 export type Selected<T extends Mode | undefined> = T extends
   | 'single'
@@ -51,6 +49,16 @@ export interface PropsMode<T extends Mode> extends DayPickerBase {
   selected?: Selected<T>;
   onSelect?: SelectHandler<T>;
   required?: false | undefined;
+  min?: T extends 'multi'
+    ? number | undefined
+    : T extends 'range'
+    ? number | undefined
+    : never;
+  max?: T extends 'multi'
+    ? number | undefined
+    : T extends 'range'
+    ? number | undefined
+    : never;
 }
 
 export interface PropsModeRequired<T extends Mode> extends DayPickerBase {

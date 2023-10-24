@@ -4,8 +4,8 @@ import { createContext, useContext, useState } from 'react';
 import { isSameDay } from 'date-fns';
 
 import { useDayPicker } from '../../contexts/DayPickerContext';
-import type { Mode, Selected, SelectHandler } from '../../DayPicker';
-import type { DateRange, Modifiers } from '../../types';
+import type { Selected, SelectHandler } from '../../DayPicker';
+import type { DateRange, Mode, Modifiers } from '../../types';
 
 export type SelectionContext<T extends Mode> = {
   selected: Selected<T>;

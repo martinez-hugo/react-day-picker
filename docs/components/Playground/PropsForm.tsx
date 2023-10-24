@@ -1,54 +1,55 @@
 type LocaleString = keyof typeof locales;
 
 import {
-  DayPickerBase,
   DayPickerColorScheme,
   DayPickerContrast,
-  Mode,
-  PropsMode
+  DayPickerProps,
+  Mode
 } from 'react-day-picker';
 
-import { format, isValid, Locale, parse, startOfMonth } from 'date-fns';
+import { format, isValid, parse } from 'date-fns';
 import * as locales from 'date-fns/locale';
 import { Fieldset } from '../Fieldset';
 import { Form } from '../Form';
 import { Input } from '../Input';
 import { Select } from '../Select';
 
-export interface PropsFormProps {
-  mode: Mode | undefined;
-  onModeChange: (mode: Mode) => void;
-  locale: Locale | undefined;
-  onLocaleChange: (locale: Locale) => void;
-  baseProps: DayPickerBase;
-  onBasePropsChange: (baseProps: DayPickerBase) => void;
-  singleProps: PropsMode<'single'>;
-  onSinglePropsChange: (singleProps: PropsMode<'single'>) => void;
-  multiProps: PropsMode<'multi'>;
-  onMultiPropsChange: (multiProps: PropsMode<'multi'>) => void;
-  rangeProps: PropsMode<'range'>;
-  onRangePropsChange: (rangeProps: PropsMode<'range'>) => void;
-  onReset: () => void;
-}
-
 const selectionModes: Mode[] = ['single', 'multi', 'range'];
 
-export function PropsForm(props: PropsFormProps) {
+export interface Props {
+  dayPickerProps: Partial<DayPickerProps>;
+  min?: number | undefined;
+  max?: number | undefined;
+  onChange: (key: keyof DayPickerProps | 'min' | 'max', value: unknown) => void;
+}
+export function PropsForm(props: Props) {
+  const { onChange: onSubmit } = props;
   const {
-    mode = 'single',
-    onModeChange,
+    mode,
+    required,
+    month,
+    showWeekNumber,
+    hideWeekdayRow,
+    showOutsideDays,
+    fixedWeeks,
+    fromDate,
+    toDate,
+    numberOfMonths,
+    pagedNavigation,
+    reverseMonths,
+    disableNavigation,
+    disabled,
+    hidden,
     locale,
-    onLocaleChange,
-    baseProps,
-    onBasePropsChange,
-    singleProps,
-    onSinglePropsChange,
-    multiProps,
-    onMultiPropsChange,
-    rangeProps,
-    onRangePropsChange
-  } = props;
-
+    dir,
+    ISOWeek,
+    weekStartsOn,
+    firstWeekContainsDate,
+    today,
+    colorScheme,
+    contrastPreference
+  } = props.dayPickerProps;
+  const { min, max } = props;
   return (
     <Form>
       <Fieldset legend="Selection mode">
@@ -59,269 +60,185 @@ export function PropsForm(props: PropsFormProps) {
             type="radio"
             name="mode"
             value={selectionMode}
-            checked={mode === selectionMode}
-            onChange={(e) => {
-              onModeChange(e.target.value as Mode);
-            }}
+            checked={mode === selectionMode || mode === undefined}
+            onChange={(e) =>
+              onSubmit(
+                'mode',
+                e.target.value ? (e.target.value as Mode) : undefined
+              )
+            }
           />
         ))}
-        {mode === 'single' && (
-          <Input
-            label="required"
-            type="checkbox"
-            checked={singleProps.required}
-            onChange={(e) => {
-              onSinglePropsChange({
-                ...singleProps,
-                required: e.target.checked
-              });
-            }}
-          />
-        )}
+        <hr class="border-neutral-500 my-2" />
+        <Input
+          name="required"
+          label="required"
+          type="checkbox"
+          checked={required}
+          onChange={(e) => onSubmit('required', e.target.checked)}
+        />
         {(mode === 'multi' || mode === 'range') && (
           <>
             <Input
+              name="min"
               label="min"
               type="number"
               min="0"
               max="99"
-              value={mode === 'multi' ? multiProps?.min : rangeProps?.min}
-              onChange={(e) => {
-                mode === 'multi'
-                  ? onMultiPropsChange({
-                      ...multiProps,
-                      min:
-                        Number(e.target.value) === 0
-                          ? undefined
-                          : Number(e.target.value)
-                    })
-                  : onRangePropsChange({
-                      ...rangeProps,
-
-                      min:
-                        Number(e.target.value) === 0
-                          ? undefined
-                          : Number(e.target.value)
-                    });
-              }}
+              value={min}
+              onChange={(e) => onSubmit('min', Number(e.target.value))}
             />
             <Input
+              name="max"
               label="max"
               type="number"
               min="0"
               max="99"
-              value={mode === 'multi' ? multiProps?.max : rangeProps?.max}
-              onChange={(e) => {
-                mode === 'multi'
-                  ? onMultiPropsChange({
-                      ...multiProps,
-                      max:
-                        Number(e.target.value) === 0
-                          ? undefined
-                          : Number(e.target.value)
-                    })
-                  : onRangePropsChange({
-                      ...rangeProps,
-                      max:
-                        Number(e.target.value) === 0
-                          ? undefined
-                          : Number(e.target.value)
-                    });
-              }}
+              value={max}
+              onChange={(e) => onSubmit('max', Number(e.target.value))}
             />
           </>
         )}
       </Fieldset>
       <Fieldset legend="Calendar">
         <Input
+          name="month"
           label="month"
           type="date"
-          value={
-            baseProps.month
-              ? format(startOfMonth(baseProps.month), 'yyyy-MM-dd')
-              : ''
-          }
+          value={month ? format(month, 'yyyy-MM-dd') : ''}
           onChange={(e) => {
             const parsed = parse(e.target.value, 'yyyy-MM-dd', new Date());
             if (isValid(parsed)) {
-              onBasePropsChange({
-                ...baseProps,
-                month: parsed
-              });
+              onSubmit('month', parsed);
             }
           }}
         />
         <Input
+          name="showWeekNumber"
           label="showWeekNumber"
           type="checkbox"
-          onChange={(e) =>
-            onBasePropsChange({
-              ...baseProps,
-              showWeekNumber: e.target.checked
-            })
-          }
+          checked={showWeekNumber}
+          onChange={(e) => onSubmit('showWeekNumber', e.target.checked)}
         />
         <Input
+          name="hideWeekdayRow"
           label="hideWeekdayRow"
           type="checkbox"
-          onChange={(e) =>
-            onBasePropsChange({
-              ...baseProps,
-              hideWeekdayRow: e.target.checked
-            })
-          }
+          checked={hideWeekdayRow}
+          onChange={(e) => onSubmit('hideWeekdayRow', e.target.checked)}
         />
         <Input
+          name="showOutsideDays"
           label="showOutsideDays"
           type="checkbox"
-          onChange={(e) =>
-            onBasePropsChange({
-              ...baseProps,
-              showOutsideDays: e.target.checked
-            })
-          }
+          checked={showOutsideDays}
+          onChange={(e) => onSubmit('showOutsideDays', e.target.checked)}
         />
         <Input
+          name="fixedWeeks"
           label="fixedWeeks"
           type="checkbox"
-          onChange={(e) =>
-            onBasePropsChange({
-              ...baseProps,
-              fixedWeeks: e.target.checked
-            })
-          }
+          checked={fixedWeeks}
+          onChange={(e) => onSubmit('fixedWeeks', e.target.checked)}
         />
       </Fieldset>
       <Fieldset legend="Navigation">
         <Input
+          name="fromDate"
           label="fromDate"
           type="date"
-          value={
-            baseProps.fromDate ? format(baseProps.fromDate, 'yyyy-MM-dd') : ''
-          }
+          value={fromDate ? format(fromDate, 'yyyy-MM-dd') : ''}
           onChange={(e) => {
             const parsed = parse(e.target.value, 'yyyy-MM-dd', new Date());
             if (isValid(parsed)) {
-              onBasePropsChange({
-                ...baseProps,
-                fromDate: parsed
-              });
+              onSubmit('fromDate', parsed);
             }
           }}
         />
         <Input
+          name="toDate"
           label="toDate"
           type="date"
-          value={baseProps.toDate ? format(baseProps.toDate, 'yyyy-MM-dd') : ''}
+          value={toDate ? format(toDate, 'yyyy-MM-dd') : ''}
           onChange={(e) => {
             const parsed = parse(e.target.value, 'yyyy-MM-dd', new Date());
             if (isValid(parsed)) {
-              onBasePropsChange({
-                ...baseProps,
-                toDate: parsed
-              });
+              onSubmit('toDate', parsed);
             }
           }}
         />
         <Input
+          name="numberOfMonths"
           label="numberOfMonths"
           type="number"
           min="1"
           max="24"
-          value={baseProps.numberOfMonths || ''}
-          onChange={(e) =>
-            onBasePropsChange({
-              ...baseProps,
-              numberOfMonths:
-                Number(e.target.value) === 0
-                  ? undefined
-                  : Number(e.target.value)
-            })
-          }
+          value={numberOfMonths || ''}
+          onChange={(e) => onSubmit('numberOfMonths', e.target.value)}
         />
         <Input
+          name="pagedNavigation"
           label="pagedNavigation"
           type="checkbox"
-          disabled={
-            baseProps.numberOfMonths !== undefined &&
-            baseProps.numberOfMonths < 2
-          }
-          onChange={(e) =>
-            onBasePropsChange({
-              ...baseProps,
-              pagedNavigation: e.target.checked
-            })
-          }
+          checked={pagedNavigation}
+          disabled={numberOfMonths !== undefined && numberOfMonths < 2}
+          onChange={(e) => onSubmit('pagedNavigation', e.target.checked)}
         />
         <Input
+          name="reverseMonths"
           label="reverseMonths"
-          disabled={Boolean(
-            baseProps.numberOfMonths && baseProps.numberOfMonths < 2
-          )}
           type="checkbox"
-          onChange={(e) =>
-            onBasePropsChange({
-              ...baseProps,
-              reverseMonths: e.target.checked
-            })
-          }
+          checked={reverseMonths}
+          disabled={Boolean(numberOfMonths && numberOfMonths < 2)}
+          onChange={(e) => onSubmit('reverseMonths', e.target.checked)}
         />
         <Input
           label="disableNavigation"
           type="checkbox"
-          onChange={(e) =>
-            onBasePropsChange({
-              ...baseProps,
-              disableNavigation: e.target.checked
-            })
-          }
+          checked={disableNavigation}
+          onChange={(e) => onSubmit('disableNavigation', e.target.checked)}
         />
       </Fieldset>
       <Fieldset legend="Modifiers">
         <Input
+          name="disabled"
           label="disabled"
           type="date"
           value={
-            baseProps.disabled && baseProps.disabled instanceof Date
-              ? format(baseProps.disabled, 'yyyy-MM-dd')
+            disabled && disabled instanceof Date
+              ? format(disabled, 'yyyy-MM-dd')
               : ''
           }
           onChange={(e) => {
             const parsed = parse(e.target.value, 'yyyy-MM-dd', new Date());
             if (isValid(parsed)) {
-              onBasePropsChange({
-                ...baseProps,
-                disabled: parsed
-              });
+              onSubmit('toDate', parsed);
             }
           }}
         />
         <Input
+          name="hidden"
           label="hidden"
           type="date"
           value={
-            baseProps.hidden && baseProps.hidden instanceof Date
-              ? format(baseProps.hidden, 'yyyy-MM-dd')
-              : ''
+            hidden && hidden instanceof Date ? format(hidden, 'yyyy-MM-dd') : ''
           }
           onChange={(e) => {
             const parsed = parse(e.target.value, 'yyyy-MM-dd', new Date());
             if (isValid(parsed)) {
-              onBasePropsChange({
-                ...baseProps,
-                hidden: parsed
-              });
+              onSubmit('toDate', parsed);
             }
           }}
         />
       </Fieldset>
       <Fieldset legend="Localization">
         <Select
+          name="locale"
           label="locale"
           value={locale?.code}
           onChange={(e) =>
             // eslint-disable-next-line import/namespace
-            onLocaleChange(locales[e.target.value as LocaleString])
+            onSubmit('locale', locales[e.target.value as LocaleString])
           }
         >
           <option></option>
@@ -334,39 +251,32 @@ export function PropsForm(props: PropsFormProps) {
           })}
         </Select>
         <Select
+          name="dir"
           label="dir"
-          onChange={(e) =>
-            onBasePropsChange({
-              ...baseProps,
-              dir: e.target.value
-            })
-          }
+          value={dir}
+          onChange={(e) => onSubmit('dir', e.target.value || undefined)}
         >
           <option></option>
-          <option value={'ltr'}>ltr</option>
-          <option value={'rtl'}>rtl</option>
+          <option value="ltr">ltr</option>
+          <option value="rtl">rtl</option>
         </Select>
         <Input
-          checked={baseProps.ISOWeek}
+          name="ISOWeek"
           label="ISOWeek"
           type="checkbox"
-          onChange={(e) =>
-            onBasePropsChange({
-              ...baseProps,
-              ISOWeek: e.target.checked
-            })
-          }
+          checked={ISOWeek}
+          onChange={(e) => onSubmit('ISOWeek', e.target.checked)}
         />
         <Select
+          name="weekStartsOn"
           label="weekStartsOn"
-          disabled={baseProps.ISOWeek}
+          value={weekStartsOn}
+          disabled={ISOWeek}
           onChange={(e) =>
-            onBasePropsChange({
-              ...baseProps,
-              weekStartsOn: Number(
-                e.target.value
-              ) as DayPickerBase['weekStartsOn']
-            })
+            onSubmit(
+              'weekStartsOn',
+              e.target.value ? Number(e.target.value) : undefined
+            )
           }
         >
           <option></option>
@@ -379,15 +289,15 @@ export function PropsForm(props: PropsFormProps) {
           <option value={6}>6</option>
         </Select>
         <Select
+          name="firstWeekContainsDate"
           label="firstWeekContainsDate"
-          disabled={baseProps.ISOWeek}
+          value={firstWeekContainsDate}
+          disabled={ISOWeek}
           onChange={(e) =>
-            onBasePropsChange({
-              ...baseProps,
-              firstWeekContainsDate: Number(
-                e.target.value
-              ) as DayPickerBase['firstWeekContainsDate']
-            })
+            onSubmit(
+              'firstWeekContainsDate',
+              e.target.value ? Number(e.target.value) : undefined
+            )
           }
         >
           <option></option>
@@ -400,16 +310,14 @@ export function PropsForm(props: PropsFormProps) {
           <option value={7}>7</option>
         </Select>
         <Input
-          label="today"
           type="date"
-          value={baseProps.today ? format(baseProps.today, 'yyyy-MM-dd') : ''}
+          label="today"
+          name="today"
+          value={today ? format(today, 'yyyy-MM-dd') : ''}
           onChange={(e) => {
             const parsed = parse(e.target.value, 'yyyy-MM-dd', new Date());
             if (isValid(parsed)) {
-              onBasePropsChange({
-                ...baseProps,
-                today: parsed
-              });
+              onSubmit('today', parsed);
             }
           }}
         />
@@ -417,11 +325,15 @@ export function PropsForm(props: PropsFormProps) {
       <Fieldset legend="Style">
         <Select
           label="colorScheme"
+          name="colorScheme"
+          value={colorScheme}
           onChange={(e) =>
-            onBasePropsChange({
-              ...baseProps,
-              colorScheme: e.target.value as DayPickerColorScheme
-            })
+            onSubmit(
+              'colorScheme',
+              e.target.value
+                ? (e.target.value as DayPickerColorScheme)
+                : undefined
+            )
           }
         >
           <option></option>
@@ -431,11 +343,13 @@ export function PropsForm(props: PropsFormProps) {
         </Select>
         <Select
           label="contrastPreference"
+          name="contrastPreference"
+          value={contrastPreference}
           onChange={(e) =>
-            onBasePropsChange({
-              ...baseProps,
-              contrastPreference: e.target.value as DayPickerContrast
-            })
+            onSubmit(
+              'contrastPreference',
+              e.target.value ? (e.target.value as DayPickerContrast) : undefined
+            )
           }
         >
           <option></option>

@@ -1,44 +1,20 @@
-import { DayPicker, DayPickerBase, Mode, PropsMode } from 'react-day-picker';
+import { DayPicker, DayPickerProps, Selected } from 'react-day-picker';
 
-import { Locale } from 'date-fns';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { RenderingBox } from '../RenderingBox';
 import { Shadow } from '../Shadow';
 import { PropsForm } from './PropsForm';
 
 export function Playground() {
-  const router = useRouter();
+  const [props, setProps] = useState<DayPickerProps>({});
+  const [selected, setSelected] = useState<unknown>(new Date());
 
-  const [mode, setMode] = useState<Mode>();
-  const [locale, setLocale] = useState<Locale>();
-
-  const [baseProps, setBaseProps] = useState<DayPickerBase>({});
-  const [singleProps, setSingleProps] = useState<PropsMode<'single'>>({
-    mode: 'single'
-  });
-  const [multiProps, setMultiProps] = useState<PropsMode<'multi'>>({
-    mode: 'multi'
-  });
-  const [rangeProps, setRangeProps] = useState<PropsMode<'range'>>({
-    mode: 'range'
-  });
-
-  const handleReset = () => {
-    setMode(undefined);
-    setMultiProps({ mode: 'multi' });
-    setSingleProps({ mode: 'single' });
-    setRangeProps({ mode: 'range' });
-    setBaseProps({});
-    router.push(``);
-  };
-
-  const handleBookmark = () => {
-    const searchParams = new URLSearchParams(
-      baseProps as Record<string, string>
-    );
-    searchParams.toString() && router.push(`#${searchParams.toString()}`);
-  };
+  const renderClassName =
+    props.colorScheme === 'dark'
+      ? 'bg-black text-white'
+      : props.colorScheme === 'light'
+      ? 'bg-white text-black'
+      : 'bg-transparent';
 
   return (
     <div>
@@ -49,55 +25,20 @@ export function Playground() {
           <button
             type="button"
             className="border rounded-md px-2 text-left text-xs font-medium mx-4"
-            onClick={handleBookmark}
-          >
-            Bookmark
-          </button>
-          <button
-            type="button"
-            className="border rounded-md px-2 text-left text-xs font-medium mx-4"
-            onClick={handleReset}
+            onClick={() => setProps({})}
           >
             Reset Props
           </button>
           <PropsForm
-            baseProps={baseProps}
-            locale={locale}
-            mode={mode}
-            multiProps={multiProps}
-            rangeProps={rangeProps}
-            singleProps={singleProps}
-            onLocaleChange={setLocale}
-            onModeChange={setMode}
-            onBasePropsChange={setBaseProps}
-            onSinglePropsChange={setSingleProps}
-            onMultiPropsChange={setMultiProps}
-            onRangePropsChange={setRangeProps}
-            onReset={handleReset}
+            dayPickerProps={props}
+            onChange={(key, value) => setProps({ ...props, [key]: value })}
           />
         </div>
         <div className="pb-36">
-          <div
-            className={`nxe-shadow-lg w-fit p-8 mx-auto ${
-              baseProps.colorScheme === 'dark'
-                ? 'bg-black text-white'
-                : baseProps.colorScheme === 'light'
-                ? 'bg-white text-black'
-                : 'bg-transparent'
-            }`}
-          >
+          <div className={`nxe-shadow-lg w-fit p-8 mx-auto ${renderClassName}`}>
             <RenderingBox>
               <Shadow mode="open">
-                <DayPicker
-                  locale={locale}
-                  {...(mode === 'single'
-                    ? { ...baseProps, ...singleProps }
-                    : mode === 'multi'
-                    ? { ...baseProps, ...multiProps }
-                    : mode === 'range'
-                    ? { ...baseProps, ...rangeProps }
-                    : baseProps)}
-                />
+                <DayPicker {...props} onSelect={setSelected} />
               </Shadow>
             </RenderingBox>
           </div>

@@ -23,6 +23,7 @@ export type CustomComponents = {
 
 /** The name of the color schemes. */
 export type DayPickerColorScheme = 'auto' | 'dark' | 'light';
+export type Mode = 'range' | 'single' | 'multi';
 
 /** The name of the contrast preferences. */
 export type DayPickerContrast = 'no-preference' | 'less' | 'more';

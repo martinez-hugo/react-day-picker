@@ -2,7 +2,8 @@ import { enUS } from 'date-fns/locale';
 import { createContext, ReactNode, useContext, useId } from 'react';
 
 import { CaptionLayout } from '../../components/Nav';
-import { DayPickerProps, Mode } from '../../DayPicker';
+import { DayPickerProps } from '../../DayPicker';
+import { Mode } from 'types/DayPickerBase';
 import * as formatters from '../../formatters';
 import * as labels from '../../labels';
 import {
